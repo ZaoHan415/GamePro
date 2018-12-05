@@ -5,7 +5,7 @@
 Hexagon::Hexagon(QPointF pos)
 {
     setPos(pos);
-    color = QColor(100,100,0,255);
+    color = QColor(200,0,0,100);
 }
 
 void Hexagon::advance(int phase)
