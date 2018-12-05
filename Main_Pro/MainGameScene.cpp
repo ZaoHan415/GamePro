@@ -12,15 +12,17 @@ void MainGameScene::drawFloor()
     QPointF e1 = firstHex.vecToNext(1);
     QPointF e2 = firstHex.vecToNext(2);
     //addItem(&firstHex);
-    int a = mapWidth - 1 ;
     Hexagon *temp;
-    for(int i = 0 ; i <= a ; i++)
+    for(int i = -mapWidth ; i <= mapWidth ; i++)
     {
-        for(int j = -a ; j+i <= a ;j++)
+        for(int j = -mapWidth ; j <= mapWidth ;j++)
         {
-            temp = new Hexagon(QPointF(j*e1+(i-j)*e2));
-            qDebug()<<i<<j;
-            addItem(temp);
+            if(inThisMap(QPoint(i,j)))
+            {
+                temp = new Hexagon(i*e1+j*e2/*+QPointF(0,0.0001)*/);
+                qDebug()<<i<<j;
+                addItem(temp);
+            }
         }
     }
 
