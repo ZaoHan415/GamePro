@@ -6,6 +6,8 @@ class myAnimal : public QGraphicsItem
 {
 public:
     myAnimal();
+private:
+    int direction;
 };
 
 #endif // MYANIMAL_H
