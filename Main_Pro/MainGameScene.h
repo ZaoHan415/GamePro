@@ -8,8 +8,14 @@ class MainGameScene : public QGraphicsScene
 public:
     MainGameScene();
     void drawFloor();
-    const int mapWidth = 10;//地图宽度
-    bool inThisMap(QPoint);//检测一对点在不在地图里
+
+    //地图宽度
+    const int mapWidth = 7;
+    const qreal blockWidth = 15;
+
+    //检测一个点在不在地图里
+    bool inThisMap(QPoint);
+    QPointF pixelPostionInMap(QPoint);
 };
 
 #endif // MAINGAMESCENE_H

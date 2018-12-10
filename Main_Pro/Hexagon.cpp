@@ -2,8 +2,9 @@
 #include <stdexcept>
 #include <QPainter>
 
-Hexagon::Hexagon(QPointF pos)
+Hexagon::Hexagon(QPointF pos,qreal _width)
 {
+    a = _width;
     setPos(pos);
     color = QColor(200,0,0,100);
 }
@@ -16,10 +17,10 @@ void Hexagon::advance(int phase)
     }
 }
 
-QPointF Hexagon::vecToNext(int i)
+QPoint Hexagon::baseVecToNext(int i)
 {
-    QPointF e1( 1.5*a , 0.5*a*sqrt(3) );
-    QPointF e2( 0 , a*sqrt(3) );
+    QPoint e1(1,0);
+    QPoint e2(0,1);
     switch (i)
     {
     case 1:
@@ -36,8 +37,15 @@ QPointF Hexagon::vecToNext(int i)
         return e1-e2;
     default:
         throw std::runtime_error("Invalid use of vecToNext");
-
     }
+}
+
+QPointF Hexagon::vecToNext(int i)
+{
+    QPointF e1( 1.5*a , 0.5*a*sqrt(3) );
+    QPointF e2( 0 , a*sqrt(3) );
+    QPoint p = baseVecToNext(i);
+    return p.x()*e1 + p.y() *e2;
 }
 
 void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
