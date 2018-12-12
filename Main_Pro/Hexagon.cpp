@@ -1,6 +1,7 @@
 #include "Hexagon.h"
 #include <stdexcept>
 #include <QPainter>
+#include <cmath>
 
 Hexagon::Hexagon(QPointF pos)
 {

@@ -9,6 +9,7 @@
 *.dll
 *.dylib
 *.exe
+*.DS_Store
 
 # Qt-es
 object_script.*.Release
