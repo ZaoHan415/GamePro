@@ -11,7 +11,6 @@ void MainGameScene::drawFloor()
     Hexagon firstHex(QPointF(0,0));
     QPointF e1 = firstHex.vecToNext(1);
     QPointF e2 = firstHex.vecToNext(2);
-    //addItem(&firstHex);
     Hexagon *temp;
     for(int i = -mapWidth ; i <= mapWidth ; i++)
     {
