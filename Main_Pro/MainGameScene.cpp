@@ -8,9 +8,6 @@ MainGameScene::MainGameScene()
 
 void MainGameScene::drawFloor()
 {
-    Hexagon firstHex(QPointF(0,0));
-    QPointF e1 = firstHex.vecToNext(1);
-    QPointF e2 = firstHex.vecToNext(2);
     Hexagon *temp;
     for(int i = -mapWidth ; i <= mapWidth ; i++)
     {
@@ -18,8 +15,8 @@ void MainGameScene::drawFloor()
         {
             if(inThisMap(QPoint(i,j)))
             {
-                temp = new Hexagon(i*e1+j*e2/*+QPointF(0,0.0001)*/);
-                qDebug()<<i<<j;
+                temp = new Hexagon(pixelPostionInMap(QPoint(i,j)),blockWidth);
+                //qDebug()<<i<<j;
                 addItem(temp);
             }
         }
@@ -31,9 +28,20 @@ bool MainGameScene::inThisMap(QPoint p)
 {
     int x = p.x();
     int y = p.y();
+    if(x < -mapWidth || x > mapWidth || y < -mapWidth || y > mapWidth)
+    {
+        return false;
+    }
     if(::abs(x+y) > mapWidth)
     {
         return false;
     }
     return true;
+}
+
+QPointF MainGameScene::pixelPostionInMap(QPoint p)
+{
+    Hexagon temp(QPointF(0,0),blockWidth);
+    QPointF pos = p.x()*temp.vecToNext(1)+p.y()*temp.vecToNext(2);
+    return pos;
 }

@@ -1,11 +1,11 @@
 #ifndef MYANIMAL_H
 #define MYANIMAL_H
-#include <QGraphicsItem>
-
-class myAnimal : public QGraphicsItem
+#include <QTimer>
+#include "Hexagon.h"
+class myAnimal : public QObject
 {
+    Q_OBJECT
 public:
-    myAnimal();
 };
 
 #endif // MYANIMAL_H
