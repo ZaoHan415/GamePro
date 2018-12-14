@@ -7,7 +7,7 @@ class myAnimal : public QObject
 {
     Q_OBJECT
 public:
-    myAnimal();
+    myAnimal(QPoint);
     QPoint get_position()
     {
         return position;
@@ -23,6 +23,12 @@ private:
     QTimer* m_timer;
     Hexagon* m_hex;
 public slots:
+    void change_direction(int x);
+    //x=1or-1,while 1 means clockwise
+    void move_to_next();
+    void out_of_border();
+signals:
+    void direction_changed(int x);
 };
 
 #endif // MYANIMAL_H
