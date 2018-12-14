@@ -8,11 +8,11 @@ myAnimal::myAnimal(QPoint p)
 }
 void myAnimal::move_to_next()
 {
-    QPoint step=m_hex->vecToNext(direction);
+    QPoint step=m_hex->baseVecToNext(direction);
     position=position+step;
 }
 void myAnimal::change_direction(int x)
 {
     direction=(direction+x)%6;
-    direction_changed()
+    direction_changed(x);
 }

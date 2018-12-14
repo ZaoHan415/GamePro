@@ -4,8 +4,11 @@
 
 class Hexagon : public QGraphicsItem
 {
+private:
+    qreal a;
+    QColor color;
 public:
-    Hexagon(QPointF);
+    Hexagon(QPointF x = QPointF(0,0),qreal _width = 20);
     void advance(int phase) override;
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
@@ -14,12 +17,13 @@ public:
     QRectF boundingRect() const override;
 
     //六边形边长
-    const qreal a = 20;
+
 
     //返回晶格基矢，i取1到6
+    QPoint baseVecToNext(int i);
     QPointF vecToNext(int i);
 
-    QColor color;
+
 };
 
 #endif // HEXAGON_H
