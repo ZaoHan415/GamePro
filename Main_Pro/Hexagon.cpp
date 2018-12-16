@@ -24,17 +24,17 @@ QPoint Hexagon::baseVecToNext(int i)
     QPoint e2(0,1);
     switch (i)
     {
-    case 1:
+    case 0:
         return e1;
-    case 2:
+    case 1:
         return e2;
-    case 3:
+    case 2:
         return -e1+e2;
-    case 4:
+    case 3:
         return -e1;
-    case 5:
+    case 4:
         return -e2;
-    case 6:
+    case 5:
         return e1-e2;
     default:
         throw std::runtime_error("Invalid use of vecToNext");
