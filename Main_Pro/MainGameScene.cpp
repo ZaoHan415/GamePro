@@ -4,6 +4,10 @@
 MainGameScene::MainGameScene()
 {
     drawFloor();
+
+    miceStartPos = QPoint(0,0);
+    catStartPos = QPoint(mapWidth-1,0);
+    miceEndPos.append( QPoint(1-mapWidth,0) );
 }
 
 void MainGameScene::drawFloor()
@@ -45,3 +49,5 @@ QPointF MainGameScene::pixelPostionInMap(QPoint p)
     QPointF pos = p.x()*temp.vecToNext(1)+p.y()*temp.vecToNext(2);
     return pos;
 }
+
+
