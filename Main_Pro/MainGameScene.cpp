@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QEvent>
 #include <QKeyEvent>
+#include <QTimer>
 
 MainGameScene::MainGameScene()
 {
@@ -12,9 +13,13 @@ MainGameScene::MainGameScene()
     catStartPos = QPoint(mapWidth-1,0);
     miceEndPos.append( QPoint(1-mapWidth,0) );
 
-    cat = new animalCat(catStartPos);
+    cat = new animalCat(catStartPos,this);
     animalCat *cat_p = static_cast<animalCat *>(cat );
     addItem(cat_p);
+
+    timer = new QTimer(this);
+    timer->start(1000);
+    connect(timer,SIGNAL(timeout()),this,SLOT(advance()));
 }
 
 void MainGameScene::drawFloor()
@@ -53,7 +58,7 @@ bool MainGameScene::inThisMap(QPoint p)
 QPointF MainGameScene::pixelPostionInMap(QPoint p)
 {
     Hexagon temp(QPointF(0,0),blockWidth);
-    QPointF pos = p.x()*temp.vecToNext(1)+p.y()*temp.vecToNext(2);
+    QPointF pos = p.x()*temp.vecToNext(0)+p.y()*temp.vecToNext(1);
     return pos;
 }
 

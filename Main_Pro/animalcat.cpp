@@ -1,10 +1,10 @@
 #include "animalcat.h"
 #include<QPainter>
 #include <QDebug>
-animalCat::animalCat(QPoint pos):
-    myAnimal (pos)
+animalCat::animalCat(QPoint pos,QObject * pa):
+    myAnimal (pos,pa)
 {
-
+    setPos(this->posInMap());
 }
 
 int animalCat::turnAroundKey(int x)
@@ -22,12 +22,15 @@ void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidg
 {
     painter->setBrush(Qt::white);
     painter->setPen(Qt::black);
-    painter->drawEllipse(QRectF(0,0,10,10));
+    painter->drawEllipse(QRectF(-5,-5,10,10));
 }
 
 void animalCat::advance(int phase)
 {
     if(phase == 1){
+        move_to_next();
+        QPointF now_pos = posInMap();
+        setPos( now_pos );
         update();
     }
 }
@@ -36,3 +39,8 @@ QRectF animalCat::boundingRect() const
 {
     return  QRectF(0,0,10,10);
 }
+
+/*void animalCat::move_to_next()
+{
+
+}*/

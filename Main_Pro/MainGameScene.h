@@ -14,7 +14,7 @@ public:
     QPointF pixelPostionInMap(QPoint);
     myAnimal *mice;
     myAnimal *cat;
-
+    QTimer * timer;
     bool eventFilter(QObject *obj, QEvent *event) override;
 private:
     void drawFloor();

@@ -8,18 +8,21 @@ class myAnimal : public QObject
 {
     Q_OBJECT
 public:
-    myAnimal(QPoint);
+    myAnimal(QPoint,QObject *);
     QPoint get_position() { return position; }
     int get_direction(){ return direction; }
+
     //在子类中override，返回让它转弯的两个键
     virtual int turnAroundKey(int direction) = 0;
+    QPointF posInMap();
+
 private:
     QPoint position;
     int direction;//0 to 5
     qreal time_per_step=1000;
     QTimer* m_timer;
     Hexagon* m_hex;
-
+    QObject * m_parent;
 protected:
 
 public slots:
