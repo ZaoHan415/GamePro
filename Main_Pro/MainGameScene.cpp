@@ -9,17 +9,16 @@ MainGameScene::MainGameScene()
 {
 
     drawFloor();
+
+    //初始化猫老鼠位置
     miceStartPos = QPoint(0,0);
     catStartPos = QPoint(mapWidth-1,0);
     miceEndPos.append( QPoint(1-mapWidth,0) );
 
+    //添加猫
     cat = new animalCat(catStartPos,this);
     animalCat *cat_p = static_cast<animalCat *>(cat );
     addItem(cat_p);
-
-    timer = new QTimer(this);
-    timer->start(1000);
-    connect(timer,SIGNAL(timeout()),this,SLOT(advance()));
 }
 
 void MainGameScene::drawFloor()

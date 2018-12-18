@@ -18,8 +18,8 @@ public:
 
 private:
     QPoint position;
-    int direction;//0 to 5
-    qreal time_per_step=1000;
+    int direction = 0;//0 to 5
+    int time_per_step=1000;//msecs
     QTimer* m_timer;
     Hexagon* m_hex;
     QObject * m_parent;
@@ -28,8 +28,9 @@ protected:
 public slots:
     void change_direction(int x);
     //x=1or-1,while 1 means clockwise
-    virtual void move_to_next();
+    void move_to_next();
    // void out_of_border();
+    virtual void moveOneStep() = 0;
 signals:
     void direction_changed(int x);
 };

@@ -25,22 +25,24 @@ void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidg
     painter->drawEllipse(QRectF(-5,-5,10,10));
 }
 
-void animalCat::advance(int phase)
+/*void animalCat::advance(int phase)
 {
     if(phase == 1){
         move_to_next();
-        QPointF now_pos = posInMap();
-        setPos( now_pos );
-        update();
-    }
-}
+           }
+}*/
 
 QRectF animalCat::boundingRect() const
 {
-    return  QRectF(0,0,10,10);
+    return  QRectF(-10,-10,20,20);
 }
 
-/*void animalCat::move_to_next()
+void animalCat::moveOneStep()
 {
+    qDebug() <<"moving";
+    move_to_next();
+    QPointF now_pos = posInMap();
+    setPos( now_pos );
+    update();
 
-}*/
+}
