@@ -13,7 +13,7 @@ void myAnimal::move_to_next()
 }
 void myAnimal::change_direction(int x)
 {
-    direction=(direction+x)%6;
+    direction=(direction+x+6)%6;
     qDebug()<<"cat is turning"<< direction;
     emit direction_changed(direction);
 }
