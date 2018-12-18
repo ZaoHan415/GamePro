@@ -1,13 +1,20 @@
 #include "MainGameScene.h"
 #include <Hexagon.h>
 #include <QDebug>
+#include <QEvent>
+#include <QKeyEvent>
+
 MainGameScene::MainGameScene()
 {
-    drawFloor();
 
+    drawFloor();
     miceStartPos = QPoint(0,0);
     catStartPos = QPoint(mapWidth-1,0);
     miceEndPos.append( QPoint(1-mapWidth,0) );
+
+    cat = new animalCat(catStartPos);
+    animalCat *cat_p = static_cast<animalCat *>(cat );
+    addItem(cat_p);
 }
 
 void MainGameScene::drawFloor()
@@ -50,4 +57,21 @@ QPointF MainGameScene::pixelPostionInMap(QPoint p)
     return pos;
 }
 
+bool MainGameScene::eventFilter(QObject *obj, QEvent *event)
+{
+    if(event->type() == QEvent::KeyPress){
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        for(int i = -1;i <= 1; i += 2){
+            if(cat->turnAroundKey(i) == keyEvent->key()){
+                cat->change_direction(i);
+                return true;
 
+            }
+            /*else if(mice->turnAroundKey(i) == keyEvent->key()){
+                mice->change_direction(i);
+                return true;
+            }*/
+        }
+    }
+    return QObject::eventFilter(obj, event);
+}

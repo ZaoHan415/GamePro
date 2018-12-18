@@ -2,7 +2,8 @@
 #define MAINGAMESCENE_H
 
 #include <QGraphicsScene>
-#include <myAnimal.h>
+#include "myAnimal.h"
+#include "animalcat.h"
 class MainGameScene : public QGraphicsScene
 {
 public:
@@ -13,6 +14,8 @@ public:
     QPointF pixelPostionInMap(QPoint);
     myAnimal *mice;
     myAnimal *cat;
+
+    bool eventFilter(QObject *obj, QEvent *event) override;
 private:
     void drawFloor();
 

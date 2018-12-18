@@ -1,6 +1,6 @@
 #include "myAnimal.h"
 #include "Hexagon.h"
-
+#include <QDebug>
 myAnimal::myAnimal(QPoint p)
 {
     position=p;
@@ -14,5 +14,6 @@ void myAnimal::move_to_next()
 void myAnimal::change_direction(int x)
 {
     direction=(direction+x)%6;
-    emit direction_changed(x);
+    qDebug()<<"cat is turning"<< direction;
+    emit direction_changed(direction);
 }
