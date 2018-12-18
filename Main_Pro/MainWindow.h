@@ -15,7 +15,7 @@ public:
     QGraphicsView *view;
     MainGameScene *m_scene;
 protected:
-    bool eventFilter(QObject *obj, QEvent *event) override;
+
 };
 
 #endif // MAINWINDOW_H
