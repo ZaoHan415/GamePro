@@ -24,8 +24,6 @@ MainGameScene::MainGameScene()
     mice = new animalMice(miceStartPos,this);
     animalMice *mice_p = static_cast<animalMice *>(mice );
     addItem(mice_p);
-
-
 }
 
 void MainGameScene::drawFloor()
