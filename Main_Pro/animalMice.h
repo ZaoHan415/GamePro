@@ -1,27 +1,27 @@
-#ifndef ANIMALCAT_H
-#define ANIMALCAT_H
+#ifndef ANIMALMICE_H
+#define ANIMALMICE_H
 
 #include <QGraphicsItem>
 #include "myAnimal.h"
 
-class animalCat:public myAnimal,public QGraphicsItem
+class animalMice:public myAnimal,public QGraphicsItem
 {
 public:
-    animalCat(QPoint,QObject* pa);
+    animalMice(QPoint,QObject* pa);
     int turnAroundKey(int x) override;
-
     //void advance(int phase) override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *) override;
     QRectF boundingRect() const override;
-    myAnimal *m_mice;
+    myAnimal *m_cat;
+
 public slots:
     void moveOneStep() override;
-    void catchmouse();
+    void mouse_escape();
 signals:
-    void catwins(bool);
+    void mousewins(bool);
     //让它初始化为false
 private:
 
 };
 
-#endif // ANIMALCAT_H
+#endif // ANIMALMICE_H

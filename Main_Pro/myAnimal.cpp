@@ -31,3 +31,10 @@ QPointF myAnimal::posInMap()
     MainGameScene *t = static_cast<MainGameScene*>(m_parent);
     return t->pixelPostionInMap(position);
 }
+void myAnimal::out_of_border()
+{
+    if(position.x()+position.y()>10){
+        emit alive(false);
+    }
+
+}

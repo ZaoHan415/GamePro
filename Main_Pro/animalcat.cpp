@@ -46,3 +46,9 @@ void animalCat::moveOneStep()
     update();
 
 }
+void animalCat::catchmouse()
+{
+    QPoint p = m_mice->get_position();
+    //if(position cat==p){
+     // emit catwins(true);
+}

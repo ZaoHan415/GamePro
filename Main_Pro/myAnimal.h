@@ -29,10 +29,11 @@ public slots:
     void change_direction(int x);
     //x=1or-1,while 1 means clockwise
     void move_to_next();
-   // void out_of_border();
+    void out_of_border();
     virtual void moveOneStep() = 0;
 signals:
     void direction_changed(int x);
+    void alive(bool);
 };
 
 #endif // MYANIMAL_H
