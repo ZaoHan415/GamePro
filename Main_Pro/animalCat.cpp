@@ -1,4 +1,4 @@
-#include "animalcat.h"
+#include "animalCat.h"
 #include<QPainter>
 #include <QDebug>
 animalCat::animalCat(QPoint pos,QObject * pa):
@@ -24,13 +24,6 @@ void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidg
     painter->setPen(Qt::black);
     painter->drawEllipse(QRectF(-5,-5,10,10));
 }
-
-/*void animalCat::advance(int phase)
-{
-    if(phase == 1){
-        move_to_next();
-           }
-}*/
 
 QRectF animalCat::boundingRect() const
 {

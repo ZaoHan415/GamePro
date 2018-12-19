@@ -18,7 +18,7 @@ MainGameScene::MainGameScene()
     //添加猫
     cat = new animalCat(catStartPos,this);
     animalCat *cat_p = static_cast<animalCat *>(cat );
-    addItem(cat_p);
+    this->addItem(cat_p);
 }
 
 void MainGameScene::drawFloor()
@@ -71,10 +71,10 @@ bool MainGameScene::eventFilter(QObject *obj, QEvent *event)
                 return true;
 
             }
-            /*else if(mice->turnAroundKey(i) == keyEvent->key()){
+            else if(mice->turnAroundKey(i) == keyEvent->key()){
                 mice->change_direction(i);
                 return true;
-            }*/
+            }
         }
     }
     return QObject::eventFilter(obj, event);

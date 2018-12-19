@@ -30,14 +30,14 @@ SOURCES += \
     MainWindow.cpp \
     myAnimal.cpp \
     Hexagon.cpp \
-    animalcat.cpp
+    animalCat.cpp
 
 HEADERS += \
     MainGameScene.h \
     MainWindow.h \
     myAnimal.h \
     Hexagon.h \
-    animalcat.h
+    animalCat.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

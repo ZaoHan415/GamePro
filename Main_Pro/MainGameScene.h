@@ -3,7 +3,7 @@
 
 #include <QGraphicsScene>
 #include "myAnimal.h"
-#include "animalcat.h"
+#include "animalCat.h"
 class MainGameScene : public QGraphicsScene
 {
 public:
