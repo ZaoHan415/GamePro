@@ -1,5 +1,5 @@
 #include "animalCat.h"
-#include<QPainter>
+#include <QPainter>
 #include <QDebug>
 animalCat::animalCat(QPoint pos,QObject * pa):
     myAnimal (pos,pa)

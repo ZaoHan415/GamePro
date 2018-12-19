@@ -49,7 +49,7 @@ void animalMice::moveOneStep()
 }
 void animalMice::mouse_escape()
 {
-    QPoint p = m_cat->get_position();
+    //QPoint p = m_cat->get_position();
     //if(position mouse==p){
     //emit mousewins(true);
 }

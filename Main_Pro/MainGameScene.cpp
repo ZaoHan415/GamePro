@@ -18,6 +18,7 @@ MainGameScene::MainGameScene()
     //添加猫
     cat = new animalCat(catStartPos,this);
     animalCat *cat_p = static_cast<animalCat *>(cat );
+    connect(cat_p,SIGNAL(alive(bool)),this,SLOT(gameOver()));
     addItem(cat_p);
 
     //添加老鼠
@@ -83,4 +84,9 @@ bool MainGameScene::eventFilter(QObject *obj, QEvent *event)
         }
     }
     return QObject::eventFilter(obj, event);
+}
+
+void MainGameScene::gameOver()
+{
+    qDebug() <<"outOfBorder";
 }

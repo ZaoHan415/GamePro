@@ -10,11 +10,11 @@ class myAnimal : public QObject
     Q_OBJECT
 public:
     myAnimal(QPoint,QObject *);
+    ~myAnimal();
     QPoint get_position() { return position; }
     int get_direction(){ return direction; }
 
-    //在子类中override，返回让它转弯的两个键，这样myAnimal类可以保证
-    //这个东西真的会转弯
+    //在子类中override，返回让它转弯的两个键，这样myAnimal类可以保证这个东西真的会转弯
     virtual int turnAroundKey(int direction) = 0;
 
     QPointF posInMap();
@@ -41,12 +41,9 @@ public slots:
 
     void move_to_next();
 
-    void out_of_border();
-
    // void out_of_border();
 
     //纯虚函数，继承它并实现每个小动物特色的走路方式
-
     virtual void moveOneStep() = 0;
 
 signals:

@@ -8,16 +8,19 @@
 
 class MainGameScene : public QGraphicsScene
 {
+    Q_OBJECT
 public:
     MainGameScene();
 
-    //检测一个点在不在地图里
+    //检测一个点在不在地图里，检测动物是否出界时直接调用
     bool inThisMap(QPoint);
+
     QPointF pixelPostionInMap(QPoint);
     myAnimal *mice;
     myAnimal *cat;
-    QTimer * timer;
     bool eventFilter(QObject *obj, QEvent *event) override;
+
+
 private:
     void drawFloor();
 
@@ -33,6 +36,9 @@ private:
 
     //猫入口
     QPoint catStartPos;
+
+public slots:
+    void gameOver();
 
 };
 
