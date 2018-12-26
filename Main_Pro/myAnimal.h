@@ -22,7 +22,7 @@ public:
 private:
     QPoint position;
     int direction = 0;//0 to 5
-    int time_per_step=1000;//msecs
+    int time_per_step = 2000;//msecs
 
     //用来控制行进速度
     QTimer* m_timer;

@@ -12,7 +12,7 @@ MainGameScene::MainGameScene()
 
     //初始化猫老鼠位置
     miceStartPos = QPoint(0,0);
-    catStartPos = QPoint(mapWidth-1,0);
+    catStartPos = QPoint(-1,0);
     miceEndPos.append( QPoint(1-mapWidth,0) );
 
     //添加猫

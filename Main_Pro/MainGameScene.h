@@ -26,7 +26,7 @@ private:
 
     //地图宽度
     const int mapWidth = 6;
-    const qreal blockWidth = 20;
+    const qreal blockWidth = 35;
 
     //老鼠入口
     QPoint miceStartPos;

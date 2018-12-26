@@ -1,10 +1,23 @@
 #include "animalCat.h"
 #include <QPainter>
 #include <QDebug>
+#include <QPixmap>
 animalCat::animalCat(QPoint pos,QObject * pa):
     myAnimal (pos,pa)
 {
     setPos(this->posInMap());
+    QString s = ":/Pic/Pics/Cat";
+    for(int i = 0 ;i < 5 ;i ++)
+    {
+        QString temp(s);
+        temp.append(QString::number(i));
+        temp.append(".png");
+        qDebug() << temp;
+        QPixmap pic = QPixmap(temp);
+        pic = pic.scaledToWidth(picWidth);
+        cat_pics.append(pic);
+    }
+    connect(&animationTimer,SIGNAL(timeout()),this,SLOT(changePic()));
 }
 
 int animalCat::turnAroundKey(int x)
@@ -20,28 +33,48 @@ int animalCat::turnAroundKey(int x)
 
 void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->setBrush(Qt::white);
-    painter->setPen(Qt::black);
-    painter->drawEllipse(QRectF(-5,-5,10,10));
+    QPixmap now = cat_pics.at(phase%5);
+
+    //设置图片中心
+    QPointF offset(now.width()/2.0,now.height()/2.0);
+    //QPointF offset(0,0);
+    painter->translate(+offset);
+
+    painter->rotate(120+60*get_direction());
+    painter->drawPixmap(0,0,now);
+
+    painter->translate(-offset);
 }
 
 QRectF animalCat::boundingRect() const
 {
-    return  QRectF(-10,-10,20,20);
+    return  QRectF(-1000,-1000,2000,2000);
 }
 
 void animalCat::moveOneStep()
 {
-    qDebug() <<"moving";
+    animationTimer.start(picChangeStep);
+    //qDebug() <<"moving";
+    QPointF now_pos = posInMap();//出发位置
     move_to_next();
-    QPointF now_pos = posInMap();
-    setPos( now_pos );
-    update();
-
+    QPointF then_pos = posInMap();//结束位置
+    perStep = (then_pos - now_pos)/totalPhase;
 }
 void animalCat::catchmouse()
 {
-    QPoint p = m_mice->get_position();
+    //QPoint p = m_mice->get_position();
     //if(position cat==p){
-     // emit catwins(true);
+    // emit catwins(true);
+}
+
+void animalCat::changePic()
+{
+    setPos(pos()+perStep);
+    update();
+    phase ++;
+    if(phase > totalPhase)
+    {
+        animationTimer.stop();
+        phase = 0;
+    }
 }

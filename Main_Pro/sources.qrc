@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/Pic">
+        <file>Pics/Cat1.png</file>
+        <file>Pics/Cat2.png</file>
+        <file>Pics/Cat3.png</file>
+        <file>Pics/Cat4.png</file>
+        <file>Pics/Mice1.png</file>
+        <file>Pics/Mice2.png</file>
+        <file>Pics/Mice3.png</file>
+        <file>Pics/Mice4.png</file>
+        <file>Pics/Mice5.png</file>
+        <file>Pics/Cat0.png</file>
+    </qresource>
+</RCC>
