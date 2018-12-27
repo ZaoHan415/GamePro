@@ -34,7 +34,8 @@ SOURCES += \
     MusicController.cpp \
     SpeedController.cpp \
     Control.cpp \
-    MainController.cpp
+    MainController.cpp \
+    end.cpp
 
 HEADERS += \
     MainGameScene.h \
@@ -44,7 +45,8 @@ HEADERS += \
     MusicController.h \
     SpeedController.h \
     Control.h \
-    MainController.h
+    MainController.h \
+    end.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -60,7 +62,9 @@ FORMS += \
     control.ui \
     people.ui \
     rules.ui \
-    MainController.ui
+    MainController.ui \
+    win.ui \
+    lose.ui
 
 RESOURCES += \
     picture.qrc

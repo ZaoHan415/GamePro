@@ -1,5 +1,6 @@
 #include "MainController.h"
 #include "Control.h"
+#include "end.h"
 #include <QMediaPlayer>
 #include <QApplication>
 #include <QFile>
@@ -35,6 +36,12 @@ int main(int argc, char *argv[])
     如果在其他的cpp文件中需要用到速度的值，需要用表示extern Control *c
 
 */
+
+    win *win01;
+    lose *lose01;
+    win01->show();
+    lose01->show();
+
     return a.exec();
 
 }
