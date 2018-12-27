@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,13 +30,21 @@ SOURCES += \
     MainGameScene.cpp \
     MainWindow.cpp \
     myAnimal.cpp \
-    Hexagon.cpp
+    Hexagon.cpp \
+    MusicController.cpp \
+    SpeedController.cpp \
+    Control.cpp \
+    MainController.cpp
 
 HEADERS += \
     MainGameScene.h \
     MainWindow.h \
     myAnimal.h \
-    Hexagon.h
+    Hexagon.h \
+    MusicController.h \
+    SpeedController.h \
+    Control.h \
+    MainController.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -44,3 +53,14 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     ../README.md
+
+FORMS += \
+    speedcontroller.ui \
+    MusicController.ui \
+    control.ui \
+    people.ui \
+    rules.ui \
+    MainController.ui
+
+RESOURCES += \
+    picture.qrc
