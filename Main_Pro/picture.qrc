@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>../cat.png</file>
         <file>../mice.png</file>
+        <file>timg-3.png</file>
+        <file>../IMG_0098.png</file>
     </qresource>
 </RCC>
