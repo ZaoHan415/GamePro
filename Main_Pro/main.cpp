@@ -36,12 +36,13 @@ int main(int argc, char *argv[])
     如果在其他的cpp文件中需要用到速度的值，需要用表示extern Control *c
 
 */
-
-    win *win01;
-    lose *lose01;
-    win01->show();
-    lose01->show();
-
+/*
+    win win01;//创建玩家成功的窗口
+    lose lose01;//创建玩家失败的窗口
+    win01.show();//显示成功的窗口
+    lose01.show();//显示失败的窗口
+    win01,lose01只是显示界面，不含值，不必要使用全局
+*/
     return a.exec();
 
 }
