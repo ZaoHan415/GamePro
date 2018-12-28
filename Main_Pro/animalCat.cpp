@@ -3,10 +3,7 @@
 #include <QDebug>
 #include <QPixmap>
 #include "end.h"
-/*
-lose *lose01;
-lose01=new lose;
-lose01->show();*/
+
 animalCat::animalCat(QPoint pos,QObject * pa):
     myAnimal (pos,pa)
 {
@@ -88,9 +85,14 @@ void animalCat::moveOneStep()
 }
 void animalCat::catchmouse()
 {
-    //QPoint p = m_mice->get_position();
-    //if(position cat==p){
-    // emit catwins(true);
+    QPoint pm = m_mice->get_position();
+    QPoint pc = m_cat->get_position();
+    if(pm==pc)
+    {
+    lose *lose01;
+    lose01=new lose;
+    lose01->show();
+    }
 }
 
 void animalCat::changePic()

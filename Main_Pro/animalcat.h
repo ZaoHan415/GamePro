@@ -22,6 +22,7 @@ public:
     QRectF boundingRect() const override;
 
     myAnimal *m_mice;
+    myAnimal *m_cat;
 
     //存图
     QList<QPixmap> cat_pics;
