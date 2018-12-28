@@ -66,7 +66,7 @@ void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidg
     //t.getCoords(&x1,&y1,&x2,&y2);
 
     painter->rotate(120+60*get_direction());
-    painter->drawRect(boundingRect());
+    //painter->drawRect(boundingRect());
     //painter->drawLine(QLineF(x1,y1,x2,y2));
     //painter->drawLine(QLineF(x1,y2,x2,y1));
 
