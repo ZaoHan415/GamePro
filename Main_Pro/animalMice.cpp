@@ -43,13 +43,22 @@ void animalMice::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWid
 
     //QRect t = now.rect();
     //t.getCoords(&x1,&y1,&x2,&y2);
-
-    painter->rotate(120+60*get_direction());
-    //painter->drawRect(now.rect());
+    int theta = 120+60*get_direction();
+    painter->rotate(theta);
     //painter->drawLine(QLineF(x1,y1,x2,y2));
     //painter->drawLine(QLineF(x1,y2,x2,y1));
 
     painter->drawPixmap(-offset,now);
+    painter->rotate(-theta);
+    const double pi = ::asin(1)*2;
+    double the = -double(theta)*pi/180.0;
+    QPointF points[4] = {
+          QPointF(+8.5*cos(the)-50.0*sin(the), -50.0*cos(the)-8.5*sin(the)),
+          QPointF(-16.5*cos(the)-50.0*sin(the), -50.0*cos(the)+16.5*sin(the)),
+          QPointF(-16.5*cos(the)+60.0*sin(the), +40.0*cos(the)+16.5*sin(the)),
+          QPointF(+8.5*cos(the)+60.0*sin(the), +40.0*cos(the)-8.5*sin(the))
+      };
+    painter->drawConvexPolygon(points, 4);
 }
 
 
@@ -93,7 +102,18 @@ void animalMice::changePic()
     }
 }
 
-void animalMice::out_of_border()
+QPainterPath animalMice::shape() const
 {
+    QPainterPath path;
+    QVector<QPointF> list;
+    int theta = 120+60*get_direction();
+    double the = -double(theta)*::asin(1)*2/180.0;
+    list.append(QPointF(+8.5*cos(the)-50.0*sin(the), -50.0*cos(the)-8.5*sin(the)));
+    list.append(QPointF(-16.5*cos(the)-50.0*sin(the), -50.0*cos(the)+16.5*sin(the)));
+    list.append(QPointF(-16.5*cos(the)+60.0*sin(the), +40.0*cos(the)+16.5*sin(the)));
+    list.append(QPointF(+8.5*cos(the)+60.0*sin(the), +40.0*cos(the)-8.5*sin(the)));
+    path.addPolygon(QPolygonF(list));
+    path.closeSubpath();
 
+    return path;
 }
