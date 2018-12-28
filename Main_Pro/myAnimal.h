@@ -44,7 +44,6 @@ public slots:
 
     //纯虚函数，继承它并实现每个小动物特色的走路方式
     virtual void moveOneStep() = 0;
-
 signals:
     void direction_changed(int x);
     void alive(bool);
