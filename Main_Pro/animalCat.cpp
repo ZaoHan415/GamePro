@@ -34,7 +34,6 @@ int animalCat::turnAroundKey(int x)
 void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     QPixmap now = cat_pics.at(phase%5);
-   // QTimer change_direction.start()
 
     //设置图片中心
     QPointF offset(now.width()/1.8,now.height()/2.5);

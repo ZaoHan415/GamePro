@@ -41,6 +41,8 @@ public slots:
     //x=1or-1,while 1 means clockwise
     void change_direction(int x);
 
+    void paint_new_pic();
+
     void move_to_next();
 
    // void out_of_border();
@@ -51,6 +53,7 @@ public slots:
 signals:
     void direction_changed(int x);
     void alive(bool);
+
 };
 
 #endif // MYANIMAL_H
