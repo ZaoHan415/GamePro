@@ -1,7 +1,8 @@
-#include "animalCat.h"
+#include "animalcat.h"
 #include <QPainter>
 #include <QDebug>
 #include <QPixmap>
+#include "MainGameScene.h"
 #include "end.h"
 /*
 lose *lose01;
@@ -101,11 +102,22 @@ void animalCat::changePic()
     if(phase > totalPhase)
     {
         animationTimer.stop();
+        if(this->position == getMicePos()){
+            MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+            scene->gameOver(1);
+        }
         phase = 0;
     }
 }
 
 void animalCat::out_of_border()
 {
+    lose *lose_ui = new lose();
+    lose_ui->show();
+}
 
+QPoint animalCat::getMicePos()
+{
+    MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+    return scene->getMicePositon();
 }

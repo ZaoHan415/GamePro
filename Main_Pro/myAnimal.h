@@ -4,7 +4,6 @@
 #include "Hexagon.h"
 #include <QGraphicsItem>
 
-
 class myAnimal : public QObject
 {
     Q_OBJECT
@@ -20,9 +19,10 @@ public:
     QPointF posInMap();
 
     int currant_direction{0};
-
-private:
     QPoint position;
+
+    void stop();
+private:
     int direction = 0;//0 to 5
     int time_per_step = 500;//msecs
     int temp_direction = 0;
@@ -31,11 +31,9 @@ private:
 
     //新建一个临时的地板砖，用来获取地板砖的基向量
     Hexagon* m_hex;
-
+protected:
     //指向每一个animal所在的Scene，根据需要将这个指针转换为MainGameScene类型指针
     QObject * m_parent;
-
-protected:
 
 public slots:
     //x=1or-1,while 1 means clockwise

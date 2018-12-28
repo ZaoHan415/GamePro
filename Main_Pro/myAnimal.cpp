@@ -21,10 +21,13 @@ myAnimal::myAnimal(QPoint p,QObject* pa)
 
 void myAnimal::move_to_next()
 {
+    MainGameScene *t = static_cast<MainGameScene*>(m_parent);
     direction = temp_direction;
     //qDebug() <<"direction:"<<direction;
     QPoint step = m_hex->baseVecToNext(direction);
-    position = position + step;
+    if(t->inThisMap(position + step)){
+        position = position + step;
+    }
 }
 
 void myAnimal::change_direction(int x)
@@ -36,11 +39,6 @@ void myAnimal::change_direction(int x)
 QPointF myAnimal::posInMap()
 {
     MainGameScene *t = static_cast<MainGameScene*>(m_parent);
-
-    if(!t->inThisMap(position))
-    {
-        out_of_border();
-    }
     return t->pixelPostionInMap(position);
 }
 
@@ -48,4 +46,9 @@ myAnimal::~myAnimal()
 {
     delete m_hex;
     delete m_timer;
+}
+
+void myAnimal::stop()
+{
+    m_timer->stop();
 }

@@ -32,6 +32,8 @@ public:
     QPointF perStep;
 
     qreal totalPhase = 10;
+
+    QPoint getMicePos();
 public slots:
     //重载move函数
     void moveOneStep() override;
