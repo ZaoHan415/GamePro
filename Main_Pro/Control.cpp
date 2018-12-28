@@ -1,5 +1,5 @@
 #include "Control.h"
-
+#include <QFile>
 
 Rules::Rules(QWidget *parent)
     :QDialog (parent)
@@ -47,6 +47,18 @@ Control::Control(QWidget *parent)
     connect(ui.SButton,SIGNAL(clicked()),this,SLOT(onSureS()));//速度控制按钮
     connect(ui.RButton,SIGNAL(clicked()),this,SLOT(onSureR()));//规则按钮
     connect(ui.TButton,SIGNAL(clicked()),this,SLOT(quit()));//退出按钮
+
+    QFile play01("bgm.wav");
+    player01->setMedia(QUrl::fromLocalFile("bgm.wav"));
+    QFile play02("cat.wav");
+    player02->setMedia(QUrl::fromLocalFile("cat.wav"));
+    QFile play03("mice.wav");
+    player03->setMedia(QUrl::fromLocalFile("mice.wav"));
+
+    player01->setVolume(50);
+    player02->setVolume(50);
+    player03->setVolume(50);
+
 }
 
 Control::~Control()
@@ -56,10 +68,14 @@ Control::~Control()
 
 void Control::onSureM()
 {
-    musiccontroller = new MusicController;
-    musiccontroller->show();
-    bgmVolume = musiccontroller->bgmVolume;
-    isVolume = musiccontroller->isvolume;
+    musiccontroller.show();
+    int ret = musiccontroller.exec();
+    if(ret == QDialog::Accepted)
+    {
+        player01->setVolume(musiccontroller.bgmVolume);
+        player02->setVolume(musiccontroller.isvolume);
+        player03->setVolume(musiccontroller.isvolume);
+    }
 }
 
 void Control::onSureP()
@@ -76,10 +92,13 @@ void Control::onSureR()
 
 void Control::onSureS()
 {
-    speedcontroller01 = new speedcontroller;
-    speedcontroller01->show();
-    catspeed = speedcontroller01->catspeed;
-    micespeed = speedcontroller01->micespeed;
+    speedcontroller01.show();
+    int ret = speedcontroller01.exec();
+    if(ret==QDialog::Accepted)
+    {
+        catspeed = speedcontroller01.catspeed;
+        micespeed = speedcontroller01.micespeed;
+    }
 }
 
 void Control::quit()

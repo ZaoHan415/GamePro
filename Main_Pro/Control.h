@@ -49,19 +49,25 @@ class Control: public QDialog
 public:
     Control(QWidget *parent = Q_NULLPTR);
     ~Control();
-    int bgmVolume{50};
-    int isVolume{50};
-    int catspeed{5};
-    int micespeed{50};
+
     bool Wopen{false};
 
-    MusicController *musiccontroller;
-    speedcontroller *speedcontroller01;
+    MusicController musiccontroller;
+    speedcontroller speedcontroller01;
     People *people;
     Rules *rules;
 
 private:
     Ui::Control ui;
+
+    int bgmVolume{50};
+    int isVolume{50};
+    int catspeed{5};
+    int micespeed{5};
+
+    QMediaPlayer *player01 = new QMediaPlayer;
+    QMediaPlayer *player02 = new QMediaPlayer;
+    QMediaPlayer *player03 = new QMediaPlayer;
 
 private slots:
     void onSureM();
