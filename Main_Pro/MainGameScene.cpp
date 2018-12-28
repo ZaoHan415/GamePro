@@ -4,6 +4,7 @@
 #include <QEvent>
 #include <QKeyEvent>
 #include <QTimer>
+#include "end.h"
 
 MainGameScene::MainGameScene()
 {
@@ -11,7 +12,7 @@ MainGameScene::MainGameScene()
     drawFloor();
 
     //初始化猫老鼠位置
-    miceStartPos = QPoint(0,0);
+    miceStartPos = QPoint(0,6);
     catStartPos = QPoint(-1,0);
     miceEndPos.append( QPoint(1-mapWidth,0) );
 
@@ -90,8 +91,14 @@ void MainGameScene::gameOver(int x)
 {
     this->mice->stop();
     cat->stop();
-    if(x == 1){
-
+    if(x == 3){
+        lose *lose_ui = new lose();
+        lose_ui->show();
+    }
+    if(x==1)
+    {
+        win *win_ui =new win();
+        win_ui->show();
     }
 }
 

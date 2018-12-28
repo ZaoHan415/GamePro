@@ -86,14 +86,8 @@ void animalCat::moveOneStep()
 }
 void animalCat::catchmouse()
 {
-    QPoint pm = m_mice->get_position();
-    QPoint pc = m_cat->get_position();
-    if(pm==pc)
-    {
-    lose *lose01;
-    lose01=new lose;
-    lose01->show();
-    }
+    MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+    scene->gameOver(1);
 }
 
 void animalCat::changePic()
@@ -105,11 +99,12 @@ void animalCat::changePic()
     {
         animationTimer.stop();
         if(this->position == getMicePos()){
-            MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
-            scene->gameOver(1);
+            this->catchmouse();
         }
         phase = 0;
     }
+   // QPoint p=this->position;
+    //QDebug()<<p;
 }
 
 void animalCat::out_of_border()

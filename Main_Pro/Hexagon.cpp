@@ -18,6 +18,19 @@ void Hexagon::advance(int phase)
     }
 }
 
+class Hexagon::exit
+{
+public:
+    QPoint exit_position()
+    {
+        return pos;
+    }
+private:
+    kind floor;
+    QPoint pos=QPoint(-3,-4);
+
+};
+
 QPoint Hexagon::baseVecToNext(int i)
 {
     QPoint e1(1,0);
@@ -64,13 +77,19 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     painter->setPen(Qt::black);
 
     painter->drawConvexPolygon(p,6);
-
-  // for (Hexagon.kind==1){
+    Hexagon* hex
+   //for (this->kind==1){
     QPixmap now(":/Pic/Pics/floor.png");
     now = now.scaledToHeight(81);
     painter->drawPixmap(-1.32*a,-1.1*a,now);
     QPointF offset(now.width()/2.0,now.height()/2.0);
-  //  }
+    //}
+
+    QPixmap now(":/Pic/Pics/entrance.png");
+    now = now.scaledToHeight(60);
+    painter->drawPixmap(-1.32*a,-1.1*a,now);
+    QPointF offset(now.width()/2.0,now.height()/2.0);
+
 
 }
 

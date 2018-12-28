@@ -2,6 +2,7 @@
 #include<QPainter>
 #include <QDebug>
 #include <QPixmap>
+#include "MainGameScene.h"
 
 animalMice::animalMice(QPoint pos,QObject * pa):
     myAnimal (pos,pa)
@@ -76,9 +77,11 @@ void animalMice::moveOneStep()
 }
 void animalMice::mouse_escape()
 {
-    //QPoint p = m_cat->get_position();
-    //if(position mouse==p){
-    //emit mousewins(true);
+    if(this->position==QPoint(-2,-5))
+    {
+        MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+        scene->gameOver(3);
+    }
 }
 
 void animalMice::changePic()
@@ -89,7 +92,11 @@ void animalMice::changePic()
     if(phase > totalPhase)
     {
         animationTimer.stop();
-        phase = 0;
+        if(this->position==QPoint(0,0))
+        {
+            this->mouse_escape();
+        }
+        phase=0;
     }
 }
 
