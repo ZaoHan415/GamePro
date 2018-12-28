@@ -85,6 +85,6 @@ void animalMice::changePic()
     if(phase > totalPhase)
     {
         animationTimer.stop();
-        phase = 1;
+        phase = 0;
     }
 }

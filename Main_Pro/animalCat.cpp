@@ -2,6 +2,11 @@
 #include <QPainter>
 #include <QDebug>
 #include <QPixmap>
+#include "end.h"
+/*
+lose *lose01;
+lose01=new lose;
+lose01->show();*/
 animalCat::animalCat(QPoint pos,QObject * pa):
     myAnimal (pos,pa)
 {
