@@ -60,10 +60,18 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
         QPointF( -0.5*a, -0.5*a*::sqrt(3)),
         QPointF( -a, 0),
     };
-    painter->setBrush(color);
+    painter->setBrush(Qt::NoBrush);
     painter->setPen(Qt::black);
+
     painter->drawConvexPolygon(p,6);
+
+    QPixmap now(":/Pic/Pics/floor.png");
+    now = now.scaledToHeight(81);
+    painter->drawPixmap(-1.32*a,-1.1*a,now);
+    QPointF offset(now.width()/2.0,now.height()/2.0);
+
 }
+
 
 QRectF Hexagon::boundingRect() const
 {

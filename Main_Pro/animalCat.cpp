@@ -2,6 +2,11 @@
 #include <QPainter>
 #include <QDebug>
 #include <QPixmap>
+#include "end.h"
+/*
+lose *lose01;
+lose01=new lose;
+lose01->show();*/
 animalCat::animalCat(QPoint pos,QObject * pa):
     myAnimal (pos,pa)
 {
@@ -31,6 +36,20 @@ int animalCat::turnAroundKey(int x)
         return 68;//key "D"
 
     throw std::runtime_error("key error");
+}
+
+void animalCat::change_new_pic()
+{
+    //计时画图
+    QTimer *change_direction = new QTimer(this);
+    connect(change_direction,SIGNAL(timeout()),this,SLOT(picture_rotate()));
+    change_direction->start(1000);
+}
+
+void animalCat::picture_rotate()
+{
+    update();
+
 }
 
 void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
