@@ -62,7 +62,8 @@ DISTFILES += \
 
 RESOURCES += \
     sources.qrc \
-    picture.qrc
+    picture.qrc \
+    music.qrc
     
 FORMS += \
     speedcontroller.ui \

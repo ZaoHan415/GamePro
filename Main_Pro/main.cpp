@@ -13,10 +13,14 @@ int main(int argc, char *argv[])
 
     MainController m;
     m.show();
-    lose lose01;
+    /*lose lose01;
     lose01.show();
     win win01;
     win01.show();
+    QMediaPlayer play01;
+    play01.setMedia(QUrl::fromLocalFile("qrc:/../bgm.wav"));
+    play01.setVolume(50);
+    play01.play();*/
 
 
 
