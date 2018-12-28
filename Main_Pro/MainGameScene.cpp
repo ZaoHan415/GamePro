@@ -86,7 +86,16 @@ bool MainGameScene::eventFilter(QObject *obj, QEvent *event)
     return QObject::eventFilter(obj, event);
 }
 
-void MainGameScene::gameOver()
+void MainGameScene::gameOver(int x)
 {
-    qDebug() <<"outOfBorder";
+    this->mice->stop();
+    cat->stop();
+    if(x == 1){
+
+    }
+}
+
+QPoint MainGameScene::getMicePositon()
+{
+    return mice->position;
 }

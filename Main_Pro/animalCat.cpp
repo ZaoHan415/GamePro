@@ -1,7 +1,8 @@
-#include "animalCat.h"
+#include "animalcat.h"
 #include <QPainter>
 #include <QDebug>
 #include <QPixmap>
+#include "MainGameScene.h"
 #include "end.h"
 /*
 lose *lose01;
@@ -65,7 +66,7 @@ void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidg
     //t.getCoords(&x1,&y1,&x2,&y2);
 
     painter->rotate(120+60*get_direction());
-    //painter->drawRect(boundingRect());
+    painter->drawRect(boundingRect());
     //painter->drawLine(QLineF(x1,y1,x2,y2));
     //painter->drawLine(QLineF(x1,y2,x2,y1));
 
@@ -101,11 +102,22 @@ void animalCat::changePic()
     if(phase > totalPhase)
     {
         animationTimer.stop();
+        if(this->position == getMicePos()){
+            MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+            scene->gameOver(1);
+        }
         phase = 0;
     }
 }
 
 void animalCat::out_of_border()
 {
+    lose *lose_ui = new lose();
+    lose_ui->show();
+}
 
+QPoint animalCat::getMicePos()
+{
+    MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+    return scene->getMicePositon();
 }

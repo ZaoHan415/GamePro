@@ -19,7 +19,7 @@ public:
     myAnimal *mice;
     myAnimal *cat;
     bool eventFilter(QObject *obj, QEvent *event) override;
-
+    QPoint getMicePositon();
 
 private:
     void drawFloor();
@@ -38,7 +38,7 @@ private:
     QPoint catStartPos;
 
 public slots:
-    void gameOver();
+    void gameOver(int x);
 
 };
 
