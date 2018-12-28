@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -31,7 +32,12 @@ SOURCES += \
     myAnimal.cpp \
     Hexagon.cpp \
     animalMice.cpp \
-    animalCat.cpp
+    animalCat.cpp \
+    MusicController.cpp \
+    SpeedController.cpp \
+    Control.cpp \
+    MainController.cpp \
+    end.cpp
 
 HEADERS += \
     MainGameScene.h \
@@ -39,7 +45,12 @@ HEADERS += \
     myAnimal.h \
     Hexagon.h \
     animalMice.h \
-    animalCat.h
+    animalCat.h \
+    MusicController.h \
+    SpeedController.h \
+    Control.h \
+    MainController.h \
+    end.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -50,4 +61,16 @@ DISTFILES += \
     ../README.md
 
 RESOURCES += \
-    sources.qrc
+    sources.qrc \
+    picture.qrc
+    
+FORMS += \
+    speedcontroller.ui \
+    MusicController.ui \
+    control.ui \
+    people.ui \
+    rules.ui \
+    MainController.ui \
+    win.ui \
+    lose.ui
+    
