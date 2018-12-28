@@ -13,6 +13,8 @@ public:
 
     int turnAroundKey(int x) override;
 
+    void change_new_pic();
+
     //void advance(int phase) override;
 
     //从GraphicsItem里面重载两个函数
@@ -35,6 +37,8 @@ public slots:
     void moveOneStep() override;
     void catchmouse();
     void changePic();
+    void picture_rotate();
+
 signals:
     void catwins(bool);
     //让它初始化为false

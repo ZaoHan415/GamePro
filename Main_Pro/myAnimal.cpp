@@ -10,11 +10,6 @@ myAnimal::myAnimal(QPoint p,QObject* pa)
     m_timer->start(time_per_step);
     connect(m_timer,SIGNAL(timeout()),this,SLOT(moveOneStep()));
 
-   /* //计时画图
-    QTimer *change_direction = new QTimer(this);
-    connect(change_direction,SIGNAL(timeout()),this,SLOT(chang_new_pic()));
-    change_direction->start(1000);*/
-
     //初始化其父类
     m_parent = pa;
 
@@ -23,10 +18,7 @@ myAnimal::myAnimal(QPoint p,QObject* pa)
     m_hex=new Hexagon(QPointF(0,0));
 }
 
-void myAnimal::paint_new_pic()
-{
 
-}
 void myAnimal::move_to_next()
 {
     //qDebug() <<"direction:"<<direction;

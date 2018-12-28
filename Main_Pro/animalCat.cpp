@@ -31,6 +31,20 @@ int animalCat::turnAroundKey(int x)
     throw std::runtime_error("key error");
 }
 
+void animalCat::change_new_pic()
+{
+    //计时画图
+    QTimer *change_direction = new QTimer(this);
+    connect(change_direction,SIGNAL(timeout()),this,SLOT(picture_rotate()));
+    change_direction->start(1000);
+}
+
+void animalCat::picture_rotate()
+{
+    update();
+
+}
+
 void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     QPixmap now = cat_pics.at(phase%5);
