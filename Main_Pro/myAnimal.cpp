@@ -1,18 +1,51 @@
 #include "myAnimal.h"
 #include "Hexagon.h"
-
-myAnimal::myAnimal(QPoint p)
+#include <QDebug>
+#include "MainGameScene.h"
+#include <QTimer>
+myAnimal::myAnimal(QPoint p,QObject* pa)
 {
+    //新建并连接计时器
+    m_timer = new QTimer(this);
+    m_timer->start(time_per_step);
+    connect(m_timer,SIGNAL(timeout()),this,SLOT(moveOneStep()));
+
+    //初始化其父类
+    m_parent = pa;
+
+    //初始位置
     position=p;
     m_hex=new Hexagon(QPointF(0,0));
 }
+
+
 void myAnimal::move_to_next()
 {
-    QPoint step=m_hex->baseVecToNext(direction);
-    position=position+step;
+    direction = temp_direction;
+    //qDebug() <<"direction:"<<direction;
+    QPoint step = m_hex->baseVecToNext(direction);
+    position = position + step;
 }
+
 void myAnimal::change_direction(int x)
 {
-    direction=(direction+x)%6;
-    direction_changed(x);
+    temp_direction=(temp_direction+x+6)%6;
+    //emit direction_changed(direction);
+}
+
+QPointF myAnimal::posInMap()
+{
+    MainGameScene *t = static_cast<MainGameScene*>(m_parent);
+
+    if(!t->inThisMap(position))
+    {
+        out_of_border();
+    }
+    return t->pixelPostionInMap(position);
+}
+
+myAnimal::~myAnimal()
+{
+    delete m_hex;
+    delete m_timer;
 }

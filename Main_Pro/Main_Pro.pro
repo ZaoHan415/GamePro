@@ -31,6 +31,8 @@ SOURCES += \
     MainWindow.cpp \
     myAnimal.cpp \
     Hexagon.cpp \
+    animalMice.cpp \
+    animalCat.cpp \
     MusicController.cpp \
     SpeedController.cpp \
     Control.cpp \
@@ -42,6 +44,8 @@ HEADERS += \
     MainWindow.h \
     myAnimal.h \
     Hexagon.h \
+    animalMice.h \
+    animalCat.h \
     MusicController.h \
     SpeedController.h \
     Control.h \
@@ -56,6 +60,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     ../README.md
 
+RESOURCES += \
+    sources.qrc \
+    picture.qrc
+    
 FORMS += \
     speedcontroller.ui \
     MusicController.ui \
@@ -65,6 +73,4 @@ FORMS += \
     MainController.ui \
     win.ui \
     lose.ui
-
-RESOURCES += \
-    picture.qrc
+    

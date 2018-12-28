@@ -1,9 +1,30 @@
 #include "MainGameScene.h"
 #include <Hexagon.h>
 #include <QDebug>
+#include <QEvent>
+#include <QKeyEvent>
+#include <QTimer>
+
 MainGameScene::MainGameScene()
 {
+
     drawFloor();
+
+    //初始化猫老鼠位置
+    miceStartPos = QPoint(0,0);
+    catStartPos = QPoint(-1,0);
+    miceEndPos.append( QPoint(1-mapWidth,0) );
+
+    //添加猫
+    cat = new animalCat(catStartPos,this);
+    animalCat *cat_p = static_cast<animalCat *>(cat );
+    connect(cat_p,SIGNAL(alive(bool)),this,SLOT(gameOver()));
+    addItem(cat_p);
+
+    //添加老鼠
+    mice = new animalMice(miceStartPos,this);
+    animalMice *mice_p = static_cast<animalMice *>(mice );
+    addItem(mice_p);
 }
 
 void MainGameScene::drawFloor()
@@ -42,6 +63,30 @@ bool MainGameScene::inThisMap(QPoint p)
 QPointF MainGameScene::pixelPostionInMap(QPoint p)
 {
     Hexagon temp(QPointF(0,0),blockWidth);
-    QPointF pos = p.x()*temp.vecToNext(1)+p.y()*temp.vecToNext(2);
+    QPointF pos = p.x()*temp.vecToNext(0)+p.y()*temp.vecToNext(1);
     return pos;
+}
+
+bool MainGameScene::eventFilter(QObject *obj, QEvent *event)
+{
+    if(event->type() == QEvent::KeyPress){
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        for(int i = -1;i <= 1; i += 2){
+            if(cat->turnAroundKey(i) == keyEvent->key()){
+                cat->change_direction(i);
+                return true;
+
+            }
+            else if(mice->turnAroundKey(i) == keyEvent->key()){
+                mice->change_direction(i);
+                return true;
+            }
+        }
+    }
+    return QObject::eventFilter(obj, event);
+}
+
+void MainGameScene::gameOver()
+{
+    qDebug() <<"outOfBorder";
 }

@@ -1,9 +1,4 @@
 #include "MainController.h"
-#include "MainWindow.h"
-#include "Control.h"
-
-MainWindow *w;
-Control *c;
 
 MainController::MainController( QWidget *parent)
     :QDialog (parent)
@@ -22,13 +17,14 @@ MainController::~MainController()
 
 void MainController::onSureB()
 {
-    w = new MainWindow;
+    w = new MainWindow(this);
     w->show();
+    this->hide();
 }
 
 void MainController::onSureS()
 {
-    c = new Control;
+    c = new Control(this);
     c->show();
 }
 

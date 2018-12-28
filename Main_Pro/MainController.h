@@ -3,6 +3,8 @@
 #include <QDialog>
 #include <QThread>
 #include "ui_MainController.h"
+#include "MainWindow.h"
+#include "Control.h"
 
 class MainController : public QDialog
 {
@@ -11,6 +13,8 @@ class MainController : public QDialog
 public:
     MainController( QWidget *parent = Q_NULLPTR );
     ~MainController();
+    MainWindow *w;
+    Control *c;
 
 private:
     Ui::MainController ui;
