@@ -57,13 +57,13 @@ public:
     People *people;
     Rules *rules;
 
-private:
-    Ui::Control ui;
-
     int bgmVolume{50};
     int isVolume{50};
     int catspeed{5};
     int micespeed{5};
+
+private:
+    Ui::Control ui;
 
     //QMediaPlayer *player01 = new QMediaPlayer;
     //QMediaPlayer *player02 = new QMediaPlayer;

@@ -1,6 +1,6 @@
 #include "MainController.h"
 #include "Control.h"
-QMediaPlayer *player01 = new QMediaPlayer;
+#include <QFile>
 
 MainController::MainController( QWidget *parent)
     :QDialog (parent)
@@ -22,12 +22,25 @@ void MainController::onSureB()
     w = new MainWindow(this);
     w->show();
     this->hide();
+    player01 = new QMediaPlayer;
+    QFile file("bgm.wav");
+    player01->setMedia(QUrl("qrc:/bgm.wav"));
+    player01->setVolume(c.bgmVolume);
+    player01->play();
 }
 
 void MainController::onSureS()
 {
-    c = new Control(this);
-    c->show();
+    //c = new Control(this);
+    c.show();
+    int ret = c.exec();
+    if(ret==QDialog::Accepted)
+    {
+        bgmVolume = c.bgmVolume;
+        isVolume = c.isVolume;
+        catspeed = c.catspeed;
+        micespeed = c.micespeed;
+    }
 }
 
 void MainController::onSureQ()

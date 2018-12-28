@@ -14,7 +14,14 @@ public:
     MainController( QWidget *parent = Q_NULLPTR );
     ~MainController();
     MainWindow *w;
-    Control *c;
+    Control c;
+
+    int bgmVolume = 50;
+    int isVolume = 50;
+    int micespeed = 5;
+    int catspeed = 5;
+
+    QMediaPlayer *player01;
 
 private:
     Ui::MainController ui;
