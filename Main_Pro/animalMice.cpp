@@ -9,7 +9,7 @@ animalMice::animalMice(QPoint pos,QObject * pa):
     setPos(this->posInMap());
 
     QString s = ":/Pic/Pics/Mice";
-    for(int i = 1 ;i < 6 ;i ++)
+    for(int i = 0 ;i < 5 ;i ++)
     {
         QString temp(s);
         temp.append(QString::number(i));
@@ -37,15 +37,19 @@ void animalMice::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWid
 {
     QPixmap now = mice_pics.at(phase%5);
 
-    //设置图片中心
     QPointF offset(now.width()/2.0,now.height()/2.0);
-    //QPointF offset(0,0);
-    painter->translate(+offset);
+
+    //int x1,y1,x2,y2;
+
+    //QRect t = now.rect();
+    //t.getCoords(&x1,&y1,&x2,&y2);
 
     painter->rotate(120+60*get_direction());
-    painter->drawPixmap(0,0,now);
+    //painter->drawRect(now.rect());
+    //painter->drawLine(QLineF(x1,y1,x2,y2));
+    //painter->drawLine(QLineF(x1,y2,x2,y1));
 
-    painter->translate(-offset);
+    painter->drawPixmap(-offset,now);
 }
 
 
@@ -58,7 +62,7 @@ void animalMice::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWid
 
 QRectF animalMice::boundingRect() const
 {
-    return  QRectF(-1000,-1000,2000,2000);
+    return  QRectF(-100,-100,200,200);
 }
 
 void animalMice::moveOneStep()
@@ -79,12 +83,17 @@ void animalMice::mouse_escape()
 
 void animalMice::changePic()
 {
-    setPos(pos()+perStep);
+    setPos(posInMap() + perStep*phase - perStep*totalPhase);
     update();
     phase ++;
     if(phase > totalPhase)
     {
         animationTimer.stop();
-        phase = 1;
+        phase = 0;
     }
+}
+
+void animalMice::out_of_border()
+{
+
 }

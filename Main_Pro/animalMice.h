@@ -6,6 +6,7 @@
 
 class animalMice:public myAnimal,public QGraphicsItem
 {
+    Q_OBJECT
 public:
     animalMice(QPoint,QObject* pa);
     int turnAroundKey(int x) override;
@@ -22,17 +23,19 @@ public:
     QList<QPixmap> mice_pics;
     QTimer animationTimer;
     int picWidth = 25;
-    const int picChangeStep = 200;
+    const int picChangeStep = 30;
     int phase = 0;
     QPointF perStep;
 
-    qreal totalPhase = 20;
+    qreal totalPhase = 10;
 
 public slots:
     //重载move函数
     void moveOneStep() override;
     void mouse_escape();
     void changePic();
+
+    void out_of_border() override;
 signals:
     void mousewins(bool);
     //让它初始化为false
