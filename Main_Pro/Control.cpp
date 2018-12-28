@@ -1,12 +1,6 @@
 #include "Control.h"
-#include "SpeedController.h"
-#include "MainWindow.h"
-#include "MusicController.h"
 
-MusicController *musiccontroller;
-speedcontroller *speedcontroller01;
-People *people;
-Rules *rules;
+
 Rules::Rules(QWidget *parent)
     :QDialog (parent)
 {

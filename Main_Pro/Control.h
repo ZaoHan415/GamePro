@@ -7,30 +7,22 @@
 #include "ui_control.h"
 #include "ui_rules.h"
 #include "ui_people.h"
-
-
-class Control: public QDialog
+#include "SpeedController.h"
+#include "MainWindow.h"
+#include "MusicController.h"
+class People: public QDialog
 {
     Q_OBJECT
 
 public:
-    Control(QWidget *parent = Q_NULLPTR);
-    ~Control();
-    int bgmVolume{50};
-    int isVolume{50};
-    int catspeed{5};
-    int micespeed{50};
-    bool Wopen{false};
+    People(QWidget *parent = Q_NULLPTR);
+    ~People();
 
 private:
-    Ui::Control ui;
+    Ui::People ui;
 
 private slots:
-    void onSureM();
-    void onSureS();
-    void onSureP();
-    void onSureR();
-    void quit();
+    void onSure();
 
 };
 
@@ -50,19 +42,37 @@ private slots:
 
 };
 
-class People: public QDialog
+class Control: public QDialog
 {
     Q_OBJECT
 
 public:
-    People(QWidget *parent = Q_NULLPTR);
-    ~People();
+    Control(QWidget *parent = Q_NULLPTR);
+    ~Control();
+    int bgmVolume{50};
+    int isVolume{50};
+    int catspeed{5};
+    int micespeed{50};
+    bool Wopen{false};
+
+    MusicController *musiccontroller;
+    speedcontroller *speedcontroller01;
+    People *people;
+    Rules *rules;
 
 private:
-    Ui::People ui;
+    Ui::Control ui;
 
 private slots:
-    void onSure();
+    void onSureM();
+    void onSureS();
+    void onSureP();
+    void onSureR();
+    void quit();
 
 };
+
+
+
+
 #endif // CONTROL_H
