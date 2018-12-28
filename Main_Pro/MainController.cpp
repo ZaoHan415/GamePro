@@ -1,9 +1,4 @@
 #include "MainController.h"
-#include "MainWindow.h"
-#include "Control.h"
-
-MainWindow *w;
-Control *c;
 
 MainController::MainController( QWidget *parent)
     :QDialog (parent)

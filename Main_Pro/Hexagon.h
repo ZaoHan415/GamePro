@@ -7,6 +7,8 @@ class Hexagon : public QGraphicsItem
 private:
     qreal a;
     QColor color;
+    enum class kind{entrance=0,floor,barrier,exit};
+
 public:
     Hexagon(QPointF x = QPointF(0,0),qreal _width = 20);
     void advance(int phase) override;
