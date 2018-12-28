@@ -24,22 +24,22 @@ public:
     //存图
     QList<QPixmap> cat_pics;
     QTimer animationTimer;
-    int picWidth = 35;
-    const int picChangeStep = 200;
+    int picWidth = 55;
+    const int picChangeStep = 30;
     int phase = 0;
     QPointF perStep;
 
-    qreal totalPhase = 20;
+    qreal totalPhase = 10;
 public slots:
     //重载move函数
     void moveOneStep() override;
     void catchmouse();
     void changePic();
+    void out_of_border() override;
 signals:
     void catwins(bool);
     //让它初始化为false
 private:
-
 };
 
 #endif // ANIMALCAT_H

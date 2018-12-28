@@ -24,8 +24,8 @@ public:
 private:
     QPoint position;
     int direction = 0;//0 to 5
-    int time_per_step = 2000;//msecs
-
+    int time_per_step = 500;//msecs
+    int temp_direction = 0;
     //用来控制行进速度
     QTimer* m_timer;
 
@@ -45,7 +45,7 @@ public slots:
 
     void move_to_next();
 
-   // void out_of_border();
+    virtual void out_of_border() = 0;
 
     //纯虚函数，继承它并实现每个小动物特色的走路方式
     virtual void moveOneStep() = 0;

@@ -29,6 +29,7 @@ void myAnimal::paint_new_pic()
 }
 void myAnimal::move_to_next()
 {
+    direction = temp_direction;
     //qDebug() <<"direction:"<<direction;
     QPoint step = m_hex->baseVecToNext(direction);
     position = position + step;
@@ -36,7 +37,7 @@ void myAnimal::move_to_next()
 
 void myAnimal::change_direction(int x)
 {
-    direction=(direction+x+6)%6;
+    temp_direction=(temp_direction+x+6)%6;
     //emit direction_changed(direction);
 }
 
@@ -44,19 +45,12 @@ QPointF myAnimal::posInMap()
 {
     MainGameScene *t = static_cast<MainGameScene*>(m_parent);
 
-    if(t->inThisMap(position))
+    if(!t->inThisMap(position))
     {
-        emit alive(false);
+        out_of_border();
     }
     return t->pixelPostionInMap(position);
 }
-
-/*void myAnimal::out_of_border()
-{
-    if(position.x()+position.y()>10){
-        emit alive(false);
-    }
-}*/
 
 myAnimal::~myAnimal()
 {

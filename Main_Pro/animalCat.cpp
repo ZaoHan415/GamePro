@@ -15,7 +15,9 @@ animalCat::animalCat(QPoint pos,QObject * pa):
         qDebug() << temp;
         QPixmap pic = QPixmap(temp);
         pic = pic.scaledToWidth(picWidth);
+
         cat_pics.append(pic);
+
     }
     connect(&animationTimer,SIGNAL(timeout()),this,SLOT(changePic()));
 }
@@ -36,19 +38,24 @@ void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidg
     QPixmap now = cat_pics.at(phase%5);
 
     //设置图片中心
-    QPointF offset(now.width()/1.8,now.height()/2.5);
-    //QPointF offset(0,0);
-    painter->translate(+offset);
+    QPointF offset(now.width()/2.0,now.height()/2.0);
+
+    //int x1,y1,x2,y2;
+
+    //QRect t = now.rect();
+    //t.getCoords(&x1,&y1,&x2,&y2);
 
     painter->rotate(120+60*get_direction());
-    painter->drawPixmap(0,0,now);
+    //painter->drawRect(boundingRect());
+    //painter->drawLine(QLineF(x1,y1,x2,y2));
+    //painter->drawLine(QLineF(x1,y2,x2,y1));
 
-    painter->translate(-offset);
+    painter->drawPixmap(-offset,now);
 }
 
 QRectF animalCat::boundingRect() const
 {
-    return  QRectF(-1000,-1000,2000,2000);
+    return  QRectF(-100,-100,200,200);
 }
 
 void animalCat::moveOneStep()
@@ -69,7 +76,7 @@ void animalCat::catchmouse()
 
 void animalCat::changePic()
 {
-    setPos(pos()+perStep);
+    setPos(posInMap() + perStep*phase - perStep*totalPhase);
     update();
     phase ++;
     if(phase > totalPhase)
@@ -77,4 +84,9 @@ void animalCat::changePic()
         animationTimer.stop();
         phase = 0;
     }
+}
+
+void animalCat::out_of_border()
+{
+
 }
