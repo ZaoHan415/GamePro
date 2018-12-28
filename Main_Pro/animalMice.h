@@ -6,6 +6,7 @@
 
 class animalMice:public myAnimal,public QGraphicsItem
 {
+    Q_OBJECT
 public:
     animalMice(QPoint,QObject* pa);
     int turnAroundKey(int x) override;

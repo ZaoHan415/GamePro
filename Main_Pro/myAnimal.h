@@ -19,6 +19,8 @@ public:
 
     QPointF posInMap();
 
+    int currant_direction{0};
+
 private:
     QPoint position;
     int direction = 0;//0 to 5

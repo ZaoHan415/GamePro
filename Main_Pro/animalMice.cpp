@@ -9,7 +9,7 @@ animalMice::animalMice(QPoint pos,QObject * pa):
     setPos(this->posInMap());
 
     QString s = ":/Pic/Pics/Mice";
-    for(int i = 1 ;i < 6 ;i ++)
+    for(int i = 0 ;i < 5 ;i ++)
     {
         QString temp(s);
         temp.append(QString::number(i));
