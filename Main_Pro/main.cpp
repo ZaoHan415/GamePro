@@ -4,6 +4,7 @@
 #include <QMediaPlayer>
 #include <QApplication>
 #include <QFile>
+#include <QDebug>
 
 extern Control *c;//用全局的c（窗口）
 int main(int argc, char *argv[])
@@ -12,6 +13,11 @@ int main(int argc, char *argv[])
 
     MainController m;
     m.show();
+    lose lose01;
+    lose01.show();
+
+
+
 /*
     QMediaPlayer *player1 = new QMediaPlayer;
     QMediaPlayer *player2 = new QMediaPlayer;
