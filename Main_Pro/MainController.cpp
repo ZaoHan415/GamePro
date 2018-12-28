@@ -1,4 +1,6 @@
 #include "MainController.h"
+#include "Control.h"
+QMediaPlayer *player01 = new QMediaPlayer;
 
 MainController::MainController( QWidget *parent)
     :QDialog (parent)

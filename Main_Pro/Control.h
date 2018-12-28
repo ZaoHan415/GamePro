@@ -65,9 +65,9 @@ private:
     int catspeed{5};
     int micespeed{5};
 
-    QMediaPlayer *player01 = new QMediaPlayer;
-    QMediaPlayer *player02 = new QMediaPlayer;
-    QMediaPlayer *player03 = new QMediaPlayer;
+    //QMediaPlayer *player01 = new QMediaPlayer;
+    //QMediaPlayer *player02 = new QMediaPlayer;
+    //QMediaPlayer *player03 = new QMediaPlayer;
 
 private slots:
     void onSureM();

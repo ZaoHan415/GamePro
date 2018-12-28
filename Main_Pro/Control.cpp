@@ -48,7 +48,7 @@ Control::Control(QWidget *parent)
     connect(ui.RButton,SIGNAL(clicked()),this,SLOT(onSureR()));//规则按钮
     connect(ui.TButton,SIGNAL(clicked()),this,SLOT(quit()));//退出按钮
 
-    QFile play01("bgm.wav");
+    /*QFile play01("bgm.wav");
     player01->setMedia(QUrl::fromLocalFile("bgm.wav"));
     QFile play02("cat.wav");
     player02->setMedia(QUrl::fromLocalFile("cat.wav"));
@@ -57,7 +57,7 @@ Control::Control(QWidget *parent)
 
     player01->setVolume(50);
     player02->setVolume(50);
-    player03->setVolume(50);
+    player03->setVolume(50);*/
 
 }
 
@@ -72,9 +72,8 @@ void Control::onSureM()
     int ret = musiccontroller.exec();
     if(ret == QDialog::Accepted)
     {
-        player01->setVolume(musiccontroller.bgmVolume);
-        player02->setVolume(musiccontroller.isvolume);
-        player03->setVolume(musiccontroller.isvolume);
+        bgmVolume = musiccontroller.bgmVolume;
+        isVolume = musiccontroller.isvolume;
     }
 }
 

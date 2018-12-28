@@ -25,21 +25,12 @@ int main(int argc, char *argv[])
 
 
 /*
-    QMediaPlayer *player1 = new QMediaPlayer;
-    QMediaPlayer *player2 = new QMediaPlayer;
-    QMediaPlayer *player3 = new QMediaPlayer;
 
-    player1->setMedia(QUrl::fromLocalFile("bgm.wav"));
-    player2->setMedia(QUrl::fromLocalFile("cat.wav"));
-    player3->setMedia(QUrl::fromLocalFile("mice.wav"));
-
-    player1->setVolume(c->bgmVolume);
-    player2->setVolume(c->isVolume);
-    player3->setVolume(c->isVolume);
-
-    player1->play();//播放bgm
-    player2->play();//播放猫叫声
-    player3->play();//播放老鼠叫声
+    我把音乐播放器的定义放在了Control.h文件中
+    播放直接
+    player01->play();
+    player02->play();
+    player03->play();
 
 */
 /*
