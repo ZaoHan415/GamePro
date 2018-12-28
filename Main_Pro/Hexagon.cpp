@@ -65,10 +65,12 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
 
     painter->drawConvexPolygon(p,6);
 
+  // for (Hexagon.kind==1){
     QPixmap now(":/Pic/Pics/floor.png");
     now = now.scaledToHeight(81);
     painter->drawPixmap(-1.32*a,-1.1*a,now);
     QPointF offset(now.width()/2.0,now.height()/2.0);
+  //  }
 
 }
 
