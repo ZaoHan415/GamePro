@@ -32,7 +32,7 @@ SOURCES += \
     myAnimal.cpp \
     Hexagon.cpp \
     animalMice.cpp \
-    animalCat.cpp
+    animalCat.cpp \
     MusicController.cpp \
     SpeedController.cpp \
     Control.cpp \
@@ -45,7 +45,7 @@ HEADERS += \
     myAnimal.h \
     Hexagon.h \
     animalMice.h \
-    animalCat.h
+    animalCat.h \
     MusicController.h \
     SpeedController.h \
     Control.h \
@@ -61,7 +61,7 @@ DISTFILES += \
     ../README.md
 
 RESOURCES += \
-    sources.qrc
+    sources.qrc \
     picture.qrc
     
 FORMS += \
