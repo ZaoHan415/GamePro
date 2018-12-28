@@ -23,14 +23,14 @@ void MusicController::onSureMusic()
 {
     accept();
 }
-void MusicController::setBackgroundValue(int value)
+void MusicController::setBackgroundValue(int )
 {
     int pos = ui.BGMSlider->value();//获取Slider的数值
     QString str = QString::number(pos);//将其化为字符串
     ui.bgmPos->setText(str);//修改到QLabel
     bgmVolume = pos;
 }
-void MusicController::setISsound(int value)
+void MusicController::setISsound(int )
 {
     int pos = ui.ISSlider->value();//获取Slider的值
     QString str = QString::number(pos);//将其化为字符串

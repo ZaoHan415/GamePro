@@ -19,7 +19,6 @@ speedcontroller::speedcontroller(QWidget *parent)
 
 speedcontroller::~speedcontroller()
 {
-
 }
 
 void speedcontroller::onSureSpeed()
