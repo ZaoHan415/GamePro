@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
     m.show();
     lose lose01;
     lose01.show();
+    win win01;
+    win01.show();
 
 
 
