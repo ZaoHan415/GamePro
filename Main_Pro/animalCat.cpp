@@ -35,14 +35,6 @@ int animalCat::turnAroundKey(int x)
     throw std::runtime_error("key error");
 }
 
-void animalCat::change_new_pic()
-{
-    //计时画图
-    QTimer *change_direction = new QTimer(this);
-    connect(change_direction,SIGNAL(timeout()),this,SLOT(picture_rotate()));
-    change_direction->start(1000);
-}
-
 void animalCat::picture_rotate()
 {
     update();
@@ -75,11 +67,6 @@ void animalCat::moveOneStep()
     QPointF then_pos = posInMap();//结束位置
     perStep = (then_pos - now_pos)/totalPhase;
 }
-void animalCat::catchmouse()
-{
-    MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
-    scene->gameOver(1);
-}
 
 void animalCat::changePic()
 {
@@ -90,6 +77,7 @@ void animalCat::changePic()
     if(collidesWithItem(mi))
     {
         qDebug() << "catched";
+        animationTimer.stop();
         emit catwins(1);
     }
     if(phase > totalPhase)

@@ -19,19 +19,6 @@ void Hexagon::advance(int phase)
     }
 }
 
-class Hexagon::exit
-{
-public:
-    QPoint exit_position()
-    {
-        return pos;
-    }
-private:
-    kind floor;
-    QPoint pos=QPoint(-3,-4);
-
-};
-
 QPoint Hexagon::baseVecToNext(int i)
 {
     QPoint e1(1,0);
