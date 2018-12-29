@@ -92,10 +92,14 @@ void animalMice::changePic()
     if(phase > totalPhase)
     {
         animationTimer.stop();
-        if(this->position==QPoint(0,0))
+   /*     if(this->position==exit_position)
         {
             this->mouse_escape();
         }
+        if(this->position==barrier_position)
+        {
+            this->stop();
+        }*/
         phase=0;
     }
 }

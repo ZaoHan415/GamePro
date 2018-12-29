@@ -7,7 +7,7 @@ class Hexagon : public QGraphicsItem
 private:
     qreal a;
     QColor color;
-    enum class kind{entrance=0,floor,barrier,exit};
+    enum class kind{entrance=0,floor,barrier,exit,food};
 
 public:
     Hexagon(QPointF x = QPointF(0,0),qreal _width = 20);

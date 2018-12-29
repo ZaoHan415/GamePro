@@ -77,20 +77,41 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     painter->setPen(Qt::black);
 
     painter->drawConvexPolygon(p,6);
-    Hexagon* hex
-   //for (this->kind==1){
+   // Hexagon* hex
+   //if (this->kind==1){
     QPixmap now(":/Pic/Pics/floor.png");
     now = now.scaledToHeight(81);
     painter->drawPixmap(-1.32*a,-1.1*a,now);
     QPointF offset(now.width()/2.0,now.height()/2.0);
     //}
-
-    QPixmap now(":/Pic/Pics/entrance.png");
+/*  if (kind==0)
+    {
+    QPixmap ent(":/Pic/Pics/entrance.png");
     now = now.scaledToHeight(60);
     painter->drawPixmap(-1.32*a,-1.1*a,now);
-    QPointF offset(now.width()/2.0,now.height()/2.0);
-
-
+    QPointF offset(ent.width()/2.0,ent.height()/2.0);
+    }
+    if(kind==3)
+    {
+    QPixmap ent(":/Pic/Pics/exit.png");
+    now = now.scaledToHeight(60);
+    painter->drawPixmap(-1.32*a,-1.1*a,now);
+    QPointF offset(ent.width()/2.0,ent.height()/2.0);
+    }
+    if(kind==2)
+    {
+    QPixmap ent(":/Pic/Pics/gift.png");
+    now = now.scaledToHeight(60);
+    painter->drawPixmap(-1.32*a,-1.1*a,now);
+    QPointF offset(ent.width()/2.0,ent.height()/2.0);
+    }
+    if(kind==5)
+    {
+    QPixmap ent(":/Pic/Pics/food.png");
+    now = now.scaledToHeight(60);
+    painter->drawPixmap(-1.32*a,-1.1*a,now);
+    QPointF offset(ent.width()/2.0,ent.height()/2.0);
+    }
 }
 
 
