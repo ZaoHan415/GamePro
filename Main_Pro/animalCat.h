@@ -13,7 +13,7 @@ public:
 
     int turnAroundKey(int x) override;
 
-    void change_new_pic();
+    //void change_new_pic();
 
     //void advance(int phase) override;
 
@@ -41,7 +41,6 @@ public:
 public slots:
     //重载move函数
     void moveOneStep() override;
-    void catchmouse();
     void changePic();
     void picture_rotate();
 signals:
