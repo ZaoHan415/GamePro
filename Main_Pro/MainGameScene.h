@@ -5,6 +5,7 @@
 #include "myAnimal.h"
 #include "animalMice.h"
 #include "animalcat.h"
+#include "MusicController.h"
 
 class MainGameScene : public QGraphicsScene
 {
@@ -21,6 +22,9 @@ public:
     bool eventFilter(QObject *obj, QEvent *event) override;
     QPoint getMicePositon();
     kind blockTypeDetermine(QPoint);
+
+    MusicController musiccontroller;
+
 private:
     void drawFloor();
 
@@ -36,6 +40,7 @@ private:
 
     //猫入口
     QPoint catStartPos;
+
 
 public slots:
     void gameOver(int x);

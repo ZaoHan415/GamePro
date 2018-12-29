@@ -110,6 +110,12 @@ void MainGameScene::gameOver(int x)
     {
         win *win_ui =new win();
         win_ui->show();
+        QFile file01("win.wav");
+        QMediaPlayer *player01;
+        player01 = new QMediaPlayer;
+        player01->setMedia(QUrl("qrc:/win.wav"));
+        //player01->setVolume(我想传的音量);
+        player01->play();
     }
 }
 
