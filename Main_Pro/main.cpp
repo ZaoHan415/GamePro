@@ -13,6 +13,8 @@ int main(int argc, char *argv[])
 
     MainController m;
     m.show();
+
+
     /*lose lose01;
     lose01.show();
     win win01;

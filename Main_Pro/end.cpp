@@ -1,4 +1,5 @@
 #include "end.h"
+#include "MainController.h"
 
 win::win(QWidget *parent)
     :QDialog (parent)
@@ -6,6 +7,7 @@ win::win(QWidget *parent)
     ui.setupUi(this);
 
     connect(ui.w,SIGNAL(clicked()),this,SLOT(onSure()));
+
 }
 
 win::~win()

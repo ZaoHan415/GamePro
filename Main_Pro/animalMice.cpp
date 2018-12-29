@@ -2,6 +2,7 @@
 #include<QPainter>
 #include <QDebug>
 #include <QPixmap>
+#include <cmath>
 
 animalMice::animalMice(QPoint pos,QObject * pa):
     myAnimal (pos,pa)
