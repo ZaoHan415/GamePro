@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>bgm.wav</file>
+        <file>win.wav</file>
+    </qresource>
+</RCC>

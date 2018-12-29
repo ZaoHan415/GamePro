@@ -9,7 +9,7 @@ QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Main_Pro
+TARGET = CatchMeIfYouCan
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -58,11 +58,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    ../README.md
+    ../README.md \
+    bgm.wav
 
 RESOURCES += \
     sources.qrc \
-    picture.qrc
+    picture.qrc \
+    music.qrc
     
 FORMS += \
     speedcontroller.ui \
@@ -73,4 +75,6 @@ FORMS += \
     MainController.ui \
     win.ui \
     lose.ui
+
+RC_ICONS = "game.ico"
     

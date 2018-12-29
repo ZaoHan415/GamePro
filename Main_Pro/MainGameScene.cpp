@@ -12,14 +12,14 @@ MainGameScene::MainGameScene()
     drawFloor();
 
     //初始化猫老鼠位置
-    miceStartPos = QPoint(0,6);
-    catStartPos = QPoint(-1,0);
+    miceStartPos = QPoint(0,0);
+    catStartPos = QPoint(-5,0);
     miceEndPos.append( QPoint(1-mapWidth,0) );
 
     //添加猫
     cat = new animalCat(catStartPos,this);
     animalCat *cat_p = static_cast<animalCat *>(cat );
-    connect(cat_p,SIGNAL(alive(bool)),this,SLOT(gameOver()));
+    connect(cat_p,SIGNAL(catwins(int )),this,SLOT(gameOver(int )));
     addItem(cat_p);
 
     //添加老鼠

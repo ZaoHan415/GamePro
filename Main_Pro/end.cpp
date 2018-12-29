@@ -1,5 +1,7 @@
 #include "end.h"
-
+#include "MainController.h"
+#include "Control.h"
+extern Control c;
 win::win(QWidget *parent)
     :QDialog (parent)
 {

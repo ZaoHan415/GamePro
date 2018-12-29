@@ -21,6 +21,9 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *) override;
     QRectF boundingRect() const override;
 
+    //把猫的shape设置成永远罩住猫头的一个方块，用来实现碰撞检测
+    QPainterPath shape() const override;
+
     myAnimal *m_mice;
     myAnimal *m_cat;
 
@@ -34,17 +37,16 @@ public:
 
     qreal totalPhase = 10;
 
-    QPoint getMicePos();
+    myAnimal* getMice();
 public slots:
     //重载move函数
     void moveOneStep() override;
     void catchmouse();
     void changePic();
-    void out_of_border() override;
     void picture_rotate();
 signals:
-    void catwins(bool);
-    //让它初始化为false
+    void catwins(int);
+
 private:
 };
 

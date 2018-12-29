@@ -13,8 +13,8 @@ class MusicController : public QDialog
 public:
     MusicController(QWidget *parent = Q_NULLPTR);
     ~MusicController();
-    int bgmVolume = 50;
-    int isvolume = 50;
+    int bgmVolume{50};
+    int isvolume{50};
 
 private:
     Ui::MusicController ui;

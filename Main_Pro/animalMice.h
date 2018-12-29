@@ -17,6 +17,7 @@ public:
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *) override;
     QRectF boundingRect() const override;
+    QPainterPath shape() const override;
     myAnimal *m_cat;
 
     //存图
@@ -34,8 +35,6 @@ public slots:
     void moveOneStep() override;
     void mouse_escape();
     void changePic();
-
-    void out_of_border() override;
 signals:
     void mousewins(bool);
     //让它初始化为false
