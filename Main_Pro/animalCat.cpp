@@ -71,7 +71,7 @@ void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidg
 
     painter->drawPixmap(-offset,now);
     painter->rotate(-theta);
-    const double pi = ::asin(1)*2;
+    /*const double pi = ::asin(1)*2;
     double the = -double(theta)*pi/180.0;
     QPointF points[4] = {
           QPointF(+8.5*cos(the)-60.0*sin(the), -60.0*cos(the)-8.5*sin(the)),
@@ -79,7 +79,7 @@ void animalCat::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidg
           QPointF(-16.5*cos(the)-30.0*sin(the), -30.0*cos(the)+16.5*sin(the)),
           QPointF(+8.5*cos(the)-30.0*sin(the), -30.0*cos(the)-8.5*sin(the))
       };
-    painter->drawConvexPolygon(points, 4);
+    painter->drawConvexPolygon(points, 4);*/
 }
 
 QRectF animalCat::boundingRect() const
