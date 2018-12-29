@@ -14,7 +14,10 @@ public:
     ~MainWindow() override;
     QGraphicsView *view;
     MainGameScene *m_scene;
-protected:
+
+signals:
+    void VolumeSet(int );
+
 
 };
 

@@ -10,7 +10,7 @@ class win : public QDialog
     Q_OBJECT
 
 public:
-    win(QWidget *parent = Q_NULLPTR);
+    win(QWidget *parent = Q_NULLPTR,int volume = 50);
     ~win();
 
     QMediaPlayer *winmusic;

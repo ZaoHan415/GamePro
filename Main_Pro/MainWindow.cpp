@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     setFocus();
     setFocusPolicy(Qt::ClickFocus);
     installEventFilter(m_scene);
+    connect(this,SIGNAL(VolumeSet(int)),m_scene,SLOT(setVolume(int )),Qt::DirectConnection);
 }
 
 MainWindow::~MainWindow()

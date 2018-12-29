@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     MainController m;
     m.show();
 
-    Control c;
+    //Control c;
     /*lose lose01;
     lose01.show();
     win win01;

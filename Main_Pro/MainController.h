@@ -30,6 +30,8 @@ private slots:
     void onSureB();
     void onSureS();
     void onSureQ();
+signals:
+    void finalVolume(int );
 };
 
 #endif // MAINCONTROLLER_H

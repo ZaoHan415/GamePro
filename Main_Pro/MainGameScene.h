@@ -23,7 +23,7 @@ public:
     QPoint getMicePositon();
     kind blockTypeDetermine(QPoint);
 
-    MusicController musiccontroller;
+    int volume = 50;
 
 private:
     void drawFloor();
@@ -44,6 +44,10 @@ private:
 
 public slots:
     void gameOver(int x);
+    void setVolume(int x){
+        volume = x;
+        //qDebug() << "volume:"<<x;
+    }
 
 };
 
