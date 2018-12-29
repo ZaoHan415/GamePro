@@ -9,12 +9,13 @@
 MainGameScene::MainGameScene()
 {
 
-    drawFloor();
-
     //初始化猫老鼠位置
-    miceStartPos = QPoint(0,0);
-    catStartPos = QPoint(-5,0);
+    miceStartPos = QPoint(-1,0);
+    catStartPos = QPoint(0,1);
     miceEndPos.append( QPoint(1-mapWidth,0) );
+    miceEndPos.append( QPoint(mapWidth-1,0) );
+
+    drawFloor();
 
     //添加猫
     cat = new animalCat(catStartPos,this);
@@ -25,6 +26,7 @@ MainGameScene::MainGameScene()
     //添加老鼠
     mice = new animalMice(miceStartPos,this);
     animalMice *mice_p = static_cast<animalMice *>(mice );
+    connect(mice_p,SIGNAL(mousewins(int )),this,SLOT(gameOver(int )));
     addItem(mice_p);
 }
 
@@ -37,7 +39,16 @@ void MainGameScene::drawFloor()
         {
             if(inThisMap(QPoint(i,j)))
             {
-                temp = new Hexagon(Hexagon::kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
+                switch (blockTypeDetermine(QPoint(i,j))) {
+                case kind::exit:
+                    temp = new Hexagon(kind::exit,pixelPostionInMap(QPoint(i,j)),blockWidth);
+                    break;
+                case kind::floor:
+                    temp = new Hexagon(kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
+                    break;
+                default:
+                    throw std::runtime_error("a bug here");
+                }
                 //qDebug()<<i<<j;
                 addItem(temp);
             }
@@ -63,7 +74,7 @@ bool MainGameScene::inThisMap(QPoint p)
 
 QPointF MainGameScene::pixelPostionInMap(QPoint p)
 {
-    Hexagon temp(Hexagon::kind::floor, QPointF(0,0),blockWidth);
+    Hexagon temp(kind::floor, QPointF(0,0),blockWidth);
     QPointF pos = p.x()*temp.vecToNext(0)+p.y()*temp.vecToNext(1);
     return pos;
 }
@@ -89,7 +100,7 @@ bool MainGameScene::eventFilter(QObject *obj, QEvent *event)
 
 void MainGameScene::gameOver(int x)
 {
-    this->mice->stop();
+    mice->stop();
     cat->stop();
     if(x == 1){
         lose *lose_ui = new lose();
@@ -105,4 +116,14 @@ void MainGameScene::gameOver(int x)
 QPoint MainGameScene::getMicePositon()
 {
     return mice->position;
+}
+
+kind MainGameScene::blockTypeDetermine(QPoint p)
+{
+    for(int i = 0 ; i < miceEndPos.size();i++){
+        if( p == miceEndPos.at(i) ){
+            return kind::exit;
+        }
+    }
+    return kind::floor;
 }
