@@ -77,7 +77,7 @@ void animalMice::moveOneStep()
 }
 void animalMice::mouse_escape()
 {
-    if(this->position==QPoint(0,6))
+    if(this->position==QPoint(-2,-5))
     {
         MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
         scene->gameOver(3);

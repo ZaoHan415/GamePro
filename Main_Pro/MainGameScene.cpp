@@ -14,7 +14,7 @@ MainGameScene::MainGameScene()
     //初始化猫老鼠位置
     miceStartPos = QPoint(0,6);
     catStartPos = QPoint(-1,0);
-    miceEndPos.append( QPoint(-3,-4) );
+    miceEndPos.append( QPoint(1-mapWidth,0) );
 
     //添加猫
     cat = new animalCat(catStartPos,this);
@@ -91,11 +91,11 @@ void MainGameScene::gameOver(int x)
 {
     this->mice->stop();
     cat->stop();
-    if(x == 1){
+    if(x == 3){
         lose *lose_ui = new lose();
         lose_ui->show();
     }
-    if(x==3)
+    if(x==1)
     {
         win *win_ui =new win();
         win_ui->show();
