@@ -20,12 +20,12 @@ public:
     myAnimal *cat;
     bool eventFilter(QObject *obj, QEvent *event) override;
     QPoint getMicePositon();
-
+    kind blockTypeDetermine(QPoint);
 private:
     void drawFloor();
 
     //地图宽度
-    const int mapWidth = 6;
+    const int mapWidth = 5;
     const qreal blockWidth = 35;
 
     //老鼠入口

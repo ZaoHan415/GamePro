@@ -80,32 +80,32 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     painter->drawConvexPolygon(p,6);
 
     // Hexagon* hex
-    if (m_kind==kind::floor){
+    QPixmap now(":/Pic/Pics/floor.png");
+    now = now.scaledToHeight(81);
+    int w1 = int ( -1.32*a );
+    int w2 = int ( -1.1 * a);
+    painter->drawPixmap(w1,w2,now);
 
-        QPixmap now(":/Pic/Pics/floor.png");
-        now = now.scaledToHeight(81);
-        painter->drawPixmap(-1.32*a,-1.1*a,now);
-        //QPointF offset(now.width()/2.0,now.height()/2.0);
-    }else if (m_kind == kind::entrance){
+    if (m_kind == kind::entrance){
         QPixmap now(":/Pic/Pics/entrance.png");
         now = now.scaledToHeight(60);
-        painter->drawPixmap(-1.32*a,-1.1*a,now);
+        painter->drawPixmap(w1,w2,now);
         QPointF offset(now.width()/2.0,now.height()/2.0);
     }else if(m_kind == kind::exit){
         QPixmap ent(":/Pic/Pics/exit.png");
-        ent = ent.scaledToHeight(60);
-        painter->drawPixmap(-1.32*a,-1.1*a,ent);
+        ent = ent.scaledToHeight(40);
         QPointF offset(ent.width()/2.0,ent.height()/2.0);
+        painter->drawPixmap(-offset,ent);
     }else if(m_kind == kind::barrier)
     {
         QPixmap now(":/Pic/Pics/gift.png");
         now = now.scaledToHeight(60);
-        painter->drawPixmap(-1.32*a,-1.1*a,now);
+        painter->drawPixmap(w1,w2,now);
         QPointF offset(now.width()/2.0,now.height()/2.0);
     }else if(m_kind == kind::food){
         QPixmap ent(":/Pic/Pics/food.png");
         ent = ent.scaledToHeight(60);
-        painter->drawPixmap(-1.32*a,-1.1*a,ent);
+        painter->drawPixmap(w1,w2,ent);
         QPointF offset(ent.width()/2.0,ent.height()/2.0);
     }
 }
