@@ -111,7 +111,7 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     now = now.scaledToHeight(60);
     painter->drawPixmap(-1.32*a,-1.1*a,now);
     QPointF offset(ent.width()/2.0,ent.height()/2.0);
-    }
+    }*/
 }
 
 
