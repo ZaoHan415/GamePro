@@ -91,11 +91,11 @@ void MainGameScene::gameOver(int x)
 {
     this->mice->stop();
     cat->stop();
-    if(x == 3){
+    if(x == 1){
         lose *lose_ui = new lose();
         lose_ui->show();
     }
-    if(x==1)
+    if(x == 3)
     {
         win *win_ui =new win();
         win_ui->show();
