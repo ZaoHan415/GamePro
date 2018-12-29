@@ -37,7 +37,7 @@ void MainGameScene::drawFloor()
         {
             if(inThisMap(QPoint(i,j)))
             {
-                temp = new Hexagon(pixelPostionInMap(QPoint(i,j)),blockWidth);
+                temp = new Hexagon(Hexagon::kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
                 //qDebug()<<i<<j;
                 addItem(temp);
             }
@@ -63,7 +63,7 @@ bool MainGameScene::inThisMap(QPoint p)
 
 QPointF MainGameScene::pixelPostionInMap(QPoint p)
 {
-    Hexagon temp(QPointF(0,0),blockWidth);
+    Hexagon temp(Hexagon::kind::floor, QPointF(0,0),blockWidth);
     QPointF pos = p.x()*temp.vecToNext(0)+p.y()*temp.vecToNext(1);
     return pos;
 }

@@ -7,10 +7,10 @@ class Hexagon : public QGraphicsItem
 private:
     qreal a;
     QColor color;
-    enum class kind{entrance=0,floor,barrier,exit,food};
-
 public:
-    Hexagon(QPointF x = QPointF(0,0),qreal _width = 20);
+    enum class kind{entrance=0,floor,barrier,exit,food};
+    kind m_kind = kind::floor;
+    Hexagon(kind _k = kind::floor,QPointF x = QPointF(0,0),qreal _width = 20);
     void advance(int phase) override;
     class exit;
 //    class floor{};

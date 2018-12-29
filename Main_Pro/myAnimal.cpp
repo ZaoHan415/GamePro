@@ -15,7 +15,7 @@ myAnimal::myAnimal(QPoint p,QObject* pa)
 
     //初始位置
     position=p;
-    m_hex=new Hexagon(QPointF(0,0));
+    m_hex=new Hexagon();
 }
 
 

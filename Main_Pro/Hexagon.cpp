@@ -3,11 +3,12 @@
 #include <QPainter>
 #include <cmath>
 
-Hexagon::Hexagon(QPointF pos,qreal _width)
+Hexagon::Hexagon(kind _k,QPointF pos,qreal _width)
 {
     a = _width;
     setPos(pos);
     color = QColor(200,0,0,100);
+    m_kind = _k;
 }
 
 void Hexagon::advance(int phase)
@@ -77,40 +78,35 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     painter->setPen(Qt::black);
 
     painter->drawConvexPolygon(p,6);
-   // Hexagon* hex
-   //if (this->kind==1){
-    QPixmap now(":/Pic/Pics/floor.png");
-    now = now.scaledToHeight(81);
-    painter->drawPixmap(-1.32*a,-1.1*a,now);
-    QPointF offset(now.width()/2.0,now.height()/2.0);
-    //}
-/*  if (kind==0)
+
+    // Hexagon* hex
+    if (m_kind==kind::floor){
+
+        QPixmap now(":/Pic/Pics/floor.png");
+        now = now.scaledToHeight(81);
+        painter->drawPixmap(-1.32*a,-1.1*a,now);
+        //QPointF offset(now.width()/2.0,now.height()/2.0);
+    }else if (m_kind == kind::entrance){
+        QPixmap now(":/Pic/Pics/entrance.png");
+        now = now.scaledToHeight(60);
+        painter->drawPixmap(-1.32*a,-1.1*a,now);
+        QPointF offset(now.width()/2.0,now.height()/2.0);
+    }else if(m_kind == kind::exit){
+        QPixmap ent(":/Pic/Pics/exit.png");
+        ent = ent.scaledToHeight(60);
+        painter->drawPixmap(-1.32*a,-1.1*a,ent);
+        QPointF offset(ent.width()/2.0,ent.height()/2.0);
+    }else if(m_kind == kind::barrier)
     {
-    QPixmap ent(":/Pic/Pics/entrance.png");
-    now = now.scaledToHeight(60);
-    painter->drawPixmap(-1.32*a,-1.1*a,now);
-    QPointF offset(ent.width()/2.0,ent.height()/2.0);
-    }
-    if(kind==3)
-    {
-    QPixmap ent(":/Pic/Pics/exit.png");
-    now = now.scaledToHeight(60);
-    painter->drawPixmap(-1.32*a,-1.1*a,now);
-    QPointF offset(ent.width()/2.0,ent.height()/2.0);
-    }
-    if(kind==2)
-    {
-    QPixmap ent(":/Pic/Pics/gift.png");
-    now = now.scaledToHeight(60);
-    painter->drawPixmap(-1.32*a,-1.1*a,now);
-    QPointF offset(ent.width()/2.0,ent.height()/2.0);
-    }
-    if(kind==5)
-    {
-    QPixmap ent(":/Pic/Pics/food.png");
-    now = now.scaledToHeight(60);
-    painter->drawPixmap(-1.32*a,-1.1*a,now);
-    QPointF offset(ent.width()/2.0,ent.height()/2.0);
+        QPixmap now(":/Pic/Pics/gift.png");
+        now = now.scaledToHeight(60);
+        painter->drawPixmap(-1.32*a,-1.1*a,now);
+        QPointF offset(now.width()/2.0,now.height()/2.0);
+    }else if(m_kind == kind::food){
+        QPixmap ent(":/Pic/Pics/food.png");
+        ent = ent.scaledToHeight(60);
+        painter->drawPixmap(-1.32*a,-1.1*a,ent);
+        QPointF offset(ent.width()/2.0,ent.height()/2.0);
     }
 }
 
