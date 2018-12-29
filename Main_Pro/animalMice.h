@@ -36,7 +36,7 @@ public slots:
     void mouse_escape();
     void changePic();
 signals:
-    void mousewins(bool);
+    void mousewins(int);
     //让它初始化为false
 private:
 

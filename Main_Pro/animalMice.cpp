@@ -47,29 +47,8 @@ void animalMice::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWid
     //t.getCoords(&x1,&y1,&x2,&y2);
     int theta = 120+60*get_direction();
     painter->rotate(theta);
-    //painter->drawLine(QLineF(x1,y1,x2,y2));
-    //painter->drawLine(QLineF(x1,y2,x2,y1));
-
     painter->drawPixmap(-offset,now);
-    painter->rotate(-theta);
-    /*const double pi = ::asin(1)*2;
-    double the = -double(theta)*pi/180.0;
-    QPointF points[4] = {
-          QPointF(+8.5*cos(the)-50.0*sin(the), -50.0*cos(the)-8.5*sin(the)),
-          QPointF(-16.5*cos(the)-50.0*sin(the), -50.0*cos(the)+16.5*sin(the)),
-          QPointF(-16.5*cos(the)+60.0*sin(the), +40.0*cos(the)+16.5*sin(the)),
-          QPointF(+8.5*cos(the)+60.0*sin(the), +40.0*cos(the)-8.5*sin(the))
-      };
-    painter->drawConvexPolygon(points, 4);*/
 }
-
-
-/*void animalCat::advance(int phase)
-{
-    if(phase == 1){
-        move_to_next();
-           }
-}*/
 
 QRectF animalMice::boundingRect() const
 {
@@ -78,12 +57,18 @@ QRectF animalMice::boundingRect() const
 
 void animalMice::moveOneStep()
 {   
-    animationTimer.start(picChangeStep);
-    //qDebug() <<"moving";
-    QPointF now_pos = posInMap();//出发位置
-    move_to_next();
-    QPointF then_pos = posInMap();//结束位置
-    perStep = (then_pos - now_pos)/totalPhase;
+    MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+    if(scene->blockTypeDetermine(position) == kind::exit){
+        emit mousewins(3);
+    }
+    else{
+        animationTimer.start(picChangeStep);
+        //qDebug() <<"moving";
+        QPointF now_pos = posInMap();//出发位置
+        move_to_next();
+        QPointF then_pos = posInMap();//结束位置
+        perStep = (then_pos - now_pos)/totalPhase;
+    }
 }
 void animalMice::mouse_escape()
 {
@@ -102,14 +87,6 @@ void animalMice::changePic()
     if(phase > totalPhase)
     {
         animationTimer.stop();
-   /*     if(this->position==exit_position)
-        {
-            this->mouse_escape();
-        }
-        if(this->position==barrier_position)
-        {
-            this->stop();
-        }*/
         phase=0;
     }
 }
