@@ -34,6 +34,12 @@ private:
     //老鼠出口
     QList<QPoint> miceEndPos;
 
+    //障碍物
+    QList<QPoint> barrierPos;
+
+    //食物
+    QList<QPoint> foodPos;
+
     //猫入口
     QPoint catStartPos;
 

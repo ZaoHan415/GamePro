@@ -10,10 +10,18 @@ MainGameScene::MainGameScene()
 {
 
     //初始化猫老鼠位置
-    miceStartPos = QPoint(-1,0);
+    miceStartPos = QPoint(0,5);
     catStartPos = QPoint(0,1);
-    miceEndPos.append( QPoint(1-mapWidth,0) );
-    miceEndPos.append( QPoint(mapWidth-1,0) );
+    miceEndPos.append( QPoint(2-mapWidth,-2) );
+    miceEndPos.append( QPoint(mapWidth-1,-5) );
+
+    //障碍物位置
+    barrierPos.append(QPoint(0,3));
+    barrierPos.append(QPoint(-2,-3));
+    barrierPos.append(QPoint(3,-4));
+
+    //食物位置
+    foodPos.append(QPoint(5,-2));
 
     drawFloor();
 
@@ -46,9 +54,19 @@ void MainGameScene::drawFloor()
                 case kind::floor:
                     temp = new Hexagon(kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
                     break;
-                default:
-                    throw std::runtime_error("a bug here");
-                }
+                case kind::barrier:
+                    temp = new Hexagon(kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
+                    break;
+                case kind::entrance:
+                    temp = new Hexagon(kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
+                    break;
+                case kind::food:
+                    temp = new Hexagon(kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
+                    break;
+
+               // default:
+               //     throw std::runtime_error("a bug here");
+               }
                 //qDebug()<<i<<j;
                 addItem(temp);
             }
@@ -120,10 +138,21 @@ QPoint MainGameScene::getMicePositon()
 
 kind MainGameScene::blockTypeDetermine(QPoint p)
 {
+    if( p == miceStartPos ){
+            return kind::entrance;
+    }
     for(int i = 0 ; i < miceEndPos.size();i++){
         if( p == miceEndPos.at(i) ){
             return kind::exit;
         }
+
     }
+    for(int i = 0 ; i < barrierPos.size();i++){
+        if( p == barrierPos.at(i) ){
+                return kind::barrier;
+            }
+
+    }
+
     return kind::floor;
 }

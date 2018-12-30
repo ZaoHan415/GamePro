@@ -26,7 +26,7 @@ void speedcontroller::onSureSpeed()
     accept();
 }
 
-void speedcontroller::setcatspeed(int value)
+void speedcontroller::setcatspeed(int /*value*/)
 {
     int pos = ui.catSlider->value();
     QString str = QString::number(pos);
@@ -34,7 +34,7 @@ void speedcontroller::setcatspeed(int value)
     catspeed = pos;
 }
 
-void speedcontroller::setmicespeed(int value)
+void speedcontroller::setmicespeed(int /*value*/)
 {
     int pos = ui.miceSlider->value();
     QString str = QString::number(pos);
