@@ -153,6 +153,12 @@ kind MainGameScene::blockTypeDetermine(QPoint p)
             }
 
     }
+    for(int i = 0 ; i < foodPos.size();i++){
+        if( p == foodPos.at(i) ){
+                return kind::food;
+            }
+
+    }
 
     return kind::floor;
 }
