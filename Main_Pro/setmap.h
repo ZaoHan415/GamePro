@@ -1,6 +1,8 @@
 #ifndef SETMAP
 #define SETMAP
-
+#include<iostream>
+#include<cmath>
+#include<fstream>
 namespace sit{
 int mapx(int x);
 int mapy (int y);
