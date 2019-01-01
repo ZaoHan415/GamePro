@@ -10,6 +10,11 @@ MainController::MainController( QWidget *parent)
     connect(ui.BButton,SIGNAL(clicked()),this,SLOT(onSureB()));
     connect(ui.SZ,SIGNAL(clicked()),this,SLOT(onSureS()));
     connect(ui.Quit,SIGNAL(clicked()),this,SLOT(onSureQ()));
+    QFile file01("win.wav");
+    player01 = new QMediaPlayer;
+    player01->setMedia(QUrl("qrc:/win.wav"));
+    player01->setVolume(c.isVolume);
+    player01->play();
 }
 
 MainController::~MainController()
@@ -20,9 +25,10 @@ MainController::~MainController()
 void MainController::onSureB()
 {
     w = new MainWindow(this);
+    connect(this, SIGNAL( finalVolume(int) ),w,SIGNAL(VolumeSet(int)));
+    emit finalVolume(isVolume);
     w->show();
     this->hide();
-    player01 = new QMediaPlayer;
     QFile file("bgm.wav");
     player01->setMedia(QUrl("qrc:/bgm.wav"));
     player01->setVolume(c.bgmVolume);

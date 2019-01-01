@@ -16,7 +16,7 @@ animalMice::animalMice(QPoint pos,QObject * pa):
         QString temp(s);
         temp.append(QString::number(i));
         temp.append(".png");
-        qDebug() << temp;
+        //qDebug() << temp;
         QPixmap pic = QPixmap(temp);
         pic = pic.scaledToWidth(picWidth);
         mice_pics.append(pic);

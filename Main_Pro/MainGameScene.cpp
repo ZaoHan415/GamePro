@@ -126,7 +126,7 @@ void MainGameScene::gameOver(int x)
     }
     if(x == 3)
     {
-        win *win_ui =new win();
+        win *win_ui =new win(nullptr,volume);
         win_ui->show();
     }
 }

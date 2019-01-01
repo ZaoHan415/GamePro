@@ -1,13 +1,20 @@
 #include "end.h"
 #include "MainController.h"
 #include "Control.h"
-extern Control c;
-win::win(QWidget *parent)
+#include <QFile>
+win::win(QWidget *parent,int _volume)
     :QDialog (parent)
 {
     ui.setupUi(this);
 
     connect(ui.w,SIGNAL(clicked()),this,SLOT(onSure()));
+    QFile file01("win.wav");
+    QMediaPlayer *player01;
+    player01 = new QMediaPlayer;
+    player01->setMedia(QUrl("qrc:/win.wav"));
+    player01->setVolume(_volume);
+    //qDebug() << "_volume:" << _volume;
+    player01->play();
 }
 
 win::~win()

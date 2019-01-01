@@ -14,13 +14,7 @@ int main(int argc, char *argv[])
     MainController m;
     m.show();
 
-    Control c;
-    QFile file01("win.wav");
-    QMediaPlayer *player02;
-    player02 = new QMediaPlayer;
-    player02->setMedia(QUrl("qrc:/win.wav"));
-    player02->setVolume(c.isVolume);
-    player02->play();
+    //Control c;
     /*lose lose01;
     lose01.show();
     win win01;
