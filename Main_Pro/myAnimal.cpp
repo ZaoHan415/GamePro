@@ -46,12 +46,14 @@ QPointF myAnimal::posInMap()
 myAnimal::~myAnimal()
 {
     delete m_hex;
-    delete m_timer;
+    if(m_timer != nullptr)
+        delete m_timer;
 }
 
 void myAnimal::stop()
 {
-    m_timer->stop();
+    delete m_timer;
+    m_timer = nullptr;
 }
 
 void myAnimal::restartTimer()
