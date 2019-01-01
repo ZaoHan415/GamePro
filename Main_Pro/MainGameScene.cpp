@@ -10,18 +10,19 @@ MainGameScene::MainGameScene()
 {
 
     //初始化猫老鼠位置
-    miceStartPos = QPoint(0,5);
-    catStartPos = QPoint(0,1);
-    miceEndPos.append( QPoint(2-mapWidth,-2) );
+    miceStartPos = QPoint(2-mapWidth,-2);
+    catStartPos = QPoint(2-mapWidth,2);
+    miceEndPos.append( QPoint(0,5) );
     miceEndPos.append( QPoint(mapWidth-1,-5) );
 
     //障碍物位置
     barrierPos.append(QPoint(0,3));
-    barrierPos.append(QPoint(-2,-3));
+    barrierPos.append(QPoint(-1,-2));
     barrierPos.append(QPoint(3,-4));
 
     //食物位置
     foodPos.append(QPoint(5,-2));
+    foodPos.append(QPoint(-3,2));
 
     drawFloor();
 

@@ -28,10 +28,10 @@ animalMice::animalMice(QPoint pos,QObject * pa):
 int animalMice::turnAroundKey(int x)
 {
 
-    if(x == -1)
-        return 74;//key "J"
     if(x == 1)
         return 76;//key "L"
+    if(x == -1)
+        return 74;//key "J"
 
     throw std::runtime_error("key error");
 }
