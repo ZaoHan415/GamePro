@@ -55,18 +55,18 @@ void MainGameScene::drawFloor()
                     temp = new Hexagon(kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
                     break;
                 case kind::barrier:
-                    temp = new Hexagon(kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
+                    temp = new Hexagon(kind::barrier,pixelPostionInMap(QPoint(i,j)),blockWidth);
                     break;
                 case kind::entrance:
-                    temp = new Hexagon(kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
+                    temp = new Hexagon(kind::entrance,pixelPostionInMap(QPoint(i,j)),blockWidth);
                     break;
                 case kind::food:
-                    temp = new Hexagon(kind::floor,pixelPostionInMap(QPoint(i,j)),blockWidth);
+                    temp = new Hexagon(kind::food,pixelPostionInMap(QPoint(i,j)),blockWidth);
                     break;
 
-               // default:
-               //     throw std::runtime_error("a bug here");
-               }
+                    // default:
+                    //     throw std::runtime_error("a bug here");
+                }
                 //qDebug()<<i<<j;
                 addItem(temp);
             }
@@ -139,7 +139,7 @@ QPoint MainGameScene::getMicePositon()
 kind MainGameScene::blockTypeDetermine(QPoint p)
 {
     if( p == miceStartPos ){
-            return kind::entrance;
+        return kind::entrance;
     }
     for(int i = 0 ; i < miceEndPos.size();i++){
         if( p == miceEndPos.at(i) ){
@@ -149,16 +149,31 @@ kind MainGameScene::blockTypeDetermine(QPoint p)
     }
     for(int i = 0 ; i < barrierPos.size();i++){
         if( p == barrierPos.at(i) ){
-                return kind::barrier;
-            }
+            return kind::barrier;
+        }
 
     }
     for(int i = 0 ; i < foodPos.size();i++){
         if( p == foodPos.at(i) ){
-                return kind::food;
-            }
+            return kind::food;
+        }
 
     }
 
     return kind::floor;
+}
+
+bool MainGameScene::isPassable(QPoint p)
+{
+    return inThisMap(p) && ( blockTypeDetermine(p) != kind::barrier);
+}
+
+MainGameScene::~MainGameScene()
+{
+    delete mice;
+    delete cat;
+    QList<QGraphicsItem*> l = items();
+    for(int i = 0; i < l.size() ;i ++){
+        delete l[i];
+    }
 }

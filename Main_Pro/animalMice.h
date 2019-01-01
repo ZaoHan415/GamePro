@@ -19,17 +19,27 @@ public:
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
     myAnimal *m_cat;
-
+private:
     //存图
     QList<QPixmap> mice_pics;
     QTimer animationTimer;
     int picWidth = 25;
-    const int picChangeStep = 30;
+    int picChangeStep = 30;
     int phase = 0;
     QPointF perStep;
 
     qreal totalPhase = 10;
 
+    int speedChangePhase = 0;
+
+    //速度上（下）界
+    const int supSpeed = 400;
+    const int infSpeed = 600;
+    //速度衰减共用的格数
+    const int totalSpeedPhase = 10;
+
+    void changeSpeed();
+    void resetSpeed();
 public slots:
     //重载move函数
     void moveOneStep() override;
@@ -37,8 +47,6 @@ public slots:
     void changePic();
 signals:
     void mousewins(int);
-    //让它初始化为false
-private:
 
 };
 

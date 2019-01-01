@@ -74,19 +74,19 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     painter->drawPixmap(w1,w2,now);
 
     if (m_kind == kind::entrance){
-        QPixmap entrance("Pic/Pics/entrance.png");
+        QPixmap entrance(":/Pic/Pics/entrance.png");
         entrance = entrance.scaledToHeight(60);
         QPointF offset(entrance.width()/2.0,entrance.height()/2.0);
         painter->drawPixmap(-offset,entrance);
     }else if(m_kind == kind::exit){
         QPixmap ent(":/Pic/Pics/exit.png");
-        ent = ent.scaledToHeight(40);
+        ent = ent.scaledToHeight(60);
         QPointF offset(ent.width()/2.0,ent.height()/2.0);
         painter->drawPixmap(-offset,ent);
     }else if(m_kind == kind::barrier)
     {
         QPixmap gift(":/Pic/Pics/gift.png");
-        gift = gift.scaledToHeight(500);
+        gift = gift.scaledToHeight(60);
         QPointF offset(gift.width()/2.0,gift.height()/2.0);
         painter->drawPixmap(-offset,gift);
     }else if(m_kind == kind::food){

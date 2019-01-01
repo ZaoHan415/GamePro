@@ -7,9 +7,10 @@ myAnimal::myAnimal(QPoint p,QObject* pa)
 {
     //新建并连接计时器
     m_timer = new QTimer(this);
-    m_timer->start(time_per_step);
+    m_timer->setSingleShot(true);
     connect(m_timer,SIGNAL(timeout()),this,SLOT(moveOneStep()));
-
+    connect(m_timer,SIGNAL(timeout()),this,SLOT(restartTimer()));
+    m_timer->start(0);
     //初始化其父类
     m_parent = pa;
 
@@ -25,7 +26,7 @@ void myAnimal::move_to_next()
     direction = temp_direction;
     //qDebug() <<"direction:"<<direction;
     QPoint step = m_hex->baseVecToNext(direction);
-    if(t->inThisMap(position + step)){
+    if(t->isPassable(position + step)){
         position = position + step;
     }
 }
@@ -51,4 +52,15 @@ myAnimal::~myAnimal()
 void myAnimal::stop()
 {
     m_timer->stop();
+}
+
+void myAnimal::restartTimer()
+{
+    m_timer->start(time_per_step);
+    qDebug() <<"perStep:" <<time_per_step;
+}
+
+void myAnimal::modifyInterval(int msec)
+{
+    time_per_step = msec;
 }

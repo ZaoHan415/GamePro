@@ -11,9 +11,12 @@ class MainGameScene : public QGraphicsScene
     Q_OBJECT
 public:
     MainGameScene();
-
-    //检测一个点在不在地图里，检测动物是否出界时直接调用
+    ~MainGameScene() override;
+    //检测一个点在不在地图里
     bool inThisMap(QPoint);
+
+    //一个点在地图上且不是障碍物时返回true，检测动物是否出界时直接调用
+    bool isPassable(QPoint);
 
     QPointF pixelPostionInMap(QPoint);
     myAnimal *mice;

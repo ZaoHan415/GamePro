@@ -9,7 +9,7 @@ animalMice::animalMice(QPoint pos,QObject * pa):
     myAnimal (pos,pa)
 {
     setPos(this->posInMap());
-
+    resetSpeed();
     QString s = ":/Pic/Pics/Mice";
     for(int i = 0 ;i < 5 ;i ++)
     {
@@ -22,6 +22,7 @@ animalMice::animalMice(QPoint pos,QObject * pa):
         mice_pics.append(pic);
     }
     connect(&animationTimer,SIGNAL(timeout()),this,SLOT(changePic()));
+   // animationTimer.start(picChangeStep);
 }
 
 int animalMice::turnAroundKey(int x)
@@ -57,6 +58,7 @@ QRectF animalMice::boundingRect() const
 
 void animalMice::moveOneStep()
 {   
+    changeSpeed();
     MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
     if(scene->blockTypeDetermine(position) == kind::exit){
         emit mousewins(3);
@@ -81,6 +83,7 @@ void animalMice::mouse_escape()
 
 void animalMice::changePic()
 {
+    animationTimer.setInterval(picChangeStep);
     setPos(posInMap() + perStep*phase - perStep*totalPhase);
     update();
     phase ++;
@@ -105,4 +108,21 @@ QPainterPath animalMice::shape() const
     path.closeSubpath();
 
     return path;
+}
+
+void animalMice::resetSpeed()
+{
+    speedChangePhase = 0;
+    modifyInterval(supSpeed);
+    picChangeStep = int ( double(get_speed()-200)/(totalPhase + 1.0) ) ;
+}
+
+void animalMice::changeSpeed()
+{
+    if(speedChangePhase <= totalPhase ){
+        modifyInterval(supSpeed + (infSpeed - supSpeed)/totalSpeedPhase * speedChangePhase );
+        speedChangePhase ++ ;
+        qDebug() << "now speed:" << get_speed();
+    }
+    picChangeStep = int ( double(get_speed()-200)/(totalPhase + 1.0) ) ;
 }
