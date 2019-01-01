@@ -63,6 +63,10 @@ void animalMice::moveOneStep()
     if(scene->blockTypeDetermine(position) == kind::exit){
         emit mousewins(3);
     }
+    if(scene->blockTypeDetermine(position) == kind::barrier){
+        resetSpeed();
+        qDebug() << "now speed:" << get_speed();
+    }
     else{
         animationTimer.start(picChangeStep);
         //qDebug() <<"moving";
@@ -72,6 +76,10 @@ void animalMice::moveOneStep()
         perStep = (then_pos - now_pos)/totalPhase;
     }
 }
+
+
+//这段是不是没用了？
+/*
 void animalMice::mouse_escape()
 {
     if(this->position==QPoint(-2,-5))
@@ -80,6 +88,7 @@ void animalMice::mouse_escape()
         scene->gameOver(3);
     }
 }
+*/
 
 void animalMice::changePic()
 {

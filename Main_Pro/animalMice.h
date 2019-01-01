@@ -43,7 +43,7 @@ private:
 public slots:
     //重载move函数
     void moveOneStep() override;
-    void mouse_escape();
+    //void mouse_escape();
     void changePic();
 signals:
     void mousewins(int);
