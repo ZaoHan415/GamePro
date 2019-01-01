@@ -57,7 +57,7 @@ void myAnimal::stop()
 void myAnimal::restartTimer()
 {
     m_timer->start(time_per_step);
-    qDebug() <<"perStep:" <<time_per_step;
+    //qDebug() <<"perStep:" <<time_per_step;
 }
 
 void myAnimal::modifyInterval(int msec)
