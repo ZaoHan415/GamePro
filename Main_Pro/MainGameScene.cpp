@@ -64,11 +64,7 @@ void MainGameScene::drawFloor()
                 case kind::food:
                     temp = new Hexagon(kind::food,pixelPostionInMap(QPoint(i,j)),blockWidth);
                     break;
-
-                    // default:
-                    //     throw std::runtime_error("a bug here");
                 }
-                //qDebug()<<i<<j;
                 addItem(temp);
             }
         }

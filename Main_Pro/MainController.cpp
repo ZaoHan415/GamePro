@@ -20,7 +20,8 @@ MainController::MainController( QWidget *parent)
 
 MainController::~MainController()
 {
-    delete  player01;
+    delete w;
+    delete player01;
 }
 
 void MainController::onSureB()
@@ -39,7 +40,6 @@ void MainController::onSureB()
 
 void MainController::onSureS()
 {
-    //c = new Control(this);
     c.show();
     int ret = c.exec();
     if(ret==QDialog::Accepted)

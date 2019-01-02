@@ -61,7 +61,6 @@ QRectF animalCat::boundingRect() const
 void animalCat::moveOneStep()
 {
     animationTimer.start(picChangeStep);
-    //qDebug() <<"moving";
     QPointF now_pos = posInMap();//出发位置
     move_to_next();
     QPointF then_pos = posInMap();//结束位置
@@ -85,8 +84,6 @@ void animalCat::changePic()
         animationTimer.stop();
         phase = 0;
     }
-   // QPoint p=this->position;
-    //QDebug()<<p;
 }
 
 myAnimal* animalCat::getMice()

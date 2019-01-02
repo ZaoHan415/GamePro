@@ -1,4 +1,6 @@
 #include "SpeedController.h"
+#include "Control.h"
+#include <QFile>
 
 speedcontroller::speedcontroller(QWidget *parent)
     :QDialog (parent)
@@ -26,7 +28,7 @@ void speedcontroller::onSureSpeed()
     accept();
 }
 
-void speedcontroller::setcatspeed(int /*value*/)
+void speedcontroller::setcatspeed(int /*value*/ )
 {
     int pos = ui.catSlider->value();
     QString str = QString::number(pos);
