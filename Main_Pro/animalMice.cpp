@@ -64,7 +64,7 @@ void animalMice::moveOneStep()
         emit mousewins(3);
         //stop();
     }
-    if(scene->blockTypeDetermine(position) == kind::barrier){
+    if(scene->blockTypeDetermine(position) == kind::food){
         resetSpeed();
         qDebug() << "now speed:" << get_speed();
     }
