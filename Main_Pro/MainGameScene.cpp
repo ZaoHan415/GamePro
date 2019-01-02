@@ -177,7 +177,7 @@ kind MainGameScene::blockTypeDetermine(QPoint p)
 
 bool MainGameScene::isPassable(QPoint p)
 {
-    return inThisMap(p) && ( blockTypeDetermine(p) != kind::barrier||blockTypeDetermine(p) != kind::killer);
+    return inThisMap(p) && ( blockTypeDetermine(p) != kind::barrier);
 }
 
 MainGameScene::~MainGameScene()
