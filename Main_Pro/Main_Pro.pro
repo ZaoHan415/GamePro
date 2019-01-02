@@ -50,8 +50,7 @@ HEADERS += \
     SpeedController.h \
     Control.h \
     MainController.h \
-    end.h \
-    main.rc
+    end.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -76,5 +75,5 @@ FORMS += \
     win.ui \
     lose.ui
 
-RC_FILE += main.rc
+RC_ICONS = "game.ico"
     
