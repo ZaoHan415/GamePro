@@ -62,20 +62,21 @@ void animalMice::moveOneStep()
 {   
     changeSpeed();
     MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
-    if(scene->blockTypeDetermine(position) == kind::exit){
-        emit mousewins(3);
-        //stop();
-    }
     if(scene->blockTypeDetermine(position) == kind::food){
         resetSpeed();
         qDebug() << "now speed:" << get_speed();
     }
-    animationTimer.start(picChangeStep);
-    //qDebug() <<"moving";
-    QPointF now_pos = posInMap();//出发位置
-    move_to_next();
-    QPointF then_pos = posInMap();//结束位置
-    perStep = (then_pos - now_pos)/totalPhase;
+    if(scene->blockTypeDetermine(position) == kind::exit){
+        emit mousewins(3);
+    }
+    else{
+        animationTimer.start(picChangeStep);
+        //qDebug() <<"moving";
+        QPointF now_pos = posInMap();//出发位置
+        move_to_next();
+        QPointF then_pos = posInMap();//结束位置
+        perStep = (then_pos - now_pos)/totalPhase;
+    }
 }
 
 

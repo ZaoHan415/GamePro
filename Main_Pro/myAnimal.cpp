@@ -7,7 +7,7 @@ myAnimal::myAnimal(QPoint p,QObject* pa)
 {
     //新建并连接计时器
     m_timer = new QTimer(this);
-    m_timer->setSingleShot(true);
+    //m_timer->setSingleShot(true);
     connect(m_timer,SIGNAL(timeout()),this,SLOT(moveOneStep()));
     connect(m_timer,SIGNAL(timeout()),this,SLOT(restartTimer()));
     m_timer->start(0);
@@ -50,13 +50,12 @@ myAnimal::~myAnimal()
 
 void myAnimal::stop()
 {
-    delete m_timer;
-    m_timer = nullptr;
+    m_timer->stop();
 }
 
 void myAnimal::restartTimer()
 {
-    m_timer->start(time_per_step);
+    m_timer->setInterval(time_per_step);
 }
 
 void myAnimal::modifyInterval(int msec)
