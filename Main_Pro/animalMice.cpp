@@ -8,6 +8,8 @@
 animalMice::animalMice(QPoint pos,QObject * pa):
     myAnimal (pos,pa)
 {
+    supSpeed = int ( sup * speed );
+    infSpeed = int ( inf * speed );
     setPos(this->posInMap());
     resetSpeed();
     QString s = ":/Pic/Pics/Mice";
@@ -22,16 +24,16 @@ animalMice::animalMice(QPoint pos,QObject * pa):
         mice_pics.append(pic);
     }
     connect(&animationTimer,SIGNAL(timeout()),this,SLOT(changePic()));
-   // animationTimer.start(picChangeStep);
+    // animationTimer.start(picChangeStep);
 }
 
 int animalMice::turnAroundKey(int x)
 {
 
-    if(x == -1)
-        return 74;//key "J"
     if(x == 1)
         return 76;//key "L"
+    if(x == -1)
+        return 74;//key "J"
 
     throw std::runtime_error("key error");
 }
@@ -64,15 +66,21 @@ void animalMice::moveOneStep()
         emit mousewins(3);
         //stop();
     }
-    else{
-        animationTimer.start(picChangeStep);
-        //qDebug() <<"moving";
-        QPointF now_pos = posInMap();//出发位置
-        move_to_next();
-        QPointF then_pos = posInMap();//结束位置
-        perStep = (then_pos - now_pos)/totalPhase;
+    if(scene->blockTypeDetermine(position) == kind::food){
+        resetSpeed();
+        qDebug() << "now speed:" << get_speed();
     }
+    animationTimer.start(picChangeStep);
+    //qDebug() <<"moving";
+    QPointF now_pos = posInMap();//出发位置
+    move_to_next();
+    QPointF then_pos = posInMap();//结束位置
+    perStep = (then_pos - now_pos)/totalPhase;
 }
+
+
+//这段是不是没用了？
+/*
 void animalMice::mouse_escape()
 {
     if(this->position==QPoint(-2,-5))
@@ -81,6 +89,7 @@ void animalMice::mouse_escape()
         scene->gameOver(3);
     }
 }
+*/
 
 void animalMice::changePic()
 {
@@ -88,7 +97,7 @@ void animalMice::changePic()
     setPos(posInMap() + perStep*phase - perStep*totalPhase);
     update();
     phase ++;
-    if(phase > totalPhase)
+    if(phase >= totalPhase)
     {
         animationTimer.stop();
         phase=0;
@@ -124,5 +133,5 @@ void animalMice::changeSpeed()
         modifyInterval(supSpeed + (infSpeed - supSpeed)/totalSpeedPhase * speedChangePhase );
         speedChangePhase ++ ;
     }
-    picChangeStep = int ( double(get_speed()-200)/(totalPhase + 1.0) ) ;
+    picChangeStep = int ( double(get_speed()-100)/(totalPhase + 1.0) ) ;
 }

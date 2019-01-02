@@ -17,6 +17,7 @@ public:
 
 signals:
     void VolumeSet(int );
+    void stop();
 
 
 };

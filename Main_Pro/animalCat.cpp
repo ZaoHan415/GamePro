@@ -75,11 +75,11 @@ void animalCat::changePic()
     animalMice * mi = static_cast<animalMice*>(getMice()) ;
     if(collidesWithItem(mi))
     {
-        qDebug() << "catched";
+        //qDebug() << "catched";
         animationTimer.stop();
         emit catwins(1);
     }
-    if(phase > totalPhase)
+    if(phase >= totalPhase)
     {
         animationTimer.stop();
         phase = 0;
