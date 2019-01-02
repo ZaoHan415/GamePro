@@ -130,6 +130,7 @@ void MainGameScene::gameOver(int x)
         win *win_ui =new win(nullptr,volume);
         win_ui->show();
     }
+    emit stop();
 }
 
 QPoint MainGameScene::getMicePositon()

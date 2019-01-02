@@ -33,10 +33,14 @@ private:
     int speedChangePhase = 0;
 
     //速度上（下）界
-    const int supSpeed = 400;
-    const int infSpeed = 600;
+    int speed = 500;
+    const double sup = 0.8;
+    const double inf = 1.2;
+
+    int supSpeed;
+    int infSpeed;
     //速度衰减共用的格数
-    const int totalSpeedPhase = 10;
+    const int totalSpeedPhase = 15;
 
     void changeSpeed();
     void resetSpeed();

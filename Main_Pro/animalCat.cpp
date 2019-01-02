@@ -80,7 +80,7 @@ void animalCat::changePic()
         animationTimer.stop();
         emit catwins(1);
     }
-    if(phase > totalPhase)
+    if(phase >= totalPhase)
     {
         animationTimer.stop();
         phase = 0;

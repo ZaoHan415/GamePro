@@ -50,14 +50,14 @@ private:
     //猫入口
     QPoint catStartPos;
 
-
 public slots:
     void gameOver(int x);
     void setVolume(int x){
         volume = x;
         //qDebug() << "volume:"<<x;
     }
-
+signals:
+    void stop();
 };
 
 #endif // MAINGAMESCENE_H

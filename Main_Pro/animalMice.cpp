@@ -8,6 +8,8 @@
 animalMice::animalMice(QPoint pos,QObject * pa):
     myAnimal (pos,pa)
 {
+    supSpeed = int ( sup * speed );
+    infSpeed = int ( inf * speed );
     setPos(this->posInMap());
     resetSpeed();
     QString s = ":/Pic/Pics/Mice";
@@ -22,7 +24,7 @@ animalMice::animalMice(QPoint pos,QObject * pa):
         mice_pics.append(pic);
     }
     connect(&animationTimer,SIGNAL(timeout()),this,SLOT(changePic()));
-   // animationTimer.start(picChangeStep);
+    // animationTimer.start(picChangeStep);
 }
 
 int animalMice::turnAroundKey(int x)
@@ -68,14 +70,12 @@ void animalMice::moveOneStep()
         resetSpeed();
         qDebug() << "now speed:" << get_speed();
     }
-    else{
-        animationTimer.start(picChangeStep);
-        //qDebug() <<"moving";
-        QPointF now_pos = posInMap();//出发位置
-        move_to_next();
-        QPointF then_pos = posInMap();//结束位置
-        perStep = (then_pos - now_pos)/totalPhase;
-    }
+    animationTimer.start(picChangeStep);
+    //qDebug() <<"moving";
+    QPointF now_pos = posInMap();//出发位置
+    move_to_next();
+    QPointF then_pos = posInMap();//结束位置
+    perStep = (then_pos - now_pos)/totalPhase;
 }
 
 
@@ -97,7 +97,7 @@ void animalMice::changePic()
     setPos(posInMap() + perStep*phase - perStep*totalPhase);
     update();
     phase ++;
-    if(phase > totalPhase)
+    if(phase >= totalPhase)
     {
         animationTimer.stop();
         phase=0;
@@ -134,5 +134,5 @@ void animalMice::changeSpeed()
         speedChangePhase ++ ;
         //qDebug() << "now speed:" << get_speed();
     }
-    picChangeStep = int ( double(get_speed()-200)/(totalPhase + 1.0) ) ;
+    picChangeStep = int ( double(get_speed()-100)/(totalPhase + 1.0) ) ;
 }

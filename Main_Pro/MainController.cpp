@@ -1,6 +1,7 @@
 #include "MainController.h"
 #include "Control.h"
 #include <QFile>
+#include <QMediaPlaylist>
 
 MainController::MainController( QWidget *parent)
     :QDialog (parent)
@@ -11,7 +12,7 @@ MainController::MainController( QWidget *parent)
     connect(ui.SZ,SIGNAL(clicked()),this,SLOT(onSureS()));
     connect(ui.Quit,SIGNAL(clicked()),this,SLOT(onSureQ()));
     QFile file01("win.wav");
-    player01 = new QMediaPlayer;
+    player01 = new QMediaPlayer();
     player01->setMedia(QUrl("qrc:/win.wav"));
     player01->setVolume(c.isVolume);
     player01->play();
@@ -19,7 +20,7 @@ MainController::MainController( QWidget *parent)
 
 MainController::~MainController()
 {
-
+    delete  player01;
 }
 
 void MainController::onSureB()
@@ -29,10 +30,12 @@ void MainController::onSureB()
     emit finalVolume(isVolume);
     w->show();
     this->hide();
-    QFile file("bgm.wav");
-    player01->setMedia(QUrl("qrc:/bgm.wav"));
+    list = new QMediaPlaylist();
+    list->addMedia(QUrl("qrc:/bgm.wav"));
+    player01->setPlaylist(list);
     player01->setVolume(c.bgmVolume);
     player01->play();
+    connect(w,SIGNAL(stop()),this,SLOT(stopPlay()));
 }
 
 void MainController::onSureS()
@@ -52,4 +55,9 @@ void MainController::onSureS()
 void MainController::onSureQ()
 {
     accept();
+}
+
+void MainController::stopPlay()
+{
+    player01->stop();
 }

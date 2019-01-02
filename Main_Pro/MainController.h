@@ -22,6 +22,7 @@ public:
     int catspeed = 5;
 
     QMediaPlayer *player01;
+    QMediaPlaylist* list;
 
 private:
     Ui::MainController ui;
@@ -30,6 +31,7 @@ private slots:
     void onSureB();
     void onSureS();
     void onSureQ();
+    void stopPlay();
 signals:
     void finalVolume(int );
 };
