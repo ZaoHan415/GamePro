@@ -1,7 +1,7 @@
 #ifndef HEXAGON_H
 #define HEXAGON_H
 #include <QGraphicsItem>
-enum class kind{entrance=0,floor,barrier,exit,food};
+enum class kind{entrance=0,floor,barrier,exit,food,killer};
 class Hexagon : public QGraphicsItem
 {
 private:

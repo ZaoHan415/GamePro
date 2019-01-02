@@ -24,6 +24,10 @@ MainGameScene::MainGameScene()
     foodPos.append(QPoint(5,-2));
     foodPos.append(QPoint(-3,2));
 
+    //捕鼠夹位置
+    killerPos.append(QPoint(0,-4));
+    killerPos.append(QPoint(-2,1));
+
     drawFloor();
 
     //添加猫
@@ -36,6 +40,7 @@ MainGameScene::MainGameScene()
     mice = new animalMice(miceStartPos,this);
     animalMice *mice_p = static_cast<animalMice *>(mice );
     connect(mice_p,SIGNAL(mousewins(int )),this,SLOT(gameOver(int )));
+    connect(mice_p,SIGNAL(mouselose(int )),this,SLOT(gameOver(int )));
     addItem(mice_p);
 }
 
@@ -63,6 +68,9 @@ void MainGameScene::drawFloor()
                     break;
                 case kind::food:
                     temp = new Hexagon(kind::food,pixelPostionInMap(QPoint(i,j)),blockWidth);
+                    break;
+                case kind::killer:
+                    temp = new Hexagon(kind::killer,pixelPostionInMap(QPoint(i,j)),blockWidth);
                     break;
                 }
                 addItem(temp);
@@ -157,13 +165,19 @@ kind MainGameScene::blockTypeDetermine(QPoint p)
         }
 
     }
+    for(int i = 0 ; i < killerPos.size();i++){
+        if( p == killerPos.at(i) ){
+            return kind::killer;
+        }
+
+    }
 
     return kind::floor;
 }
 
 bool MainGameScene::isPassable(QPoint p)
 {
-    return inThisMap(p) && ( blockTypeDetermine(p) != kind::barrier);
+    return inThisMap(p) && ( blockTypeDetermine(p) != kind::barrier||blockTypeDetermine(p) != kind::killer);
 }
 
 MainGameScene::~MainGameScene()

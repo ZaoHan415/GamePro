@@ -50,6 +50,9 @@ private:
     //猫入口
     QPoint catStartPos;
 
+    //捕鼠夹
+    QList<QPoint> killerPos;
+
 public slots:
     void gameOver(int x);
     void setVolume(int x){

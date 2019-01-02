@@ -51,6 +51,7 @@ public slots:
     void changePic();
 signals:
     void mousewins(int);
+    void mouselose(int);
 
 };
 

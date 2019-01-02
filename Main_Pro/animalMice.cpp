@@ -69,6 +69,9 @@ void animalMice::moveOneStep()
     if(scene->blockTypeDetermine(position) == kind::exit){
         emit mousewins(3);
     }
+    if(scene->blockTypeDetermine(position) == kind::killer){
+        emit mouselose(1);
+    }
     else{
         animationTimer.start(picChangeStep);
         //qDebug() <<"moving";
