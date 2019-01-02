@@ -121,7 +121,7 @@ void MainGameScene::gameOver(int x)
     mice->stop();
     cat->stop();
     if(x == 1){
-        lose *lose_ui = new lose();
+        lose *lose_ui = new lose(nullptr,volume);
         lose_ui->show();
     }
     if(x == 3)

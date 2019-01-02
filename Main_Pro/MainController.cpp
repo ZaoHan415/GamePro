@@ -15,6 +15,7 @@ MainController::MainController( QWidget *parent)
     player01->setMedia(QUrl("qrc:/win.wav"));
     player01->setVolume(c.isVolume);
     player01->play();
+
 }
 
 MainController::~MainController()
@@ -33,6 +34,7 @@ void MainController::onSureB()
     player01->setMedia(QUrl("qrc:/bgm.wav"));
     player01->setVolume(c.bgmVolume);
     player01->play();
+
 }
 
 void MainController::onSureS()
