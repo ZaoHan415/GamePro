@@ -13,7 +13,6 @@ win::win(QWidget *parent,int _volume)
     player01 = new QMediaPlayer;
     player01->setMedia(QUrl("qrc:/win.wav"));
     player01->setVolume(_volume);
-    //qDebug() << "_volume:" << _volume;
     player01->play();
 }
 

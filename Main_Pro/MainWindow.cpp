@@ -17,8 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    //QMainWindow* a = static_cast<QMainWindow*>(parent());
-    //a->show();
+
+
 }
 
 

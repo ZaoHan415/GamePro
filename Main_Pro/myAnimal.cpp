@@ -24,7 +24,6 @@ void myAnimal::move_to_next()
 {
     MainGameScene *t = static_cast<MainGameScene*>(m_parent);
     direction = temp_direction;
-    //qDebug() <<"direction:"<<direction;
     QPoint step = m_hex->baseVecToNext(direction);
     if(t->isPassable(position + step)){
         position = position + step;
@@ -34,7 +33,6 @@ void myAnimal::move_to_next()
 void myAnimal::change_direction(int x)
 {
     temp_direction=(temp_direction+x+6)%6;
-    //emit direction_changed(direction);
 }
 
 QPointF myAnimal::posInMap()
@@ -59,7 +57,6 @@ void myAnimal::stop()
 void myAnimal::restartTimer()
 {
     m_timer->start(time_per_step);
-    //qDebug() <<"perStep:" <<time_per_step;
 }
 
 void myAnimal::modifyInterval(int msec)

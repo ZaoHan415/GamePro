@@ -123,7 +123,6 @@ void animalMice::changeSpeed()
     if(speedChangePhase <= totalPhase ){
         modifyInterval(supSpeed + (infSpeed - supSpeed)/totalSpeedPhase * speedChangePhase );
         speedChangePhase ++ ;
-        //qDebug() << "now speed:" << get_speed();
     }
     picChangeStep = int ( double(get_speed()-200)/(totalPhase + 1.0) ) ;
 }

@@ -66,7 +66,6 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
 
     painter->drawConvexPolygon(p,6);
 
-    // Hexagon* hex
     QPixmap now(":/Pic/Pics/floor.png");
     now = now.scaledToHeight(81);
     int w1 = int ( -1.32*a );

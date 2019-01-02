@@ -48,17 +48,6 @@ Control::Control(QWidget *parent)
     connect(ui.RButton,SIGNAL(clicked()),this,SLOT(onSureR()));//规则按钮
     connect(ui.TButton,SIGNAL(clicked()),this,SLOT(quit()));//退出按钮
 
-    /*QFile play01("bgm.wav");
-    player01->setMedia(QUrl::fromLocalFile("bgm.wav"));
-    QFile play02("cat.wav");
-    player02->setMedia(QUrl::fromLocalFile("cat.wav"));
-    QFile play03("mice.wav");
-    player03->setMedia(QUrl::fromLocalFile("mice.wav"));
-
-    player01->setVolume(50);
-    player02->setVolume(50);
-    player03->setVolume(50);*/
-
 }
 
 Control::~Control()

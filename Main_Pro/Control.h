@@ -75,7 +75,6 @@ private slots:
     void onSureP();
     void onSureR();
     void quit();
-
 };
 
 
