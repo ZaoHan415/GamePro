@@ -36,6 +36,7 @@ void MainController::onSureB()
     player01->setPlaylist(list);
     player01->setVolume(c.bgmVolume);
     player01->play();
+    connect(w,SIGNAL(stop()),this,SLOT(stopPlay()));
 }
 
 void MainController::onSureS()
