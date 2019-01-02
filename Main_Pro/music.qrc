@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>bgm.wav</file>
         <file>win.wav</file>
+        <file>lose.wav</file>
     </qresource>
 </RCC>

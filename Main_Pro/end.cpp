@@ -27,12 +27,18 @@ void win::onSure()
     accept();
 }
 
-lose::lose(QWidget *parent)
+lose::lose(QWidget *parent,int _volume)
     :QDialog (parent)
 {
     ui.setupUi(this);
 
     connect(ui.l,SIGNAL(clicked()),this,SLOT(onSure()));
+    QFile file02("lose.wav");
+    QMediaPlayer *player02;
+    player02 = new QMediaPlayer;
+    player02->setMedia(QUrl("qrc:/lose.wav"));
+    player02->setVolume(_volume);
+    player02->play();
 }
 
 lose::~lose()

@@ -27,7 +27,7 @@ class lose : public QDialog
     Q_OBJECT
 
 public:
-    lose(QWidget *parent = Q_NULLPTR);
+    lose(QWidget *parent = Q_NULLPTR,int volume = 50);
     ~lose();
 
     QMediaPlayer *losemusic;
