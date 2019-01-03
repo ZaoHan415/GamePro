@@ -93,7 +93,7 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
         QPointF offset(food.width()/2.0,food.height()/2.0);
                 painter->drawPixmap(-offset,food);
     }else if(m_kind == kind::killer){
-    QPixmap killer(":/Pic/Pics/killer.png");
+    QPixmap killer(":/Pic/Pics/Cat0.png");
     killer = killer.scaledToHeight(60);
     QPointF offset(killer.width()/2.0,killer.height()/2.0);
             painter->drawPixmap(-offset,killer);
