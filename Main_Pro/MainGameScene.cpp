@@ -1,10 +1,11 @@
 #include "MainGameScene.h"
-#include <Hexagon.h>
+#include "Hexagon.h"
+#include "end.h"
+
 #include <QDebug>
 #include <QEvent>
 #include <QKeyEvent>
 #include <QTimer>
-#include "end.h"
 
 MainGameScene::MainGameScene()
 {
@@ -29,7 +30,7 @@ MainGameScene::MainGameScene()
 
     //捕鼠夹位置
     killerPos.append(QPoint(0,-4));
-    killerPos.append(QPoint(-2,1));
+    killerPos.append(QPoint(-2,2));
 
     drawFloor();
 
@@ -43,7 +44,6 @@ MainGameScene::MainGameScene()
     mice = new animalMice(miceStartPos,this);
     animalMice *mice_p = static_cast<animalMice *>(mice );
     connect(mice_p,SIGNAL(mousewins(int )),this,SLOT(gameOver(int )));
-    //connect(mice_p,SIGNAL(mouselose(int )),this,SLOT(gameOver(int )));
     addItem(mice_p);
 }
 

@@ -30,7 +30,6 @@ public:
 
 private:
     void drawFloor();
-
     //地图宽度
     const int mapWidth = 5;
     const qreal blockWidth = 35;
@@ -57,7 +56,6 @@ public slots:
     void gameOver(int x);
     void setVolume(int x){
         volume = x;
-        //qDebug() << "volume:"<<x;
     }
 signals:
     void stop();
