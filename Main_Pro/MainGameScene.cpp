@@ -10,8 +10,11 @@ MainGameScene::MainGameScene()
 {
 
     //初始化猫老鼠位置
-    miceStartPos = QPoint(2-mapWidth,-2);
+    miceStartPos = QPoint(-5,1);
+
     catStartPos = QPoint(2-mapWidth,2);
+
+
     miceEndPos.append( QPoint(0,5) );
     miceEndPos.append( QPoint(mapWidth-1,-5) );
 
