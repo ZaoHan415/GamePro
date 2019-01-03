@@ -30,6 +30,8 @@ void MainController::onSureB()
     connect(this, SIGNAL( finalVolume(int) ),w,SIGNAL(VolumeSet(int)));
     emit finalVolume(isVolume);
     w->show();
+
+    //在这里把开始界面隐藏掉了，注意可能出现的问题
     this->hide();
     list = new QMediaPlaylist();
     list->addMedia(QUrl("qrc:/bgm.wav"));
