@@ -64,14 +64,14 @@ void animalMice::moveOneStep()
     MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
     if(scene->blockTypeDetermine(position) == kind::food){
         resetSpeed();
-        qDebug() << "now speed:" << get_speed();
+        //qDebug() << "now speed:" << get_speed();
     }
     if(scene->blockTypeDetermine(position) == kind::exit){
         emit mousewins(3);
     }
-    if(scene->blockTypeDetermine(position) == kind::killer){
-        emit mouselose(1);
-    }
+    /*else if(scene->blockTypeDetermine(position) == kind::killer){
+        emit mousewins(1);
+    }*/
     else{
         animationTimer.start(picChangeStep);
         //qDebug() <<"moving";

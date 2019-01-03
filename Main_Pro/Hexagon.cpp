@@ -82,8 +82,7 @@ void Hexagon::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
         ent = ent.scaledToHeight(60);
         QPointF offset(ent.width()/2.0,ent.height()/2.0);
         painter->drawPixmap(-offset,ent);
-    }else if(m_kind == kind::barrier)
-    {
+    }else if(m_kind == kind::barrier){
         QPixmap gift(":/Pic/Pics/gift.png");
         gift = gift.scaledToHeight(60);
         QPointF offset(gift.width()/2.0,gift.height()/2.0);

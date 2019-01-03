@@ -40,7 +40,7 @@ MainGameScene::MainGameScene()
     mice = new animalMice(miceStartPos,this);
     animalMice *mice_p = static_cast<animalMice *>(mice );
     connect(mice_p,SIGNAL(mousewins(int )),this,SLOT(gameOver(int )));
-    connect(mice_p,SIGNAL(mouselose(int )),this,SLOT(gameOver(int )));
+    //connect(mice_p,SIGNAL(mouselose(int )),this,SLOT(gameOver(int )));
     addItem(mice_p);
 }
 
