@@ -11,6 +11,8 @@ MainController::MainController( QWidget *parent)
     connect(ui.BButton,SIGNAL(clicked()),this,SLOT(onSureB()));
     connect(ui.SZ,SIGNAL(clicked()),this,SLOT(onSureS()));
     connect(ui.Quit,SIGNAL(clicked()),this,SLOT(onSureQ()));
+    connect(ui.AButton,SIGNAL(clicked()),this,SLOT(onSureD()));
+
     QFile file01("win.wav");
     player01 = new QMediaPlayer();
     player01->setMedia(QUrl("qrc:/win.wav"));
@@ -59,7 +61,28 @@ void MainController::onSureQ()
     accept();
 }
 
+void MainController::onSureD()
+{
+    isAi = true;
+
+    w = new MainWindow(this);
+    connect(this, SIGNAL( finalVolume(int) ),w,SIGNAL(VolumeSet(int)));
+    emit finalVolume(isVolume);
+    w->show();
+
+    //在这里把开始界面隐藏掉了，注意可能出现的问题
+    this->hide();
+    list = new QMediaPlaylist();
+    list->addMedia(QUrl("qrc:/bgm.wav"));
+    player01->setPlaylist(list);
+    player01->setVolume(c.bgmVolume);
+    player01->play();
+    connect(w,SIGNAL(stop()),this,SLOT(stopPlay()));
+
+}
+
 void MainController::stopPlay()
 {
     player01->stop();
 }
+

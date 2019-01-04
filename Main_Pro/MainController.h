@@ -24,6 +24,8 @@ public:
     QMediaPlayer *player01;
     QMediaPlaylist* list;
 
+    bool isAi {false};
+
 private:
     Ui::MainController ui;
 
@@ -31,6 +33,7 @@ private slots:
     void onSureB();
     void onSureS();
     void onSureQ();
+    void onSureD();//单人模式
     void stopPlay();
 signals:
     void finalVolume(int );

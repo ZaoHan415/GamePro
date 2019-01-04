@@ -39,26 +39,17 @@
     <string>游戏规则</string>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser">
+  <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>30</y>
-     <width>381</width>
-     <height>192</height>
+     <x>20</x>
+     <y>60</y>
+     <width>371</width>
+     <height>181</height>
     </rect>
    </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;通过按键来控制老鼠和猫的前进方向：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;          鼠：L顺时针，J逆时针；         猫：A顺时针，D顺时针&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1、当老鼠抵达出口时，游戏结束，鼠胜。&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2、当猫的&lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;头部 &lt;/span&gt;触碰到老鼠或老鼠遇到捕鼠夹，游戏结束，猫胜。&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3、老鼠的速度会随时间衰减，遇到奶酪可以加速。&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;4、猫和鼠遇到边界、障碍物（礼物盒）会停止前进。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;通过按键来控制老鼠和猫的前进方向：&lt;/p&gt;&lt;p&gt;          鼠：L顺时针，J逆时针；  猫：A顺时针，D顺时针&lt;/p&gt;&lt;p&gt;1、当老鼠抵达出口时，游戏结束，老鼠获胜。&lt;/p&gt;&lt;p&gt;2、当猫的头部 触碰到老鼠或老鼠遇到捕鼠夹，游戏结束，&lt;/p&gt;&lt;p&gt;猫获胜。&lt;/p&gt;&lt;p&gt;3、老鼠的速度会随时间衰减，遇到奶酪可以加速。&lt;/p&gt;&lt;p&gt;4、猫和鼠遇到边界、障碍物（礼物盒）会停止前进。&lt;/p&gt;&lt;p&gt;5、老鼠碰到捕鼠夹会直接死亡，猫获胜，猫不受捕鼠夹的&lt;/p&gt;&lt;p&gt;影响。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
