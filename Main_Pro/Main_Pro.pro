@@ -37,7 +37,9 @@ SOURCES += \
     SpeedController.cpp \
     Control.cpp \
     MainController.cpp \
-    end.cpp
+    end.cpp \
+    AI_src/autoanimal.cpp
+
 
 HEADERS += \
     MainGameScene.h \
@@ -51,7 +53,8 @@ HEADERS += \
     Control.h \
     MainController.h \
     end.h \
-    main.rc
+    main.rc \
+    AI_src/autoanimal.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -5,8 +5,8 @@
 #include "MainGameScene.h"
 #include <math.h>
 #include <QVector>
-animalCat::animalCat(QPoint pos,QObject * pa):
-    myAnimal (pos,pa)
+animalCat::animalCat(QPoint pos,QObject * pa,bool _aiMode):
+    myAnimal (pos,pa,_aiMode)
 {
     setPos(this->posInMap());
     QString s = ":/Pic/Pics/Cat";
@@ -22,6 +22,10 @@ animalCat::animalCat(QPoint pos,QObject * pa):
 
     }
     connect(&animationTimer,SIGNAL(timeout()),this,SLOT(changePic()));
+    if(aiMode){
+        //这里初始化一个ai出来
+        catAi = new autocat(std::vector<int> ,)
+    }
 }
 
 int animalCat::turnAroundKey(int x)
@@ -62,6 +66,9 @@ void animalCat::moveOneStep()
 {
     animationTimer.start(picChangeStep);
     QPointF now_pos = posInMap();//出发位置
+    if(aiMode){
+
+    }
     move_to_next();
     QPointF then_pos = posInMap();//结束位置
     perStep = (then_pos - now_pos)/totalPhase;

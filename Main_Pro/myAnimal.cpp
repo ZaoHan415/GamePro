@@ -3,7 +3,7 @@
 #include <QDebug>
 #include "MainGameScene.h"
 #include <QTimer>
-myAnimal::myAnimal(QPoint p,QObject* pa)
+myAnimal::myAnimal(QPoint p,QObject* pa,bool _aiMode)
 {
     //新建并连接计时器
     m_timer = new QTimer(this);
@@ -17,6 +17,8 @@ myAnimal::myAnimal(QPoint p,QObject* pa)
     //初始位置
     position=p;
     m_hex=new Hexagon();
+
+    aiMode = _aiMode;
 }
 
 
@@ -61,4 +63,15 @@ void myAnimal::restartTimer()
 void myAnimal::modifyInterval(int msec)
 {
     time_per_step = msec;
+}
+
+
+int myAnimal::calcDirection(QPoint p)
+{
+    for(int i = 0 ;i<6;i++){
+        if(p == m_hex->baseVecToNext(i)){
+            return i;
+        }
+    }
+    throw std::out_of_range("Wrong step for animal");
 }

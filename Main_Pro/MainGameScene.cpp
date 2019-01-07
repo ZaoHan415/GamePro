@@ -19,7 +19,7 @@ MainGameScene::MainGameScene()
     miceEndPos.append( QPoint(0,5) );
     miceEndPos.append( QPoint(mapWidth-1,-5) );
 
-    //障碍物位置
+    /*//障碍物位置
     barrierPos.append(QPoint(0,3));
     barrierPos.append(QPoint(-1,-2));
     barrierPos.append(QPoint(3,-4));
@@ -30,7 +30,7 @@ MainGameScene::MainGameScene()
 
     //捕鼠夹位置
     killerPos.append(QPoint(0,-4));
-    killerPos.append(QPoint(-2,2));
+    killerPos.append(QPoint(-2,2));*/
 
     drawFloor();
 

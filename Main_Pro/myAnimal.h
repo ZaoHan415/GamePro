@@ -8,7 +8,7 @@ class myAnimal : public QObject
 {
     Q_OBJECT
 public:
-    myAnimal(QPoint,QObject *);
+    myAnimal(QPoint,QObject *,bool _aiMode = false);
     ~myAnimal();
     QPoint get_position() { return position; }
     int get_direction() const{ return direction; }
@@ -37,6 +37,10 @@ private:
 protected:
     //指向每一个animal所在的Scene，根据需要将这个指针转换为MainGameScene类型指针
     QObject * m_parent;
+    bool aiMode = false;
+
+    //根据距离反解出转向角度，供AI使用
+    int calcDirection(QPoint );
 public slots:
     //x=1or-1,while 1 means clockwise
     void change_direction(int x);
