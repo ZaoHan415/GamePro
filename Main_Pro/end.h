@@ -3,7 +3,9 @@
 #include <QDialog>
 #include "ui_win.h"
 #include "ui_lose.h"
+#include "MusicController.h"
 #include <QMediaPlayer>
+#include<MainController.h>
 
 class win : public QDialog
 {
@@ -13,6 +15,8 @@ public:
     win(QWidget *parent = Q_NULLPTR,int volume = 50);
     ~win();
 
+    MainWindow *w;
+    MainController maincontroller;
     QMediaPlayer *winmusic;
 
 private:
@@ -30,6 +34,8 @@ public:
     lose(QWidget *parent = Q_NULLPTR,int volume = 50);
     ~lose();
 
+    MainWindow *w;
+    MainController maincontroller;
     QMediaPlayer *losemusic;
 
 private:

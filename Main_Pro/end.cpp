@@ -18,12 +18,17 @@ win::win(QWidget *parent,int _volume)
 
 win::~win()
 {
-
+    delete w;
 }
 
 void win::onSure()
 {
+
     accept();
+    w = new MainWindow(this);
+    maincontroller.show();
+    this->hide();
+
 }
 
 lose::lose(QWidget *parent,int _volume)
@@ -48,4 +53,7 @@ lose::~lose()
 void lose::onSure()
 {
     accept();
+   /* w = new MainWindow(this);
+    maincontroller.show();
+    this->hide();*/
 }
