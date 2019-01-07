@@ -2,33 +2,38 @@
 #include<QPainter>
 #include <QDebug>
 #include <QPixmap>
+#include "MainGameScene.h"
+#include <cmath>
 
 animalMice::animalMice(QPoint pos,QObject * pa):
     myAnimal (pos,pa)
 {
+    supSpeed = int ( sup * speed );
+    infSpeed = int ( inf * speed );
     setPos(this->posInMap());
-
+    resetSpeed();
     QString s = ":/Pic/Pics/Mice";
     for(int i = 0 ;i < 5 ;i ++)
     {
         QString temp(s);
         temp.append(QString::number(i));
         temp.append(".png");
-        qDebug() << temp;
+        //qDebug() << temp;
         QPixmap pic = QPixmap(temp);
         pic = pic.scaledToWidth(picWidth);
         mice_pics.append(pic);
     }
     connect(&animationTimer,SIGNAL(timeout()),this,SLOT(changePic()));
+    // animationTimer.start(picChangeStep);
 }
 
 int animalMice::turnAroundKey(int x)
 {
 
-    if(x == -1)
-        return 74;//key "J"
     if(x == 1)
         return 76;//key "L"
+    if(x == -1)
+        return 74;//key "J"
 
     throw std::runtime_error("key error");
 }
@@ -43,22 +48,10 @@ void animalMice::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWid
 
     //QRect t = now.rect();
     //t.getCoords(&x1,&y1,&x2,&y2);
-
-    painter->rotate(120+60*get_direction());
-    //painter->drawRect(now.rect());
-    //painter->drawLine(QLineF(x1,y1,x2,y2));
-    //painter->drawLine(QLineF(x1,y2,x2,y1));
-
+    int theta = 120+60*get_direction();
+    painter->rotate(theta);
     painter->drawPixmap(-offset,now);
 }
-
-
-/*void animalCat::advance(int phase)
-{
-    if(phase == 1){
-        move_to_next();
-           }
-}*/
 
 QRectF animalMice::boundingRect() const
 {
@@ -67,33 +60,82 @@ QRectF animalMice::boundingRect() const
 
 void animalMice::moveOneStep()
 {   
-    animationTimer.start(picChangeStep);
-    //qDebug() <<"moving";
-    QPointF now_pos = posInMap();//出发位置
-    move_to_next();
-    QPointF then_pos = posInMap();//结束位置
-    perStep = (then_pos - now_pos)/totalPhase;
-}
-void animalMice::mouse_escape()
-{
-    //QPoint p = m_cat->get_position();
-    //if(position mouse==p){
-    //emit mousewins(true);
-}
-
-void animalMice::changePic()
-{
-    setPos(posInMap() + perStep*phase - perStep*totalPhase);
-    update();
-    phase ++;
-    if(phase > totalPhase)
-    {
-        animationTimer.stop();
-        phase = 0;
+    changeSpeed();
+    MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+    if(scene->blockTypeDetermine(position) == kind::food){
+        resetSpeed();
+        //qDebug() << "now speed:" << get_speed();
+    }
+    if(scene->blockTypeDetermine(position) == kind::exit){
+        emit mousewins(3);
+    }
+    else if(scene->blockTypeDetermine(position) == kind::killer){
+        emit mousewins(1);
+    }
+    else{
+        animationTimer.start(picChangeStep);
+        //qDebug() <<"moving";
+        QPointF now_pos = posInMap();//出发位置
+        move_to_next();
+        QPointF then_pos = posInMap();//结束位置
+        perStep = (then_pos - now_pos)/totalPhase;
     }
 }
 
-void animalMice::out_of_border()
-{
 
+//这段是不是没用了？
+/*
+void animalMice::mouse_escape()
+{
+    if(this->position==QPoint(-2,-5))
+    {
+        MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+        scene->gameOver(3);
+    }
+}
+*/
+
+void animalMice::changePic()
+{
+    animationTimer.setInterval(picChangeStep);
+    setPos(posInMap() + perStep*phase - perStep*totalPhase);
+    update();
+    phase ++;
+    if(phase >= totalPhase)
+    {
+        animationTimer.stop();
+        phase=0;
+    }
+}
+
+QPainterPath animalMice::shape() const
+{
+    QPainterPath path;
+    QVector<QPointF> list;
+    int theta = 120+60*get_direction();
+    double the = -double(theta)*::asin(1)*2/180.0;
+    list.append(QPointF(+8.5*cos(the)-50.0*sin(the), -50.0*cos(the)-8.5*sin(the)));
+    list.append(QPointF(-16.5*cos(the)-50.0*sin(the), -50.0*cos(the)+16.5*sin(the)));
+    list.append(QPointF(-16.5*cos(the)+60.0*sin(the), +40.0*cos(the)+16.5*sin(the)));
+    list.append(QPointF(+8.5*cos(the)+60.0*sin(the), +40.0*cos(the)-8.5*sin(the)));
+    path.addPolygon(QPolygonF(list));
+    path.closeSubpath();
+
+    return path;
+}
+
+void animalMice::resetSpeed()
+{
+    speedChangePhase = 0;
+    modifyInterval(supSpeed);
+    picChangeStep = int ( double(get_speed()-200)/(totalPhase + 1.0) ) ;
+}
+
+void animalMice::changeSpeed()
+{
+    if(speedChangePhase <= totalPhase ){
+        modifyInterval(supSpeed + (infSpeed - supSpeed)/totalSpeedPhase * speedChangePhase );
+        speedChangePhase ++ ;
+    }
+    picChangeStep = int ( double(get_speed()-100)/(totalPhase + 1.0) ) ;
 }

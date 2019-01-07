@@ -9,7 +9,7 @@ QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Main_Pro
+TARGET = CatchMeIfYouCan
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -50,7 +50,8 @@ HEADERS += \
     SpeedController.h \
     Control.h \
     MainController.h \
-    end.h
+    end.h \
+    main.rc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -62,7 +63,8 @@ DISTFILES += \
 
 RESOURCES += \
     sources.qrc \
-    picture.qrc
+    picture.qrc \
+    music.qrc
     
 FORMS += \
     speedcontroller.ui \
@@ -73,4 +75,6 @@ FORMS += \
     MainController.ui \
     win.ui \
     lose.ui
+
+RC_FILE += main.rc
     

@@ -11,5 +11,10 @@
         <file>Pics/Cat0.png</file>
         <file>Pics/Mice0.png</file>
         <file>Pics/floor.png</file>
+        <file>Pics/cheese.png</file>
+        <file>Pics/entrance.png</file>
+        <file>Pics/exit.png</file>
+        <file>Pics/gift.png</file>
+        <file>Pics/killer.png</file>
     </qresource>
 </RCC>

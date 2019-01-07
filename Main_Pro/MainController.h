@@ -14,7 +14,15 @@ public:
     MainController( QWidget *parent = Q_NULLPTR );
     ~MainController();
     MainWindow *w;
-    Control *c;
+    Control c;
+
+    int bgmVolume = 50;
+    int isVolume = 50;
+    int micespeed = 5;
+    int catspeed = 5;
+
+    QMediaPlayer *player01;
+    QMediaPlaylist* list;
 
 private:
     Ui::MainController ui;
@@ -23,6 +31,9 @@ private slots:
     void onSureB();
     void onSureS();
     void onSureQ();
+    void stopPlay();
+signals:
+    void finalVolume(int );
 };
 
 #endif // MAINCONTROLLER_H

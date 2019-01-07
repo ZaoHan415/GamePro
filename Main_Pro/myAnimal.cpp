@@ -7,15 +7,16 @@ myAnimal::myAnimal(QPoint p,QObject* pa)
 {
     //新建并连接计时器
     m_timer = new QTimer(this);
-    m_timer->start(time_per_step);
+    //m_timer->setSingleShot(true);
     connect(m_timer,SIGNAL(timeout()),this,SLOT(moveOneStep()));
-
+    connect(m_timer,SIGNAL(timeout()),this,SLOT(restartTimer()));
+    m_timer->start(0);
     //初始化其父类
     m_parent = pa;
 
     //初始位置
     position=p;
-    m_hex=new Hexagon(QPointF(0,0));
+    m_hex=new Hexagon();
 }
 
 
@@ -23,9 +24,8 @@ void myAnimal::move_to_next()
 {
     MainGameScene *t = static_cast<MainGameScene*>(m_parent);
     direction = temp_direction;
-    //qDebug() <<"direction:"<<direction;
     QPoint step = m_hex->baseVecToNext(direction);
-    if(t->inThisMap(position + step)){
+    if(t->isPassable(position + step)){
         position = position + step;
     }
 }
@@ -33,7 +33,6 @@ void myAnimal::move_to_next()
 void myAnimal::change_direction(int x)
 {
     temp_direction=(temp_direction+x+6)%6;
-    //emit direction_changed(direction);
 }
 
 QPointF myAnimal::posInMap()
@@ -45,10 +44,21 @@ QPointF myAnimal::posInMap()
 myAnimal::~myAnimal()
 {
     delete m_hex;
-    delete m_timer;
+    if(m_timer != nullptr)
+        delete m_timer;
 }
 
 void myAnimal::stop()
 {
     m_timer->stop();
+}
+
+void myAnimal::restartTimer()
+{
+    m_timer->setInterval(time_per_step);
+}
+
+void myAnimal::modifyInterval(int msec)
+{
+    time_per_step = msec;
 }

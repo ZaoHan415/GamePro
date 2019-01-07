@@ -1,5 +1,5 @@
 #include "Control.h"
-
+#include <QFile>
 
 Rules::Rules(QWidget *parent)
     :QDialog (parent)
@@ -47,6 +47,7 @@ Control::Control(QWidget *parent)
     connect(ui.SButton,SIGNAL(clicked()),this,SLOT(onSureS()));//速度控制按钮
     connect(ui.RButton,SIGNAL(clicked()),this,SLOT(onSureR()));//规则按钮
     connect(ui.TButton,SIGNAL(clicked()),this,SLOT(quit()));//退出按钮
+
 }
 
 Control::~Control()
@@ -56,10 +57,13 @@ Control::~Control()
 
 void Control::onSureM()
 {
-    musiccontroller = new MusicController;
-    musiccontroller->show();
-    bgmVolume = musiccontroller->bgmVolume;
-    isVolume = musiccontroller->isvolume;
+    musiccontroller.show();
+    int ret = musiccontroller.exec();
+    if(ret == QDialog::Accepted)
+    {
+        bgmVolume = musiccontroller.bgmVolume;
+        isVolume = musiccontroller.isvolume;
+    }
 }
 
 void Control::onSureP()
@@ -76,10 +80,13 @@ void Control::onSureR()
 
 void Control::onSureS()
 {
-    speedcontroller01 = new speedcontroller;
-    speedcontroller01->show();
-    catspeed = speedcontroller01->catspeed;
-    micespeed = speedcontroller01->micespeed;
+    speedcontroller01.show();
+    int ret = speedcontroller01.exec();
+    if(ret==QDialog::Accepted)
+    {
+        catspeed = speedcontroller01.catspeed;
+        micespeed = speedcontroller01.micespeed;
+    }
 }
 
 void Control::quit()
