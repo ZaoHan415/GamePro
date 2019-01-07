@@ -50,12 +50,16 @@ class autocat:public autoanimal
 {
 public:
     int value(int, int)override;
+    autocat(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2) :
+        autoanimal (mouse, cat, door1, door2) {}
 };
 
 class automouse :public autoanimal
 {
 public:
     int value(int, int)override;
+    automouse(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2) :
+        autoanimal (mouse, cat, door1, door2) {}
 };
 
 #endif // AUTOANIMAL_H_INCLUDED
