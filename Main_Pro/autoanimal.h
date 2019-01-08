@@ -22,7 +22,7 @@ public:
     int mapx(int x);
     int mapy (int y);
     point nextstep(int, int);
-    virtual int value(int, int)=0;
+    virtual double value(int, int)=0;
     autoanimal(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2);
 
     ~autoanimal () {
@@ -49,7 +49,7 @@ protected:
 class autocat:public autoanimal
 {
 public:
-    int value(int, int)override;
+    double value(int, int)override;
     autocat(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2) :
         autoanimal (mouse, cat, door1, door2) {}
 };
@@ -57,7 +57,7 @@ public:
 class automouse :public autoanimal
 {
 public:
-    int value(int, int)override;
+    double value(int, int)override;
     automouse(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2) :
         autoanimal (mouse, cat, door1, door2) {}
 };

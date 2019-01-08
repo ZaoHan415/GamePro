@@ -12,7 +12,7 @@ int autoanimal::mapy (int y)
 
 autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)
 {
-
+    //set my map
     int** mymap = new int*[13];//用数组存以中心为原点的坐标,（x,y）对应数组[6-y][6+x]元	初始化为0，
     for (int i = 0; i < 13; ++i)
         mymap[i] = new int[13];
@@ -61,17 +61,28 @@ autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)
 		head=st+1;
     }
 
-   abc hhh{mymap[mapy(caty)][mapx(catx)], mymap[mapy(door1x)][mapx(door1y)],mymap[mapy(door2x)][mapx(door2y)]};
+   autoanimal::abc hhh{mymap[mapy(caty)][mapx(catx)], mymap[mapy(door1y)][mapx(door1x)],mymap[mapy(door2y)][mapx(door2x)]};
    for (int i = 0; i < 13; ++i)
         delete[] mymap[i];
     delete[] mymap;
    return hhh;
 }
 
-int automouse::value(int x1,int y1)
-{
-    abc x{getdistance_mouse(x1,y1)};
-    int v=5*x.a-(x.b)/(ydist.b)-(x.c)/(ydist.c);
+double automouse::value(int x1,int y1)
+{   //std::cout<<"5";
+    automouse::abc x{getdistance_mouse(x1,y1)};
+    //std::cout<<"6";
+    int a=x.a;
+    int b1=x.b;
+    int b2=ydist.b;
+    if (b2==0)b2=0.1;
+    int c1=ydist.c;
+    if (c1==0)c1=0.1;
+    int c2=x.c;
+     //std::cout<<"7";
+
+    double v=5*a-double(b1)/b2-double(c2)/c1;
+    //std::cout<<"8";
     return v;
 }
 
@@ -140,9 +151,9 @@ std::ifstream myset{"coords_of_wall_for_cat"};
 }
 
 
-int autocat::value(int x1,int y1)
+double autocat::value(int x1,int y1)
 {
-    int v=-mymap[mapy(y1)][mapx(x1)];
+    double v=-mymap[mapy(y1)][mapx(x1)];
     return v;
 
 }
@@ -152,12 +163,13 @@ int autocat::value(int x1,int y1)
         int dx[6]{-1,-1,0,1,1,0};
         int dy[6]{0,1,1,0,-1,-1};
         autoanimal::point* line = new autoanimal::point [6];
-        int val[6];
+        double val[6];
         autoanimal::point nowanimal={0,0};
+        //std::cout<<"4";
         for(int i=0;i<=5;++i)
         {   nowanimal.x=x1+dx[i];
             nowanimal.y=y1+dy[i];
-            int a=value(nowanimal.x,nowanimal.y);
+            double a=value(nowanimal.x,nowanimal.y);
             //std::cout<<"a value is got";
             line[i]= nowanimal;
             val[i]=a;
@@ -166,7 +178,7 @@ int autocat::value(int x1,int y1)
 
         //std::cout<<"values are got";
         int m=0;
-        int nvalue=val[0];
+        double nvalue=val[0];
         for(int i=1;i<6;++i){
 
             if (nvalue<val[i])
