@@ -33,6 +33,9 @@ QList<QPoint> myInputStream::getPos(myInput::dataType t)
     case dataType::mapWidth:
         s = "mapWidth";
         break;
+    case dataType::aiModeSetting:
+        s = "aiModeSetting";
+        break;
     }
     s = s + ":";
     char m[100];

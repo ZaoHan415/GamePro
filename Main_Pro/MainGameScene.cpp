@@ -43,14 +43,15 @@ MainGameScene::MainGameScene()
 
     drawFloor();
 
+    coords = in.getPos(myInput::dataType::aiModeSetting);
     //添加猫
-    cat = new animalCat(catStartPos,this,false);
+    cat = new animalCat(catStartPos,this,coords[0].x());
     animalCat *cat_p = static_cast<animalCat *>(cat );
     connect(cat_p,SIGNAL(catwins(int )),this,SLOT(gameOver(int )));
     addItem(cat_p);
 
     //添加老鼠
-    mice = new animalMice(miceStartPos,this,false);
+    mice = new animalMice(miceStartPos,this,coords[0].y());
     animalMice *mice_p = static_cast<animalMice *>(mice );
     connect(mice_p,SIGNAL(mousewins(int )),this,SLOT(gameOver(int )));
     addItem(mice_p);

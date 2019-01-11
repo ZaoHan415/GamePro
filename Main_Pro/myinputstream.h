@@ -18,7 +18,8 @@ enum class dataType{
     miceEntrance,
     catEntrance,
     coords_of_food,
-    mapWidth
+    mapWidth,
+    aiModeSetting,
 };
 }
 class myInputStream : public ifstream

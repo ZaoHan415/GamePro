@@ -45,3 +45,10 @@ coords_of_food:
 5 -2
 -3 2
 
+
+//ai模式设置，两个数，第一个是猫，第二个是老鼠
+//1 0 对应 true或false
+aiModeSetting:
+1
+0 0
+
