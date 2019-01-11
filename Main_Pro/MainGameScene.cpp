@@ -50,7 +50,7 @@ MainGameScene::MainGameScene()
     addItem(cat_p);
 
     //添加老鼠
-    mice = new animalMice(miceStartPos,this,true);
+    mice = new animalMice(miceStartPos,this,false);
     animalMice *mice_p = static_cast<animalMice *>(mice );
     connect(mice_p,SIGNAL(mousewins(int )),this,SLOT(gameOver(int )));
     addItem(mice_p);
