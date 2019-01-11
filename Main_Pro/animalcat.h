@@ -48,7 +48,6 @@ signals:
     void catwins(int);
 
 private:
-    autocat *catAi;
 };
 
 #endif // ANIMALCAT_H

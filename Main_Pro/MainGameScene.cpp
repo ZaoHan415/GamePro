@@ -44,7 +44,7 @@ MainGameScene::MainGameScene()
     drawFloor();
 
     //添加猫
-    cat = new animalCat(catStartPos,this,0);
+    cat = new animalCat(catStartPos,this,1);
     animalCat *cat_p = static_cast<animalCat *>(cat );
     connect(cat_p,SIGNAL(catwins(int )),this,SLOT(gameOver(int )));
     addItem(cat_p);

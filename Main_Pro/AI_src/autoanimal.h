@@ -3,6 +3,7 @@
 #include<iostream>
 #include<vector>
 #include <fstream>
+#include <QPoint>
 class autoanimal{
 
 public:
@@ -13,17 +14,17 @@ public:
         int b;
         int c;
     };
-    struct point {
+    /*struct point {
         int x, y;
-    };
+    };*/
 
     abc getdistance_mouse(int ,int );
     int getdistance_cat(int,int );
     int mapx(int x);
     int mapy (int y);
-    point nextstep(int, int);
-    virtual int value(int, int)=0;
-    autoanimal(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2);
+    QPoint nextstep(int, int);
+    virtual double value(int, int)=0;
+    autoanimal(QPoint mouse,QPoint cat,QPoint door1,QPoint door2);
 
     ~autoanimal () {
         for (int i = 0; i < 13; ++i)
@@ -48,28 +49,18 @@ protected:
 
 class autocat:public autoanimal
 {
-    autocat(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2);
-
-    ~autocat () {
-        for (int i = 0; i < 13; ++i)
-            delete[] mymap[i];
-        delete[] mymap;
-    }
 public:
-    int value(int, int)override;
+    double value(int, int)override;
+    autocat(QPoint mouse,QPoint cat,QPoint door1,QPoint door2) :
+        autoanimal (mouse, cat, door1, door2) {}
 };
 
 class automouse :public autoanimal
 {
-    automouse(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2);
-
-    ~automouse () {
-        for (int i = 0; i < 13; ++i)
-            delete[] mymap[i];
-        delete[] mymap;
-    }
 public:
-    int value(int, int)override;
+    double value(int, int)override;
+    automouse(QPoint mouse,QPoint cat,QPoint door1,QPoint door2) :
+        autoanimal (mouse, cat, door1, door2) {}
 };
 
 #endif // AUTOANIMAL_H_INCLUDED

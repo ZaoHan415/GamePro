@@ -75,3 +75,8 @@ int myAnimal::calcDirection(QPoint p)
     }
     throw std::out_of_range("Wrong step for animal");
 }
+
+void myAnimal::setDirection(int d)
+{
+    temp_direction = d;
+}

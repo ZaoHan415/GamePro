@@ -25,6 +25,8 @@ public:
 
     //修改速度
     void modifyInterval(int msec);
+
+    void setDirection(int );
 private:
     int direction = 0;//0 to 5
     int time_per_step = 500;//msecs

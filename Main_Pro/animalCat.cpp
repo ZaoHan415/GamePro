@@ -64,10 +64,13 @@ QRectF animalCat::boundingRect() const
 
 void animalCat::moveOneStep()
 {
+    MainGameScene* scene = dynamic_cast<MainGameScene*>(m_parent);
     animationTimer.start(picChangeStep);
     QPointF now_pos = posInMap();//出发位置
     if(aiMode){
-
+        autocat catAI(getMice()->get_position(),get_position(),scene->miceEndPos[0],scene->miceEndPos[1]);
+        QPoint net  = catAI.nextstep(get_position().x(),get_position().y());
+        setDirection(calcDirection(net - get_position()));
     }
     move_to_next();
     QPointF then_pos = posInMap();//结束位置
@@ -95,7 +98,7 @@ void animalCat::changePic()
 
 myAnimal* animalCat::getMice()
 {
-    MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+    MainGameScene* scene = dynamic_cast<MainGameScene*>(m_parent);
     return scene->mice;
 }
 
