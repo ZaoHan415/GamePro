@@ -60,12 +60,12 @@ autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)
     int dx[6]{-1,-1,0,1,1,0};
     int dy[6]{0,1,1,0,-1,-1};
 	while (head<=tail) {
-		int st=tail;
+        int st=tail;
 		for (int i=head;i<=st;i++) {
 			for (int j=0;j<6;j++) {
                 int nx = arrayk[i].x()+dx[j];
                 int ny = arrayk[i].y()+dy[j];
-				if (mymap[mapy(ny)][mapx(nx)]==10000) continue;
+                if (mymap[mapy(ny)][mapx(nx)] == 10000) continue;
 				if (mymap[mapy(ny)][mapx(nx)]<=step) continue;
 				++tail;
 				arrayk.push_back({nx, ny});

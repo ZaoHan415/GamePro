@@ -8,7 +8,7 @@ class animalMice:public myAnimal,public QGraphicsItem
 {
     Q_OBJECT
 public:
-    animalMice(QPoint,QObject* pa);
+    animalMice(QPoint,QObject* pa,bool _aiMode = 0);
     int turnAroundKey(int x) override;
 
     //void advance(int phase) override;

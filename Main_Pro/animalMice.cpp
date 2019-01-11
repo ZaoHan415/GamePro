@@ -5,8 +5,8 @@
 #include "MainGameScene.h"
 #include <cmath>
 
-animalMice::animalMice(QPoint pos,QObject * pa):
-    myAnimal (pos,pa)
+animalMice::animalMice(QPoint pos,QObject * pa,bool _aiMode):
+    myAnimal (pos,pa,_aiMode)
 {
     supSpeed = int ( sup * speed );
     infSpeed = int ( inf * speed );
@@ -25,6 +25,8 @@ animalMice::animalMice(QPoint pos,QObject * pa):
     }
     connect(&animationTimer,SIGNAL(timeout()),this,SLOT(changePic()));
     // animationTimer.start(picChangeStep);
+    MainGameScene* scene = dynamic_cast<MainGameScene*>(m_parent);
+    m_cat = scene->cat;
 }
 
 int animalMice::turnAroundKey(int x)
@@ -61,7 +63,7 @@ QRectF animalMice::boundingRect() const
 void animalMice::moveOneStep()
 {   
     changeSpeed();
-    MainGameScene* scene = static_cast<MainGameScene*>(m_parent);
+    MainGameScene* scene = dynamic_cast<MainGameScene*>(m_parent);
     if(scene->blockTypeDetermine(position) == kind::food){
         resetSpeed();
         //qDebug() << "now speed:" << get_speed();
@@ -73,9 +75,15 @@ void animalMice::moveOneStep()
         emit mousewins(1);
     }
     else{
+
         animationTimer.start(picChangeStep);
         //qDebug() <<"moving";
         QPointF now_pos = posInMap();//出发位置
+        if(aiMode){
+            automouse miceAI(get_position(),m_cat->get_position(),scene->miceEndPos[0],scene->miceEndPos[1]);
+            QPoint net  = miceAI.nextstep(get_position().x(),get_position().y());
+            setDirection(calcDirection(net - get_position()));
+        }
         move_to_next();
         QPointF then_pos = posInMap();//结束位置
         perStep = (then_pos - now_pos)/totalPhase;
