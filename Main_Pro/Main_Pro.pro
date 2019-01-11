@@ -38,7 +38,8 @@ SOURCES += \
     Control.cpp \
     MainController.cpp \
     end.cpp \
-    AI_src/autoanimal.cpp
+    AI_src/autoanimal.cpp \
+    myinputstream.cpp
 
 
 HEADERS += \
@@ -54,7 +55,8 @@ HEADERS += \
     MainController.h \
     end.h \
     main.rc \
-    AI_src/autoanimal.h
+    AI_src/autoanimal.h \
+    myinputstream.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

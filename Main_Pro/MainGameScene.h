@@ -31,7 +31,7 @@ public:
 private:
     void drawFloor();
     //地图宽度
-    const int mapWidth = 5;
+    int mapWidth = 5;
     const qreal blockWidth = 35;
 
     //老鼠入口

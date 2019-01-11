@@ -24,7 +24,7 @@ animalCat::animalCat(QPoint pos,QObject * pa,bool _aiMode):
     connect(&animationTimer,SIGNAL(timeout()),this,SLOT(changePic()));
     if(aiMode){
         //这里初始化一个ai出来
-        catAi = new autocat(std::vector<int> ,)
+        //catAi = new autocat(std::vector<int> ,)
     }
 }
 
