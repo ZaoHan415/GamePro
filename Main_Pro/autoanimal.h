@@ -1,13 +1,12 @@
-ï»¿#ifndef AUTOANIMAL_H_INCLUDED
+#ifndef AUTOANIMAL_H_INCLUDED
 #define AUTOANIMAL_H_INCLUDED
 #include<iostream>
 #include<vector>
 #include <fstream>
-#include <QPoint>
 /*
-å¯¹è‡ªåŠ¨è¡Œèµ°çš„çŒ«å’Œè€é¼ çš„å®ç°
-å±€é¢å¥½åç”¨åˆ†æ•°è¡¨ç¤º
-å¯¹å¯èƒ½çš„æ‰€æœ‰ä¸‹ä¸€æ­¥é€ æˆçš„å±€é¢æ‰“åˆ†ï¼Œé€‰å‡ºæœ€é«˜åˆ†åˆ¤æ–­ä¸‹ä¸€æ­¥æ€ä¹ˆèµ°
+¶Ô×Ô¶¯ĞĞ×ßµÄÃ¨ºÍÀÏÊóµÄÊµÏÖ
+¾ÖÃæºÃ»µÓÃ·ÖÊı±íÊ¾
+¶Ô¿ÉÄÜµÄËùÓĞÏÂÒ»²½Ôì³ÉµÄ¾ÖÃæ´ò·Ö£¬Ñ¡³ö×î¸ß·ÖÅĞ¶ÏÏÂÒ»²½ÔõÃ´×ß
 
 
 
@@ -27,19 +26,20 @@ public:
     struct point {
         int x, y;
     };
-
     abc getdistance_mouse(int ,int );
     int getdistance_cat(int,int );
     int mapx(int x);
     int mapy (int y);
-    QPoint nextstep(int, int);
+    point nextstep(int, int);
     virtual double value(int, int)=0;
-    autoanimal(QPoint mouse,QPoint cat,QPoint door1,QPoint door2);
     virtual bool is_wall(point)=0;
+    autoanimal(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2);
+
     ~autoanimal () {
-        for (int i = 0; i < 13; ++i)
+        for (int i = 0; i < 15; ++i)
             delete[] mymap[i];
         delete[] mymap;
+
     }
 
 protected:
@@ -54,17 +54,17 @@ protected:
     int **mymap;
     void initialize_mymap (int **mymap);
     abc ydist;
-    void initialize_mousewall(std::vector<QPoint>);
-    std::vector<QPoint> catwall;
-    void initialize_catwall(std::vector<QPoint>);
-
+    std::vector<point> mousewall;
+    void initialize_mousewall(std::vector<point>);
+    std::vector<point> catwall;
+    void initialize_catwall(std::vector<point>);
 };
 
 class autocat:public autoanimal
 {
 public:
     double value(int, int)override;
-    autocat(QPoint mouse,QPoint cat,QPoint door1,QPoint door2) :
+    autocat(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2) :
         autoanimal (mouse, cat, door1, door2) {}
     bool is_wall(point) override;
 };
@@ -73,7 +73,7 @@ class automouse :public autoanimal
 {
 public:
     double value(int, int)override;
-    automouse(QPoint mouse,QPoint cat,QPoint door1,QPoint door2) :
+    automouse(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2) :
         autoanimal (mouse, cat, door1, door2) {}
     bool is_wall(point) override;
 };
