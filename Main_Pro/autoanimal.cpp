@@ -3,32 +3,25 @@
 
 int autoanimal::mapx(int x)
 {                                                                                //坐标与map之间的转换
-    return 6+x;
+    return 7+x;
 }
 int autoanimal::mapy (int y)
 {
-    return 6-y;
+    return 7-y;
 }
 
 autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)
 {
-    int** mymap = new int*[13];//用数组存以中心为原点的坐标,（x,y）对应数组[6-y][6+x]元	初始化为0，
-    for (int i = 0; i < 13; ++i)
-        mymap[i] = new int[13];
-    /*std::ifstream myset{"coords_of_wall"};
-    while (true){                                                                    //建墙和边界
-        int x,y;
-        myset>>x>>y;
-        if (!myset) break;
-        mymap[mapy(y)][mapx(x)]=10000;
-    }*/
+    int** mymap = new int*[15];//用数组存以中心为原点的坐标,（x,y）对应数组[6-y][6+x]元	初始化为0，
+    for (int i = 0; i < 15; ++i)
+        mymap[i] = new int[15];
     for (auto a:mousewall)
     {
         mymap[mapy(a.y)][mapx(a.x)]=10000;
     }
-    for (int x=-6;x<7;++x)
+    for (int x=-7;x<8;++x)
     {
-        for (int y=-6;y<7;++y)
+        for (int y=-7;y<8;++y)
         {
             if (x*y<=0)
             {
@@ -65,7 +58,7 @@ autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)
     }
 
    autoanimal::abc hhh{mymap[mapy(caty)][mapx(catx)], mymap[mapy(door1y)][mapx(door1x)],mymap[mapy(door2y)][mapx(door2x)]};
-   for (int i = 0; i < 13; ++i)
+   for (int i = 0; i < 15; ++i)
         delete[] mymap[i];
     delete[] mymap;
    return hhh;
@@ -79,7 +72,7 @@ double automouse::value(int x1,int y1)
     if (b2==0)b2=0.1;
     int c1=ydist.c;
     if (c1==0)c1=0.1;
-     //std::cout<<"7";
+     //std::cout<<"8";
 
     double v=5*x.a-double(x.b)/b2-double(x.c)/c1;
     //std::cout<<"8";
@@ -98,9 +91,9 @@ autoanimal::autoanimal(std::vector<int>mouse,std::vector<int>cat,std::vector<int
     door2y{door2[1] }
 
 {
-    mymap = new int*[13];
-    for (int i = 0; i < 13; ++i)
-        mymap[i] = new int[13];
+    mymap = new int*[15];
+    for (int i = 0; i < 15; ++i)
+        mymap[i] = new int[15];
     std::cout<<"01";
     initialize_mymap(mymap);
     initialize_mousewall(mousewall);
@@ -114,9 +107,9 @@ for (auto a:catwall)
         mymap[mapy(a.y)][mapx(a.x)]=10000;
     }
 
-    for (int x=-6;x<7;++x)
+    for (int x=-7;x<8;++x)
     {
-        for (int y=-6;y<7;++y)
+        for (int y=-7;y<8;++y)
         {
             if (x*y<=0)
             {

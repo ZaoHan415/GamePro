@@ -36,7 +36,7 @@ public:
     autoanimal(std::vector<int>mouse,std::vector<int>cat,std::vector<int>door1,std::vector<int>door2);
 
     ~autoanimal () {
-        for (int i = 0; i < 13; ++i)
+        for (int i = 0; i < 15; ++i)
             delete[] mymap[i];
         delete[] mymap;
 
