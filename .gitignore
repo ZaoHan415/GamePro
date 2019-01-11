@@ -31,6 +31,7 @@ ui_*.h
 Makefile*
 *build-*
 debug
+.qmake.stash
 
 # Qt unit tests
 target_wrapper.*
