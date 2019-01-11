@@ -11,7 +11,6 @@ MainController::MainController( QWidget *parent)
     connect(ui.BButton,SIGNAL(clicked()),this,SLOT(onSureB()));
     connect(ui.SZ,SIGNAL(clicked()),this,SLOT(onSureS()));
     connect(ui.Quit,SIGNAL(clicked()),this,SLOT(onSureQ()));
-    connect(ui.AButton,SIGNAL(clicked()),this,SLOT(onSureD()));
 
     QFile file01("win.wav");
     player01 = new QMediaPlayer();

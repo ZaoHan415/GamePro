@@ -44,7 +44,6 @@ Control::Control(QWidget *parent)
 
     connect(ui.PButton,SIGNAL(clicked()),this,SLOT(onSureP()));//制作人员按钮
     connect(ui.MButton,SIGNAL(clicked()),this,SLOT(onSureM()));//音乐按钮
-    connect(ui.SButton,SIGNAL(clicked()),this,SLOT(onSureS()));//速度控制按钮
     connect(ui.RButton,SIGNAL(clicked()),this,SLOT(onSureR()));//规则按钮
     connect(ui.TButton,SIGNAL(clicked()),this,SLOT(quit()));//退出按钮
 
@@ -76,17 +75,6 @@ void Control::onSureR()
 {
     rules = new Rules;
     rules->show();
-}
-
-void Control::onSureS()
-{
-    speedcontroller01.show();
-    int ret = speedcontroller01.exec();
-    if(ret==QDialog::Accepted)
-    {
-        catspeed = speedcontroller01.catspeed;
-        micespeed = speedcontroller01.micespeed;
-    }
 }
 
 void Control::quit()

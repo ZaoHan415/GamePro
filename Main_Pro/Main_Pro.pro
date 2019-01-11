@@ -34,7 +34,6 @@ SOURCES += \
     animalMice.cpp \
     animalCat.cpp \
     MusicController.cpp \
-    SpeedController.cpp \
     Control.cpp \
     MainController.cpp \
     end.cpp
@@ -47,7 +46,6 @@ HEADERS += \
     animalMice.h \
     animalCat.h \
     MusicController.h \
-    SpeedController.h \
     Control.h \
     MainController.h \
     end.h \
@@ -67,7 +65,6 @@ RESOURCES += \
     music.qrc
     
 FORMS += \
-    speedcontroller.ui \
     MusicController.ui \
     control.ui \
     people.ui \

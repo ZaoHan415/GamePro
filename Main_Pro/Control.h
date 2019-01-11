@@ -7,7 +7,6 @@
 #include "ui_control.h"
 #include "ui_rules.h"
 #include "ui_people.h"
-#include "SpeedController.h"
 #include "MainWindow.h"
 #include "MusicController.h"
 class People: public QDialog
@@ -53,7 +52,6 @@ public:
     bool Wopen{false};
 
     MusicController musiccontroller;
-    speedcontroller speedcontroller01;
     People *people;
     Rules *rules;
 
@@ -71,7 +69,6 @@ private:
 
 private slots:
     void onSureM();
-    void onSureS();
     void onSureP();
     void onSureR();
     void quit();
