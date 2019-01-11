@@ -27,19 +27,19 @@ public:
     struct point {
         int x, y;
     };
-
     abc getdistance_mouse(int ,int );
     int getdistance_cat(int,int );
     int mapx(int x);
     int mapy (int y);
     QPoint nextstep(int, int);
     virtual double value(int, int)=0;
-    autoanimal(QPoint mouse,QPoint cat,QPoint door1,QPoint door2);
     virtual bool is_wall(point)=0;
+    autoanimal(QPoint mouse,QPoint cat,QPoint door1,QPoint door2);
     ~autoanimal () {
-        for (int i = 0; i < 13; ++i)
+        for (int i = 0; i < 15; ++i)
             delete[] mymap[i];
         delete[] mymap;
+
     }
 
 protected:
@@ -54,10 +54,10 @@ protected:
     int **mymap;
     void initialize_mymap (int **mymap);
     abc ydist;
-    void initialize_mousewall(std::vector<QPoint>);
-    std::vector<QPoint> catwall;
-    void initialize_catwall(std::vector<QPoint>);
-
+    std::vector<point> mousewall;
+    void initialize_mousewall(std::vector<point>& );//小伙子这里传值要传引用的！！！
+    std::vector<point> catwall;
+    void initialize_catwall(std::vector<point>& );//小伙子这里传值要传引用的！！！
 };
 
 class autocat:public autoanimal
