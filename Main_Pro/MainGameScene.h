@@ -28,17 +28,17 @@ public:
 
     int volume = 50;
 
+    //老鼠出口
+    QList<QPoint> miceEndPos;
+
 private:
     void drawFloor();
     //地图宽度
-    const int mapWidth = 5;
+    int mapWidth = 5;
     const qreal blockWidth = 35;
 
     //老鼠入口
     QPoint miceStartPos;
-
-    //老鼠出口
-    QList<QPoint> miceEndPos;
 
     //障碍物
     QList<QPoint> barrierPos;

@@ -36,7 +36,10 @@ SOURCES += \
     MusicController.cpp \
     Control.cpp \
     MainController.cpp \
-    end.cpp
+    end.cpp \
+    AI_src/autoanimal.cpp \
+    myinputstream.cpp
+
 
 HEADERS += \
     MainGameScene.h \
@@ -49,7 +52,9 @@ HEADERS += \
     Control.h \
     MainController.h \
     end.h \
-    main.rc
+    main.rc \
+    AI_src/autoanimal.h \
+    myinputstream.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -57,7 +62,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    ../README.md
+    ../README.md \
+    dataFile.txt
 
 RESOURCES += \
     sources.qrc \

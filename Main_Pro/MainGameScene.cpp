@@ -6,42 +6,51 @@
 #include <QEvent>
 #include <QKeyEvent>
 #include <QTimer>
-
+#include "myinputstream.h"
 MainGameScene::MainGameScene()
 {
 
+    myInputStream in;
+    QList<QPoint> coords;
+
+    coords = in.getPos(myInput::dataType::mapWidth);
+    mapWidth = coords.at(0).x() ;
     //初始化猫老鼠位置
-    miceStartPos = QPoint(-5,1);
+    coords = in.getPos(myInput::dataType::catEntrance);
+    catStartPos = coords.at(0);
 
-    catStartPos = QPoint(2-mapWidth,2);
+    coords = in.getPos(myInput::dataType::miceEntrance);
+    miceStartPos = coords.at(0);
 
+    miceEndPos = in.getPos(myInput::dataType::coords_of_door);
 
-    miceEndPos.append( QPoint(0,5) );
-    miceEndPos.append( QPoint(mapWidth-1,-5) );
-
-    //障碍物位置
-    barrierPos.append(QPoint(0,3));
+    /*barrierPos.append(QPoint(0,3));
     barrierPos.append(QPoint(-1,-2));
-    barrierPos.append(QPoint(3,-4));
+    barrierPos.append(QPoint(3,-4));*/
+    barrierPos = in.getPos(myInput::dataType::coords_of_block);
 
     //食物位置
+    /*
     foodPos.append(QPoint(5,-2));
     foodPos.append(QPoint(-3,2));
-
+    */
+    foodPos = in.getPos(myInput::dataType::coords_of_food);
     //捕鼠夹位置
+    /*
     killerPos.append(QPoint(0,-4));
-    killerPos.append(QPoint(-2,2));
+    killerPos.append(QPoint(-2,2));*/
+    killerPos = in.getPos(myInput::dataType::coords_of_killer);
 
     drawFloor();
 
     //添加猫
-    cat = new animalCat(catStartPos,this);
+    cat = new animalCat(catStartPos,this,false);
     animalCat *cat_p = static_cast<animalCat *>(cat );
     connect(cat_p,SIGNAL(catwins(int )),this,SLOT(gameOver(int )));
     addItem(cat_p);
 
     //添加老鼠
-    mice = new animalMice(miceStartPos,this);
+    mice = new animalMice(miceStartPos,this,true);
     animalMice *mice_p = static_cast<animalMice *>(mice );
     connect(mice_p,SIGNAL(mousewins(int )),this,SLOT(gameOver(int )));
     addItem(mice_p);

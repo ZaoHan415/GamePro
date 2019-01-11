@@ -3,13 +3,14 @@
 
 #include <QGraphicsItem>
 #include "myAnimal.h"
+#include "./AI_src/autoanimal.h"
 
 class animalCat:public myAnimal,public QGraphicsItem
 {
     Q_OBJECT
 public:
 
-    animalCat(QPoint,QObject* pa);
+    animalCat(QPoint,QObject* pa,bool _aiMode);
 
     int turnAroundKey(int x) override;
 
