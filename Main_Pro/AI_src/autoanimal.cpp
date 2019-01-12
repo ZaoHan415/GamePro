@@ -1,6 +1,11 @@
-﻿#include"autoanimal.h"       //需要一个"coords_of_wall"读取墙坐标 包括捕鼠夹
-                            //需要一个"coords_of_wall_for_cat"读取墙坐标 不包括捕鼠夹
+﻿#include"autoanimal.h"       //需要一个"coords_of_wall.txt"读取墙坐标 包括捕鼠夹
+                            //需要一个"coords_of_wall_for_cat.txt"读取墙坐标 不包括捕鼠夹
 #include "myinputstream.h"
+
+extern std::vector<autoanimal::point>catwall;
+extern std::vector<autoanimal::point>mousewall;
+
+
 int autoanimal::mapx(int x)
 {                                                                                //坐标与map之间的转换
     return 7+x;
@@ -10,9 +15,9 @@ int autoanimal::mapy (int y)
     return 7-y;
 }
 
-autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)
+autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)//算出每一点到该点的步数
 {
-    int** mymap = new int*[15];//用数组存以中心为原点的坐标,（x,y）对应数组[6-y][6+x]元	初始化为0，
+    int** mymap = new int*[15];
     for (int i = 0; i < 15; ++i)
         mymap[i] = new int[15];
     for (auto a:mousewall)
@@ -37,24 +42,24 @@ autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)
 
 
     std::vector<autoanimal::point> arrayk;
-    arrayk.push_back({x1, y1});                                                        //构建map值
+    arrayk.push_back({x1, y1});
     int head=0,tail=0,step=1;
     int dx[6]{-1,-1,0,1,1,0};
     int dy[6]{0,1,1,0,-1,-1};
-	while (head<=tail) {
-		int st=tail;
-		for (int i=head;i<=st;i++) {
-			for (int j=0;j<6;j++) {
+    while (head<=tail) {
+        int st=tail;
+        for (int i=head;i<=st;i++) {
+            for (int j=0;j<6;j++) {
                 int nx=arrayk[i].x+dx[j];int ny=arrayk[i].y+dy[j];
-				if (mymap[mapy(ny)][mapx(nx)]==10000) continue;
-				if (mymap[mapy(ny)][mapx(nx)]<=step) continue;
-				++tail;
-				arrayk.push_back({nx, ny});
-				mymap[mapy(ny)][mapx(nx)]=step;
-			}
-		}
-		step++;
-		head=st+1;
+                if (mymap[mapy(ny)][mapx(nx)]==10000) continue;
+                if (mymap[mapy(ny)][mapx(nx)]<=step) continue;
+                ++tail;
+                arrayk.push_back({nx, ny});
+                mymap[mapy(ny)][mapx(nx)]=step;
+            }
+        }
+        step++;
+        head=st+1;
     }
 
    autoanimal::abc hhh{mymap[mapy(caty)][mapx(catx)], mymap[mapy(door1y)][mapx(door1x)],mymap[mapy(door2y)][mapx(door2x)]};
@@ -81,27 +86,19 @@ double automouse::value(int x1,int y1)
 
 
 autoanimal::autoanimal(QPoint mouse,QPoint cat,QPoint door1,QPoint door2):
-    mousex { mouse.x() },
+ mousex { mouse.x() },
     mousey{mouse.y()},
     catx{cat.x()},
     caty{cat.y() },
     door1x{door1.x() },
     door1y{door1.y() },
     door2x{door2.x() },
-    door2y{door2.y() }
+  door2y{door2.y() }
 
 {
-    mymap = new int*[15];
-    for (int i = 0; i < 15; ++i)
-        mymap[i] = new int[15];
-    //std::cout<<"01";
-    initialize_mymap(mymap);
-    initialize_mousewall(mousewall);
-    initialize_catwall(catwall);
-    ydist= getdistance_mouse (mousex, mousey);
 }
 
-void autoanimal::initialize_mymap(int** mymap) {
+void autocat::initialize_mymap(int** mymap) {//算出每一点到该点的步数
 for (auto a:catwall)
     {
         mymap[mapy(a.y)][mapx(a.x)]=10000;
@@ -123,46 +120,40 @@ for (auto a:catwall)
 
     }
     std::vector<autoanimal::point> arrayk;
-    arrayk.push_back({mousex, mousey});                                                        //构建map值
+    arrayk.push_back({mousex, mousey});
+    mymap[mapy(mousey)][mapx(mousex)] = 0;
     int head=0,tail=0,step=1;
     int dx[6]{-1,-1,0,1,1,0};
     int dy[6]{0,1,1,0,-1,-1};
-	while (head<=tail) {
-		int st=tail;
-		for (int i=head;i<=st;i++) {
-			for (int j=0;j<6;j++) {
-                int nx=arrayk[i].x+dx[j];int ny=arrayk[i].y+dy[j];
-				if (mymap[mapy(ny)][mapx(nx)]==10000) continue;
-				if (mymap[mapy(ny)][mapx(nx)]<=step) continue;
-				++tail;
-				arrayk.push_back({nx, ny});
-				mymap[mapy(ny)][mapx(nx)]=step;
-			}
-		}
-		step++;
-		head=st+1;
+    while (head<=tail) {
+        //std::cout << "head" << head << ", tail" << tail << '\n';
+        int st=tail;
+        for (int i=head;i<=st;i++) {
+            for (int j=0;j<6;j++) {
+                int nx=arrayk[i].x+dx[j];
+                int ny=arrayk[i].y+dy[j];
+                if (nx < -6 || nx > 6 || ny < -6 || ny > 6) continue;
+                int& val = mymap[mapy(ny)][mapx(nx)];
+                if (val==10000) continue;
+                if (val != -1 && val<=step) continue;
+                ++tail;
+                arrayk.push_back({nx, ny});
+                val=step;
+            }
+        }
+        step++;
+        head=st+1;
     }
-
+    for (int i = -6; i <= 6; ++i) {
+        for (int j = -6; j <= 6; ++j) {
+            std::cout << mymap[mapy(j)][mapx(i)] << '\t';
+        }
+        std::cout << '\n';
+    }
 }
 
-void autoanimal::initialize_mousewall(std::vector<point>& mousewall)
-{
-    /*
-    std::fstream s("coords_of_wall");
-    while(true)
-    {
-        point a;
-        s>>a.x;
-        if(!s) break;
-        s>>a.y;
-        if(!s) throw autoanimal::walls_error{};
-        mousewall.push_back(a);
-
-    }
-    */
-
-    //统一一下输入值的方式
-    myInputStream in;
+void initialize_mousewall(std::vector<autoanimal::point>&mousewall)
+{ myInputStream in;
     QList<QPoint> lis = in.getPos(myInput::dataType::coords_of_block);
     for(QPoint p:lis){
         mousewall.push_back(point{p.x(),p.y()});
@@ -171,25 +162,10 @@ void autoanimal::initialize_mousewall(std::vector<point>& mousewall)
     for(QPoint p:lis){
         mousewall.push_back(point{p.x(),p.y()});
     }
-
 }
 
-
-void autoanimal::initialize_catwall(std::vector<point>& catwall)
-{
-    /*std::fstream s("coords_of_wall_for_cat");
-    while(true)
-    {
-        point a;
-        s>>a.x;
-        if(!s) break;
-        s>>a.y;
-        if(!s) throw autoanimal::walls_error_for_cat{};
-        mousewall.push_back(a);
-
-    }*/
-    //统一一下输入值的方式
-    myInputStream in;
+void initialize_catwall(std::vector<autoanimal::point>&catwall_)
+{    myInputStream in;
     QList<QPoint> lis = in.getPos(myInput::dataType::coords_of_block);
     for(QPoint p:lis){
         catwall.push_back(point{p.x(),p.y()});
@@ -198,24 +174,26 @@ void autoanimal::initialize_catwall(std::vector<point>& catwall)
 double autocat::value(int x1,int y1)
 {
     double v=-mymap[mapy(y1)][mapx(x1)];
+    //std::cout<<"catvalue"<<v<<'\n';
     return v;
 
 }
 
- QPoint autoanimal::nextstep(int x1,int y1)
- {
+ autoanimal::point autoanimal::nextstep(int x1,int y1)
+ {//对可能的所有下一步造成的局面打分，选出最高分判断下一步怎么走
         int dx[6]{-1,-1,0,1,1,0};
         int dy[6]{0,1,1,0,-1,-1};
         std::vector<autoanimal::point> line ;
         std::vector<double>values;
         autoanimal::point nowanimal={0,0};
-        std::cout<<"4";
+        //std::cout<<"4";
         int i=0;
         while(i<=5)
         {   nowanimal.x=x1+dx[i];
             nowanimal.y=y1+dy[i];
             //std::cout<<"5";
             ++i;
+            std::cout << i << ":wall:" << is_wall(nowanimal) << '\n';
             if (is_wall(nowanimal))  continue;
             //std::cout<<"a value is got";
             double a=value(nowanimal.x,nowanimal.y);
@@ -240,7 +218,7 @@ double autocat::value(int x1,int y1)
             }
         }
         autoanimal::point a = line[m];
-        return QPoint(a.x,a.y);
+        return a;
 }
 
  bool automouse::is_wall(point q)
@@ -248,16 +226,46 @@ double autocat::value(int x1,int y1)
  {    //std::cout<<"judge";
      for (auto p:mousewall)
      {
-         if (p.x==p.x&&p.y==q.y) return true;
+         if (p.x==q.x&&p.y==q.y) return true;
      }
+
+     if (q.x*q.y<=0)
+            {
+                if (abs(q.x)+abs(q.y)>12) return true;
+            }
+      if (q.x*q.y>0)
+            {
+                if(abs(q.x)+abs(q.y)>6) return true;
+            }
+     if (q.x<-6||q.x>6||q.y<-6||q.y>6)return true;
   return false;
  }
  bool autocat::is_wall(point q)
  {
+     //std::cout << "Point(" << q.x << ',' << q.y << ')';
      for (auto p:catwall)
      {
-         if (p.x==p.x&&p.y==q.y) return true;
+         if (p.x==q.x&&p.y==q.y) {
+            //std::cout << "wall\n";
+            return true;
+         }
      }
+     if (q.x*q.y<=0)
+            {
+                if (abs(q.x)+abs(q.y)>12) {
+                    //std::cout << "xy<0\n";
+                    return true;
+                }
+            }
+      if (q.x*q.y>0)
+            {
+                if(abs(q.x)+abs(q.y)>6) {
+                    //std::cout << "xy>0\n";
+                    return true;
+                }
+            }
+      if (q.x<-6||q.x>6||q.y<-6||q.y>6)return true;
+      //std::cout << "notwall\n";
   return false;
  }
 
