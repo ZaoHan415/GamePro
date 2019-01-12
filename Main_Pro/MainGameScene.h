@@ -30,7 +30,6 @@ public:
 
     //老鼠出口
     QList<QPoint> miceEndPos;
-
 private:
     void drawFloor();
     //地图宽度
