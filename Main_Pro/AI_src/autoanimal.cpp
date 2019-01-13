@@ -148,12 +148,12 @@ for (auto a:catwall)
         step++;
         head=st+1;
     }
-    for (int i = -6; i <= 6; ++i) {
+    /*for (int i = -6; i <= 6; ++i) {
         for (int j = -6; j <= 6; ++j) {
             std::cout << mymap[mapy(j)][mapx(i)] << '\t';
         }
         std::cout << '\n';
-    }
+    }*/
 }
 
 void initialize_mousewall(std::vector<autoanimal::point>&mousewall)

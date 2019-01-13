@@ -36,6 +36,9 @@ QList<QPoint> myInputStream::getPos(myInput::dataType t)
     case dataType::aiModeSetting:
         s = "aiModeSetting";
         break;
+    case dataType::speedDecaySetting:
+        s = "speedDecaySetting";
+        break;
     }
     s = s + ":";
     char m[100];

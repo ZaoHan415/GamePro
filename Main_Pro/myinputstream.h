@@ -20,6 +20,7 @@ enum class dataType{
     coords_of_food,
     mapWidth,
     aiModeSetting,
+    speedDecaySetting
 };
 }
 class myInputStream : public ifstream

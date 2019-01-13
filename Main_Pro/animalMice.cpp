@@ -4,10 +4,15 @@
 #include <QPixmap>
 #include "MainGameScene.h"
 #include <cmath>
+#include "myinputstream.h"
 
 animalMice::animalMice(QPoint pos,QObject * pa,bool _aiMode):
     myAnimal (pos,pa,_aiMode)
 {
+    myInputStream str;
+    QPoint p = str.getPos(myInput::dataType::speedDecaySetting).at(0);
+    sup = p.x() / 100.0;
+    inf = p.y() / 100.0;
     supSpeed = int ( sup * speed );
     infSpeed = int ( inf * speed );
     setPos(this->posInMap());
@@ -124,8 +129,8 @@ QPainterPath animalMice::shape() const
     double the = -double(theta)*::asin(1)*2/180.0;
     list.append(QPointF(+8.5*cos(the)-50.0*sin(the), -50.0*cos(the)-8.5*sin(the)));
     list.append(QPointF(-16.5*cos(the)-50.0*sin(the), -50.0*cos(the)+16.5*sin(the)));
-    list.append(QPointF(-16.5*cos(the)+60.0*sin(the), +40.0*cos(the)+16.5*sin(the)));
-    list.append(QPointF(+8.5*cos(the)+60.0*sin(the), +40.0*cos(the)-8.5*sin(the)));
+    list.append(QPointF(-16.5*cos(the)+50.0*sin(the), +40.0*cos(the)+16.5*sin(the)));
+    list.append(QPointF(+8.5*cos(the)+50.0*sin(the), +40.0*cos(the)-8.5*sin(the)));
     path.addPolygon(QPolygonF(list));
     path.closeSubpath();
 

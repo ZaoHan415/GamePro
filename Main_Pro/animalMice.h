@@ -34,8 +34,8 @@ private:
 
     //速度上（下）界
     int speed = 500;
-    const double sup = 0.8;
-    const double inf = 1.2;
+    double sup;
+    double inf;
 
     int supSpeed;
     int infSpeed;

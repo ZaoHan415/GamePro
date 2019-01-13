@@ -13,7 +13,7 @@ mapWidth:
 
 catEntrance:
 1
-0 0
+4 0
 
 miceEntrance:
 1
@@ -21,10 +21,13 @@ miceEntrance:
 
 //障碍物坐标
 coords_of_block:
-3
+6
 0 3
 -1 -2
 3 -4
+0 2
+-3 -2
+-3 3
 
 //捕鼠夹坐标
 coords_of_killer:
@@ -51,4 +54,10 @@ coords_of_food:
 aiModeSetting:
 1
 1 0
+
+//老鼠速度衰减设置
+//倒数百分比，90,110代表从100/90衰减到100/110，以猫速度为1
+speedDecaySetting:
+1
+60 110
 
