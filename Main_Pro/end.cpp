@@ -2,6 +2,7 @@
 #include "MainController.h"
 #include "Control.h"
 #include <QFile>
+#include <qprocess.h>
 win::win(QWidget *parent,int _volume)
     :QDialog (parent)
 {
@@ -23,12 +24,14 @@ win::~win()
 
 void win::onSure()
 {
-
+    qApp->quit();
+    QProcess::startDetached(qApp->applicationFilePath(), QStringList());
+/*
     accept();
     w = new MainWindow(this);
+    this->close();
     maincontroller.show();
-    this->hide();
-
+*/
 }
 
 lose::lose(QWidget *parent,int _volume)
@@ -47,13 +50,17 @@ lose::lose(QWidget *parent,int _volume)
 
 lose::~lose()
 {
-
+    delete w;
 }
 
 void lose::onSure()
 {
+    qApp->quit();
+    QProcess::startDetached(qApp->applicationFilePath(), QStringList());
+    /*
     accept();
-   /* w = new MainWindow(this);
+    w = new MainWindow(this);
     maincontroller.show();
-    this->hide();*/
+    this->hide();
+    */
 }
