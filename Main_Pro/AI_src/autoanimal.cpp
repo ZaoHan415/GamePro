@@ -79,7 +79,7 @@ double automouse::value(int x1,int y1)
     if (c1==0)c1=0.1;
      //std::cout<<"8";
 
-    double v=5*x.a-double(x.b)/b2-double(x.c)/c1;
+    double v=1.5*x.a-double(x.b)/b2-double(x.c)/c1;
     //std::cout<<"8";
     return v;
 }
@@ -156,11 +156,11 @@ void initialize_mousewall(std::vector<autoanimal::point>&mousewall)
 { myInputStream in;
     QList<QPoint> lis = in.getPos(myInput::dataType::coords_of_block);
     for(QPoint p:lis){
-        mousewall.push_back(point{p.x(),p.y()});
+        mousewall.push_back(autoanimal::point{p.x(),p.y()});
     }
     lis = in.getPos(myInput::dataType::coords_of_killer);
     for(QPoint p:lis){
-        mousewall.push_back(point{p.x(),p.y()});
+        mousewall.push_back(autoanimal::point{p.x(),p.y()});
     }
 }
 
