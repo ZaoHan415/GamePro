@@ -6,7 +6,7 @@
 
 VS_VERSION_INFO VERSIONINFO
 
-    FILEVERSION 0,0,0,1
+    FILEVERSION 0,0,0,5
     FILEFLAGSMASK 0x3fL
 
 #ifdef _DEBUG
@@ -24,11 +24,11 @@ VS_VERSION_INFO VERSIONINFO
 	    BLOCK "080404b0"
             BEGIN
 
-		VALUE "FileDescription", "team project in Qt"
+        VALUE "FileDescription", "Happy Final Exam version"
 		VALUE "LegalCopyright", "Copyright (C)2019 HappyNewYear! "
                 VALUE "OriginalFilename", ""
-		VALUE "ProductName", "Beta"
-		VALUE "ProductVersion", "V0.1"
+        VALUE "ProductName", "CatchMe"
+        VALUE "ProductVersion", "V0.5 beta"
 
             END
         END
