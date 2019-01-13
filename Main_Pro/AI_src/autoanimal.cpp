@@ -197,7 +197,7 @@ QPoint autoanimal::nextstep(int x1,int y1)
         nowanimal.y=y1+dy[i];
         //std::cout<<"5";
         ++i;
-        std::cout << i << ":wall:" << is_wall(nowanimal) << '\n';
+        //std::cout << i << ":wall:" << is_wall(nowanimal) << '\n';
         if (is_wall(nowanimal))  continue;
         //std::cout<<"a value is got";
         double a=value(nowanimal.x,nowanimal.y);
