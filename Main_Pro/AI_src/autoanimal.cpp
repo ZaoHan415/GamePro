@@ -1,5 +1,5 @@
 ﻿#include"autoanimal.h"       //需要一个"coords_of_wall.txt"读取墙坐标 包括捕鼠夹
-                            //需要一个"coords_of_wall_for_cat.txt"读取墙坐标 不包括捕鼠夹
+//需要一个"coords_of_wall_for_cat.txt"读取墙坐标 不包括捕鼠夹
 #include "myinputstream.h"
 
 std::vector<autoanimal::point> autoanimal::catwall{};
@@ -62,11 +62,11 @@ autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)//算出每一点�
         head=st+1;
     }
 
-   autoanimal::abc hhh{mymap[mapy(caty)][mapx(catx)], mymap[mapy(door1y)][mapx(door1x)],mymap[mapy(door2y)][mapx(door2x)]};
-   for (int i = 0; i < 15; ++i)
+    autoanimal::abc hhh{mymap[mapy(caty)][mapx(catx)], mymap[mapy(door1y)][mapx(door1x)],mymap[mapy(door2y)][mapx(door2x)]};
+    for (int i = 0; i < 15; ++i)
         delete[] mymap[i];
     delete[] mymap;
-   return hhh;
+    return hhh;
 }
 
 double automouse::value(int x1,int y1)
@@ -77,7 +77,7 @@ double automouse::value(int x1,int y1)
     if (b2==0)b2=0.1;
     int c1=ydist.c;
     if (c1==0)c1=0.1;
-     //std::cout<<"8";
+    //std::cout<<"8";
 
     double v=1.5*x.a-double(x.b)/b2-double(x.c)/c1;
     //std::cout<<"8";
@@ -86,14 +86,14 @@ double automouse::value(int x1,int y1)
 
 
 autoanimal::autoanimal(QPoint mouse,QPoint cat,QPoint door1,QPoint door2):
- mousex { mouse.x() },
+    mousex { mouse.x() },
     mousey{mouse.y()},
     catx{cat.x()},
     caty{cat.y() },
     door1x{door1.x() },
     door1y{door1.y() },
     door2x{door2.x() },
-  door2y{door2.y() }
+    door2y{door2.y() }
 
 {
     if(!hasInitialized){
@@ -103,7 +103,7 @@ autoanimal::autoanimal(QPoint mouse,QPoint cat,QPoint door1,QPoint door2):
 }
 
 void autocat::initialize_mymap(int** mymap) {//算出每一点到该点的步数
-for (auto a:catwall)
+    for (auto a:catwall)
     {
         mymap[mapy(a.y)][mapx(a.x)]=10000;
     }
@@ -170,10 +170,10 @@ void initialize_mousewall(std::vector<autoanimal::point>&mousewall)
 
 void initialize_catwall(std::vector<autoanimal::point>& catwall_)
 {    myInputStream in;
-    QList<QPoint> lis = in.getPos(myInput::dataType::coords_of_block);
-    for(QPoint p:lis){
-        catwall_.push_back(autoanimal::point{p.x(),p.y()});
-    }
+     QList<QPoint> lis = in.getPos(myInput::dataType::coords_of_block);
+      for(QPoint p:lis){
+          catwall_.push_back(autoanimal::point{p.x(),p.y()});
+      }
 }
 double autocat::value(int x1,int y1)
 {
@@ -183,93 +183,93 @@ double autocat::value(int x1,int y1)
 
 }
 
- QPoint autoanimal::nextstep(int x1,int y1)
- {//对可能的所有下一步造成的局面打分，选出最高分判断下一步怎么走
-        int dx[6]{-1,-1,0,1,1,0};
-        int dy[6]{0,1,1,0,-1,-1};
-        std::vector<autoanimal::point> line ;
-        std::vector<double>values;
-        autoanimal::point nowanimal={0,0};
-        //std::cout<<"4";
-        int i=0;
-        while(i<=5)
-        {   nowanimal.x=x1+dx[i];
-            nowanimal.y=y1+dy[i];
-            //std::cout<<"5";
-            ++i;
-            std::cout << i << ":wall:" << is_wall(nowanimal) << '\n';
-            if (is_wall(nowanimal))  continue;
-            //std::cout<<"a value is got";
-            double a=value(nowanimal.x,nowanimal.y);
+QPoint autoanimal::nextstep(int x1,int y1)
+{//对可能的所有下一步造成的局面打分，选出最高分判断下一步怎么走
+    int dx[6]{-1,-1,0,1,1,0};
+    int dy[6]{0,1,1,0,-1,-1};
+    std::vector<autoanimal::point> line ;
+    std::vector<double>values;
+    autoanimal::point nowanimal={0,0};
+    //std::cout<<"4";
+    int i=0;
+    while(i<=5)
+    {   nowanimal.x=x1+dx[i];
+        nowanimal.y=y1+dy[i];
+        //std::cout<<"5";
+        ++i;
+        std::cout << i << ":wall:" << is_wall(nowanimal) << '\n';
+        if (is_wall(nowanimal))  continue;
+        //std::cout<<"a value is got";
+        double a=value(nowanimal.x,nowanimal.y);
 
-            line.push_back(nowanimal) ;
-            values.push_back(a);
-            //std::cout<<"end a for\n";
+        line.push_back(nowanimal) ;
+        values.push_back(a);
+        //std::cout<<"end a for\n";
 
+    }
+
+    //std::cout<<"values are got";
+    int m=0;
+    if (values.size() == 0)
+        throw std::runtime_error {"Error with map: all walls"};
+    double nvalue=values[0];
+    for(int i=1;i<values.size();++i){
+
+        if (nvalue<values[i])
+        {
+            nvalue=values[i];
+            m=i;
         }
-
-        //std::cout<<"values are got";
-        int m=0;
-        if (values.size() == 0)
-            throw std::runtime_error {"Error with map: all walls"};
-        double nvalue=values[0];
-        for(int i=1;i<values.size();++i){
-
-            if (nvalue<values[i])
-            {
-                nvalue=values[i];
-                m=i;
-            }
-        }
-        autoanimal::point a = line[m];
-        return QPoint(a.x,a.y);
+    }
+    autoanimal::point a = line[m];
+    return QPoint(a.x,a.y);
 }
 
- bool automouse::is_wall(point q)
+bool automouse::is_wall(point q)
 
- {    //std::cout<<"judge";
-     for (auto p:mousewall)
-     {
-         if (p.x==q.x&&p.y==q.y) return true;
-     }
+{    //std::cout<<"judge";
+    for (auto p:mousewall)
+    {
+        if (p.x==q.x&&p.y==q.y) return true;
+    }
 
-     if (q.x*q.y<=0)
-            {
-                if (abs(q.x)+abs(q.y)>12) return true;
-            }
-      if (q.x*q.y>0)
-            {
-                if(abs(q.x)+abs(q.y)>6) return true;
-            }
-     if (q.x<-6||q.x>6||q.y<-6||q.y>6)return true;
-  return false;
- }
- bool autocat::is_wall(point q)
- {
-     //std::cout << "Point(" << q.x << ',' << q.y << ')';
-     for (auto p:catwall)
-     {
-         if (p.x==q.x&&p.y==q.y) {
+    if (q.x*q.y<=0)
+    {
+        if (abs(q.x)+abs(q.y)>12) return true;
+    }
+    if (q.x*q.y>0)
+    {
+        if(abs(q.x)+abs(q.y)>6) return true;
+    }
+    if (q.x<-6||q.x>6||q.y<-6||q.y>6)return true;
+    return false;
+}
+bool autocat::is_wall(point q)
+{
+    //std::cout << "Point(" << q.x << ',' << q.y << ')';
+    for (auto p:catwall)
+    {
+        if (p.x==q.x&&p.y==q.y) {
             //std::cout << "wall\n";
             return true;
-         }
-     }
-     if (q.x*q.y<=0)
-            {
-                if (abs(q.x)+abs(q.y)>12) {
-                    //std::cout << "xy<0\n";
-                    return true;
-                }
-            }
-      if (q.x*q.y>0)
-            {
-                if(abs(q.x)+abs(q.y)>6) {
-                    //std::cout << "xy>0\n";
-                    return true;
-                }
-            }
-      if (q.x<-6||q.x>6||q.y<-6||q.y>6)return true;
-      //std::cout << "notwall\n";
-  return false;
- }
+        }
+    }
+    if (q.x*q.y<=0)
+    {
+        if (abs(q.x)+abs(q.y)>12) {
+            //std::cout << "xy<0\n";
+            return true;
+        }
+    }
+    if (q.x*q.y>0)
+    {
+        if(abs(q.x)+abs(q.y)>6) {
+            //std::cout << "xy>0\n";
+            return true;
+        }
+    }
+    if (q.x<-6||q.x>6||q.y<-6||q.y>6)return true;
+    //std::cout << "notwall\n";
+    return false;
+}
 
