@@ -1,5 +1,6 @@
 ﻿#ifndef AUTOANIMAL_H_INCLUDED
 #define AUTOANIMAL_H_INCLUDED
+
 #include<iostream>
 #include<vector>
 #include <fstream>
@@ -39,12 +40,15 @@ public:
     int getdistance_cat(int,int );
     int mapx(int x);
     int mapy (int y);
-    point nextstep(int, int);
+    QPoint nextstep(int, int);
     virtual double value(int, int)=0;
     virtual bool is_wall(point)=0;
     autoanimal(QPoint mouse,QPoint cat,QPoint door1,QPoint door2);
 
+    static std::vector<autoanimal::point> catwall;
+    static std::vector<autoanimal::point> mousewall;
 
+    static bool hasInitialized;
 
 protected:
     int mousex;
@@ -97,8 +101,10 @@ public:
 protected:
     abc ydist;
 };
+
+
 void  initialize_mousewall(std::vector<autoanimal::point>&);
-void   initialize_catwall(std::vector<autoanimal::point>&);
+void  initialize_catwall(std::vector<autoanimal::point>&);
 
 #endif // AUTOANIMAL_H_INCLUDED
 

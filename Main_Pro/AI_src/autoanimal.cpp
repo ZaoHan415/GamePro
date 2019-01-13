@@ -2,10 +2,10 @@
                             //需要一个"coords_of_wall_for_cat.txt"读取墙坐标 不包括捕鼠夹
 #include "myinputstream.h"
 
-extern std::vector<autoanimal::point>catwall;
-extern std::vector<autoanimal::point>mousewall;
+std::vector<autoanimal::point> autoanimal::catwall{};
+std::vector<autoanimal::point> autoanimal::mousewall{};
 
-
+bool autoanimal::hasInitialized = false;
 int autoanimal::mapx(int x)
 {                                                                                //坐标与map之间的转换
     return 7+x;
@@ -20,7 +20,7 @@ autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)//算出每一点�
     int** mymap = new int*[15];
     for (int i = 0; i < 15; ++i)
         mymap[i] = new int[15];
-    for (auto a:mousewall)
+    for (auto a: mousewall)
     {
         mymap[mapy(a.y)][mapx(a.x)]=10000;
     }
@@ -96,6 +96,10 @@ autoanimal::autoanimal(QPoint mouse,QPoint cat,QPoint door1,QPoint door2):
   door2y{door2.y() }
 
 {
+    if(!hasInitialized){
+        ::initialize_catwall(catwall);
+        ::initialize_mousewall(mousewall);
+    }
 }
 
 void autocat::initialize_mymap(int** mymap) {//算出每一点到该点的步数
@@ -164,11 +168,11 @@ void initialize_mousewall(std::vector<autoanimal::point>&mousewall)
     }
 }
 
-void initialize_catwall(std::vector<autoanimal::point>&catwall_)
+void initialize_catwall(std::vector<autoanimal::point>& catwall_)
 {    myInputStream in;
     QList<QPoint> lis = in.getPos(myInput::dataType::coords_of_block);
     for(QPoint p:lis){
-        catwall.push_back(point{p.x(),p.y()});
+        catwall_.push_back(autoanimal::point{p.x(),p.y()});
     }
 }
 double autocat::value(int x1,int y1)
@@ -179,7 +183,7 @@ double autocat::value(int x1,int y1)
 
 }
 
- autoanimal::point autoanimal::nextstep(int x1,int y1)
+ QPoint autoanimal::nextstep(int x1,int y1)
  {//对可能的所有下一步造成的局面打分，选出最高分判断下一步怎么走
         int dx[6]{-1,-1,0,1,1,0};
         int dy[6]{0,1,1,0,-1,-1};
@@ -218,7 +222,7 @@ double autocat::value(int x1,int y1)
             }
         }
         autoanimal::point a = line[m];
-        return a;
+        return QPoint(a.x,a.y);
 }
 
  bool automouse::is_wall(point q)
