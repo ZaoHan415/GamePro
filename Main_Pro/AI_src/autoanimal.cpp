@@ -74,9 +74,9 @@ double automouse::value(int x1,int y1)
     automouse::abc x{getdistance_mouse(x1,y1)};
     //std::cout<<"6";
     int b2=ydist.b;
-    if (b2==0)b2=0.1;
-    int c1=ydist.c;
-    if (c1==0)c1=0.1;
+    if (b2==0) b2=-100;
+    int  c1=ydist.c;
+    if (c1==0)c1=-100;
     //std::cout<<"8";
 
     double v=1.5*x.a-double(x.b)/b2-double(x.c)/c1;
