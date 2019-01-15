@@ -33,20 +33,17 @@ public:
         int b;
         int c;
     };
-    struct point {
-        int x, y;
-    };
     abc getdistance_mouse(int ,int );
     int getdistance_cat(int,int );
     int mapx(int x);
     int mapy (int y);
-    QPoint nextstep(int, int);
+    QPoint nextstep();
     virtual double value(int, int)=0;
-    virtual bool is_wall(point)=0;
+    virtual bool is_wall(QPoint)=0;
     autoanimal(QPoint mouse,QPoint cat,QPoint door1,QPoint door2);
 
-    static std::vector<autoanimal::point> catwall;
-    static std::vector<autoanimal::point> mousewall;
+    static std::vector<QPoint> catwall;
+    static std::vector<QPoint> mousewall;
 
     static bool hasInitialized;
 
@@ -60,6 +57,7 @@ protected:
     int door2x;
     int door2y;
 
+    virtual QPoint this_pos() = 0;
 
 };
 
@@ -78,7 +76,7 @@ public:
 
         initialize_mymap(mymap);
         }
-    bool is_wall(point) override;
+    bool is_wall(QPoint) override;
      ~autocat () {
         for (int i = 0; i < 15; ++i)
             delete[] mymap[i];
@@ -87,6 +85,7 @@ public:
 protected:
     int **mymap;
     void initialize_mymap (int **mymap);
+    QPoint this_pos () override;
 };
 
 class automouse :public autoanimal
@@ -97,14 +96,15 @@ public:
         autoanimal (mouse, cat, door1, door2) {
          ydist= getdistance_mouse (mousex, mousey);
          }
-    bool is_wall(point) override;
+    bool is_wall(QPoint) override;
 protected:
     abc ydist;
+    QPoint this_pos() override;
 };
 
 
-void  initialize_mousewall(std::vector<autoanimal::point>&);
-void  initialize_catwall(std::vector<autoanimal::point>&);
+void  initialize_mousewall(std::vector<QPoint>&);
+void  initialize_catwall(std::vector<QPoint>&);
 
 #endif // AUTOANIMAL_H_INCLUDED
 

@@ -69,7 +69,7 @@ void animalCat::moveOneStep()
     QPointF now_pos = posInMap();//出发位置
     if(aiMode){
         autocat catAI(getMice()->get_position(),get_position(),scene->miceEndPos[0],scene->miceEndPos[1]);
-        QPoint net  = catAI.nextstep(get_position().x(),get_position().y());
+        QPoint net  = catAI.nextstep();
         setDirection(calcDirection(net - get_position()));
     }
     move_to_next();

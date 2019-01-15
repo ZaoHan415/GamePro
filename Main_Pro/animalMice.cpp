@@ -86,7 +86,7 @@ void animalMice::moveOneStep()
         QPointF now_pos = posInMap();//出发位置
         if(aiMode){
             automouse miceAI(get_position(),m_cat->get_position(),scene->miceEndPos[0],scene->miceEndPos[1]);
-            QPoint net  = miceAI.nextstep(get_position().x(),get_position().y());
+            QPoint net  = miceAI.nextstep();
             setDirection(calcDirection(net - get_position()));
         }
         move_to_next();
