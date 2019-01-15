@@ -30,7 +30,7 @@ autoanimal::abc autoanimal::getdistance_mouse( int x1,int y1)//算出每一点�
         {
             if (x*y<=0)
             {
-                if (abs(x)+abs(y)>12) mymap[mapy(y)][mapx(x)]=10000;
+                if (abs(x)>6||abs(y)>6) mymap[mapy(y)][mapx(x)]=10000;
             }
             if (x*y>0)
             {
@@ -114,7 +114,7 @@ void autocat::initialize_mymap(int** mymap) {//算出每一点到该点的步数
         {
             if (x*y<=0)
             {
-                if (abs(x)+abs(y)>12) mymap[mapy(y)][mapx(x)]=10000;
+                if (abs(x)>6||abs(y)>6) mymap[mapy(y)][mapx(x)]=10000;
             }
             if (x*y>0)
             {
